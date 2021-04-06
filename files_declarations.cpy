@@ -108,4 +108,3 @@
            	  03 fm_fin_time.
            		  04 fm_fin_hours PIC 9(2).
            		  04 fm_fin_minute PIC 9(2).
-

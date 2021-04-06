@@ -1,5 +1,5 @@
       * Files assignments    
-           SELECT fresa ASSIGN TO 'reservations.dat'
+           SELECT fresa ASSIGN TO 'files/reservations.dat'
            ORGANIZATION INDEXED
            ACCESS MODE IS DYNAMIC
            RECORD KEY IS fr_numResa
@@ -7,7 +7,7 @@
            ALTERNATE RECORD KEY IS fr_numCl WITH DUPLICATES
            FILE STATUS IS cr_fresa.
 
-           SELECT fresaarch ASSIGN TO 'reservations_archives.dat'
+           SELECT fresaarch ASSIGN TO 'files/reservations_archives.dat'
            ORGANIZATION INDEXED
            ACCESS MODE IS DYNAMIC
            RECORD KEY IS fra_numResa
@@ -15,24 +15,24 @@
            ALTERNATE RECORD KEY IS fra_numCl WITH DUPLICATES
            FILE STATUS IS cr_fresaarch.
        
-           SELECT fcli ASSIGN TO 'clients.dat'
+           SELECT fcli ASSIGN TO 'files/clients.dat'
            ORGANIZATION INDEXED
            ACCESS MODE IS DYNAMIC
            RECORD KEY IS fcl_numCl
            ALTERNATE RECORD KEY IS fp_dateNaissance WITH DUPLICATES
            FILE STATUS IS cr_fcli. 
 
-           SELECT fch ASSIGN TO 'chambres.dat'
+           SELECT fch ASSIGN TO 'files/chambres.dat'
            ORGANIZATION SEQUENTIAL
            ACCESS MODE IS SEQUENTIAL
            FILE STATUS IS cr_fch.
 
-           SELECT fpers ASSIGN TO 'personnels.dat'
+           SELECT fpers ASSIGN TO 'files/personnels.dat'
            ORGANIZATION SEQUENTIAL
            ACCESS MODE IS SEQUENTIAL
            FILE STATUS IS cr_fpers.
 
-           SELECT fmis ASSIGN TO 'missions.dat'
+           SELECT fmis ASSIGN TO 'files/missions.dat'
            ORGANIZATION INDEXED
            ACCESS MODE IS DYNAMIC
            RECORD KEY IS fm_numM
