@@ -1,3 +1,4 @@
+      * Files declarations
        FD fresa.
        01 tamp_fresa.
            02 fr_numResa PIC 9(6).
@@ -7,7 +8,7 @@
               03 fr_duree_hours PIC 9(2).
 			     03 fr_duree_minute PIC 9(2).
            02 fr_date_debut.
-              03 fr date_debut_date.
+              03 fr_date_debut_date.
                  04 fr_date_debut_year PIC 9(4).
                  04 fr_date_debut_month PIC 9(2).
                  04 fr_date_debut_day PIC 9(2). 
@@ -32,7 +33,7 @@
               03 fra_duree_hours PIC 9(2).
 			     03 fra_duree_minute PIC 9(2).
            02 fra_date_debut.
-              03 fra date_debut_date.
+              03 fra_date_debut_date.
                  04 fra_date_debut_year PIC 9(4).
                  04 fra_date_debut_month PIC 9(2).
                  04 fra_date_debut_day PIC 9(2). 
