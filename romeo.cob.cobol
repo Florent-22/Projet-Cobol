@@ -1,26 +1,26 @@
        ADD_MISSION.
            OPEN I-O fmission
            DISPLAY "Année du début de la mission : "
-           ACCEPT fm_debut_date.fm_debut_year
+           ACCEPT fm_debut_year
            DISPLAY "Mois de début de la mission : "
-           ACCEPT fm_debut_date.fm_debut_month
+           ACCEPT fm_debut_month
            DISPLAY "Jour de début de la mission : "
-           ACCEPT fm_debut_date.fm_debut_day
+           ACCEPT fm_debut_day
            DISPLAY "Heure de début de la mission : "
-           ACCEPT fm_debut_time.fm_debut_hour
+           ACCEPT fm_debut_hour
            DISPLAY "Heure de début de la mission : "
-           ACCEPT fm_debut_time.fm_debut_minute 
+           ACCEPT fm_debut_minute 
 
            DISPLAY "Année de fin de la mission : "
-           ACCEPT fm_fin_date.fm_fin_year
+           ACCEPT fm_fin_year
            DISPLAY "Mois de début de la mission : "
-           ACCEPT fm_fin_date.fm_fin_month
+           ACCEPT fm_fin_month
            DISPLAY "Jour de début de la mission : "
-           ACCEPT fm_fin_date.fm_fin_day
+           ACCEPT fm_fin_day
            DISPLAY "Heure de début de la mission : "
-           ACCEPT fm_fin_time.fm_fin_hour
+           ACCEPT fm_fin_hour
            DISPLAY "Heure de début de la mission : "
-           ACCEPT fm_fin_time.fm_fin_minute 
+           ACCEPT fm_fin_minute 
            
            WRITE tamp_fmi
               INVALID KEY 
@@ -48,11 +48,11 @@
                            DISPLAY "Mot de passe du personnel : " 
                                fp_motDePasse
                            DISPLAY "Année d'embauche du personnel : " 
-                               fp_dateEmbauche.fp_year
+                               fp_year
                            DISPLAY "Mois d'embauche du personnel : " 
-                               fp_dateEmbauche.fp_month
+                               fp_month
                            DISPLAY "Jour d'embauche du personnel : "
-                               fp_dateEmbauche.fp_day
+                               fp_day
                            DISPLAY "Type du personnel : " fp_actif
                            DISPLAY "----------------------------------"
                    END-READ
@@ -62,5 +62,16 @@
 
            ADD_RESERV.
            OPEN I-O fres
-                 
            CLOSE fres.
+
+           SRCH_ROOM.
+              OPEN INPUT fcha
+                 MOVE 0 TO Wchoix
+                 DISPLAY "Recherche par id"
+                 MOVE 1 TO Wchoix
+                 ACCEPT Wchoix
+                 DISPLAY "Recherche par type"
+                 ACCEPT Wchoix
+                 DISPLAY "Recherche chambres disponibles"
+                 ACCEPT Wchoix
+              CLOSE fcha.
