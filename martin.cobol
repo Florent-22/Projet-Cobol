@@ -3,8 +3,13 @@
            DISPLAY "│          AJOUT D'UNE CHAMBRE          │"
            DISPLAY "└───────────────────────────────────────┘"
            OPEN I-O froom
+<<<<<<< HEAD
                DISPLAY "┌───────────────────────────────────────┐"
                DISPLAY "│ Numéro de chambre :                   │"
+=======
+               DISPLAY "?????????????????????????????????????????"
+               DISPLAY "? Num�ro de chambre :                   ?"
+>>>>>>> 0f6f003b2668a5814b335a53f9610fca8e0a224c
                ACCEPT fc_numCh
                DISPLAY "│ Type de chambre :                     │"
                ACCEPT fc_typeCh
@@ -22,8 +27,13 @@
                        DISPLAY "│    Echec de l'ajout de la chambre    "
                                " │"
                    NOT INVALID KEY
+<<<<<<< HEAD
                        DISPLAY "│               Ajout réussi           "
                                " │"
+=======
+                       DISPLAY "?               Ajout r�ussi           "
+                               " ?"
+>>>>>>> 0f6f003b2668a5814b335a53f9610fca8e0a224c
                END-WRITE
                DISPLAY "└───────────────────────────────────────┘"
            CLOSE froom.
