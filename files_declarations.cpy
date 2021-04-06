@@ -1,3 +1,4 @@
+      * Files declarations
        FD fresa.
        01 tamp_fresa.
            02 fr_numResa PIC 9(6).
