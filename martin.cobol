@@ -164,24 +164,30 @@
                DISPLAY "┌───────────────────────────────────────┐"
                EVALUATE Wchoix
                    WHEN 0
-                       DISPLAY "│ Numero de la mission :                │"
-                       DISPLAY "└───────────────────────────────────────┘"
+                       DISPLAY "│ Numero de la mission :               "
+                               " │"
+                       DISPLAY "└──────────────────────────────────────"
+                               "─┘"
                        ACCEPT Wfiltre 
     
                        START fmis KEY IS Wfiltre
                        INVALID KEY
                            DISPLAY "Pas de mission pour ce numéro"
                    WHEN 1
-                       DISPLAY "│ Numero du personnel :                 │"
-                       DISPLAY "└───────────────────────────────────────┘"
+                       DISPLAY "│ Numero du personnel :                "
+                               " │"
+                       DISPLAY "└──────────────────────────────────────"
+                               "─┘"
                        ACCEPT Wfiltre
     
                        START fmis KEY IS Wfiltre
                        INVALID KEY
                            DISPLAY "Pas de mission pour ce personnel"
                    WHEN 2
-                       DISPLAY "│ Numero de la chambre :                │"
-                       DISPLAY "└───────────────────────────────────────┘"
+                       DISPLAY "│ Numero de la chambre :               "
+                               " │"
+                       DISPLAY "└──────────────────────────────────────"
+                               "─┘"
                        ACCEPT Wfiltre
     
                        START fmis KEY IS Wfiltre
