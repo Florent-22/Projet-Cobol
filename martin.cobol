@@ -53,7 +53,7 @@
                            DISPLAY "│ DATE DE NAISSANCE : " 
                                    fp_year "/"
                                    fp_month "/"
-                                   fp_day "/"
+                                   fp_day
                            DISPLAY "└──────────────────────────────────"
                                    "─────┘"
                    END-READ
@@ -67,8 +67,8 @@
            OPEN I-O fresa
                DISPLAY "┌───────────────────────────────────────┐"
                DISPLAY "│ Numero de la reservation :            │"
-               ACCEPT fr_numResa
                DISPLAY "└───────────────────────────────────────┘"
+               ACCEPT fr_numResa
 
                DISPLAY "┌───────────────────────────────────────┐"
                READ fresa
@@ -125,13 +125,14 @@
            OPEN I-O fmis
                DISPLAY "┌───────────────────────────────────────┐"
                DISPLAY "│ Numero de la mission :                │"
-               ACCEPT fm_numM
                DISPLAY "└───────────────────────────────────────┘"
+               ACCEPT fm_numM
  
                DISPLAY "┌───────────────────────────────────────┐"
                READ fmis
                    INVALID KEY
-                       DISPLAY "│ Cette mission n'existe pas !"
+                       DISPLAY "│ Cette mission n'existe pas !         "
+                           " │"
                    NOT INVALID KEY
                        DELETE fmis RECORD
                        DISPLAY "│ La mission a bien été supprimée      "
@@ -139,3 +140,111 @@
                END-READ
                DISPLAY "└───────────────────────────────────────┘"
            CLOSE fmis.
+       
+       SRCH_MISSION.
+           DISPLAY "┌───────────────────────────────────────┐"
+           DISPLAY "│        RECHERCHE D'UNE MISSION        │"
+           DISPLAY "└───────────────────────────────────────┘"
+           
+           
+           OPEN INPUT fmis
+               PERFORM UNTIL Wchoix < 0 or Wchoix > 4
+                  DISPLAY "┌───────────────────────────────────────┐"
+                  DISPLAY "│ Ajout d'un filtre de recherche :      │"
+                  DISPLAY "│                                       │"
+                  DISPLAY "│ Par numéro de mission (0)             │"
+                  DISPLAY "│ Par numéro de personnel (1)           │"
+                  DISPLAY "│ Par numéro de chambre (2)             │"
+                  DISPLAY "│ Par numéro de date de début (3)       │"
+                  DISPLAY "│ Par numéro de date de fin (4)         │"
+                  DISPLAY "└───────────────────────────────────────┘"
+                  ACCEPT Wchoix
+               END-PERFORM
+        
+               DISPLAY "┌───────────────────────────────────────┐"
+               EVALUATE Wchoix
+                   WHEN 0
+                       DISPLAY "│ Numero de la mission :                │"
+                       DISPLAY "└───────────────────────────────────────┘"
+                       ACCEPT Wfiltre 
+    
+                       START fmis KEY IS Wfiltre
+                       INVALID KEY
+                           DISPLAY "Pas de mission pour ce numéro"
+                   WHEN 1
+                       DISPLAY "│ Numero du personnel :                 │"
+                       DISPLAY "└───────────────────────────────────────┘"
+                       ACCEPT Wfiltre
+    
+                       START fmis KEY IS Wfiltre
+                       INVALID KEY
+                           DISPLAY "Pas de mission pour ce personnel"
+                   WHEN 2
+                       DISPLAY "│ Numero de la chambre :                │"
+                       DISPLAY "└───────────────────────────────────────┘"
+                       ACCEPT Wfiltre
+    
+                       START fmis KEY IS Wfiltre
+                       INVALID KEY
+                           DISPLAY "Pas de mission pour cette chambre"
+                   WHEN 3
+                   WHEN 4
+               END-EVALUATE
+               DISPLAY "└───────────────────────────────────────┘"
+
+               PERFORM WITH TEST AFTER UNTIL Wfin = 0
+                   READ fmis next
+                       AT END
+                           MOVE 0 TO Wfin
+                       NOT AT END
+                           EVALUATE Wchoix
+                               WHEN 0
+                                   IF fm_numM = Wfiltre
+                                       THEN
+                                           PERFORM SHOW_MISSION
+                                   ELSE
+                                       MOVE 0 TO Wfin
+                                   END-IF
+                               WHEN 1
+                                   IF fm_numP = Wfiltre
+                                       THEN
+                                           PERFORM SHOW_MISSION
+                                   ELSE
+                                       MOVE 0 TO Wfin
+                                   END-IF
+                               WHEN 2
+                                   IF fm_numCh = Wfiltre
+                                       THEN
+                                           PERFORM SHOW_MISSION
+                                   ELSE
+                                       MOVE 0 TO Wfin
+                                   END-IF
+                               WHEN 3
+                               WHEN 4
+                   END-READ
+               END-PERFORM
+               END-START
+           CLOSE fmis.
+
+       SHOW_MISSION.
+           DISPLAY "┌───────────────────────────────────────┐"
+           DISPLAY "│                MISSION                │"
+           DISPLAY "│                                       │"
+           DISPLAY "│ NUMERO : " fm_numM
+           DISPLAY "│ PERSONNEL : " fm_numP
+           DISPLAY "│ CHAMBRE : " fm_numCh
+           DISPLAY "│ DATE DE DÉBUT : " 
+                   fm_debut_year "/"
+                   fm_debut_month "/"
+                   fm_debut_day
+           DISPLAY "│ HEURE DE DÉBUT : " 
+                   fm_debut_hours ":"
+                   fm_debut_minute
+           DISPLAY "│ DATE DE FIN : " 
+                   fm_fin_year "/"
+                   fm_fin_month "/"
+                   fm_fin_day
+           DISPLAY "│ HEURE DE DÉBUT : " 
+                   fm_fin_hours ":"
+                   fm_fin_minute
+           DISPLAY "└───────────────────────────────────────┘"
