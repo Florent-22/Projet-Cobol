@@ -10,6 +10,10 @@
        77 Wtrouve                          PIC 9.
        77 Wstop                            PIC 9.
 
+       01 WS-CURRENT-USER.
+           05  WS-CURRENT-USER-FIRSTNAME   PIC A(30).
+           05  WS-CURRENT-USER-LASTNAME    PIC A(30).
+
        01 WS-CURRENT-DATE-DATA.
            05  WS-CURRENT-DATE.
                10  WS-CURRENT-YEAR         PIC 9(04).
