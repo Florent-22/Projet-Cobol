@@ -221,6 +221,7 @@
                                    END-IF
                                WHEN 3
                                WHEN 4
+                           END-EVALUATE
                    END-READ
                END-PERFORM
                END-START
