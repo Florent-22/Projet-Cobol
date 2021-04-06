@@ -2,7 +2,7 @@
            DISPLAY "┌───────────────────────────────────────┐"
            DISPLAY "│          AJOUT D'UNE CHAMBRE          │"
            DISPLAY "└───────────────────────────────────────┘"
-           OPEN I-O froom
+           OPEN I-O fch
                DISPLAY "┌───────────────────────────────────────┐"
                DISPLAY "│ Numéro de chambre :                   │"
                ACCEPT fc_numCh
@@ -17,7 +17,7 @@
                DISPLAY "└───────────────────────────────────────┘"
                
                DISPLAY "┌───────────────────────────────────────┐"
-               WRITE tamp_froom
+               WRITE tamp_fch
                    INVALID KEY
                        DISPLAY "│    Echec de l'ajout de la chambre    "
                                " │"
@@ -26,13 +26,13 @@
                                " │"
                END-WRITE
                DISPLAY "└───────────────────────────────────────┘"
-           CLOSE froom.
+           CLOSE fch.
 
        DISPLAY_CLIENT.
            DISPLAY "┌───────────────────────────────────────┐"
            DISPLAY "│        AFFICHAGE DES CLIENTS          │"
            DISPLAY "└───────────────────────────────────────┘"
-           OPEN INPUT fclient
+           OPEN INPUT fcli
                MOVE 0 TO Wfin
                PERFORM UNTIL Wfin = 1
                    READ fclient
@@ -58,23 +58,23 @@
                                    "─────┘"
                    END-READ
                END-PERFORM
-           CLOSE fclient.
+           CLOSE fcli.
        
        MODIF_RESERVATION.
            DISPLAY "┌───────────────────────────────────────┐"
            DISPLAY "│     MODIFICATION D'UNE RESERVATION    │"
            DISPLAY "└───────────────────────────────────────┘"
-           OPEN I-O freservation
+           OPEN I-O fresa
                DISPLAY "┌───────────────────────────────────────┐"
                DISPLAY "│ Numero de la reservation :            │"
                ACCEPT fr_numResa
                DISPLAY "└───────────────────────────────────────┘"
 
                DISPLAY "┌───────────────────────────────────────┐"
-               READ freservation
-                   INVALID KEY DISPLAY
-                       DISPLAY ""
-                   NOT INVALID KEY DISPLAY
+               READ fresa
+                   INVALID KEY
+                       DISPLAY "Cette réservation n'existe pas !"
+                   NOT INVALID KEY
                        DISPLAY "│  NOUVELLES VALEURS DE LA RESERVATION "
                                " │"
                        DISPLAY "│ Numero de chambre :                  "
@@ -113,9 +113,29 @@
                        DISPLAY "│ Minute de fin de la resevation :     "
                                " │"
                        ACCEPT fr_date_fin_minute
-                       REWRITE tamp_freservation
-                       DISPLAY "└──────────────────────────────────────"
-                               "─┘"
+                       REWRITE tamp_fresa
                END-READ
-           CLOSE freservation.
-               
+               DISPLAY "└───────────────────────────────────────┘"
+           CLOSE fresa.
+
+       DELETE_MISSION.
+           DISPLAY "┌───────────────────────────────────────┐"
+           DISPLAY "│       SUPPRESSION D'UNE MISSION       │"
+           DISPLAY "└───────────────────────────────────────┘"
+           OPEN I-O fmis
+               DISPLAY "┌───────────────────────────────────────┐"
+               DISPLAY "│ Numero de la mission :                │"
+               ACCEPT fm_numM
+               DISPLAY "└───────────────────────────────────────┘"
+ 
+               DISPLAY "┌───────────────────────────────────────┐"
+               READ fmis
+                   INVALID KEY
+                       DISPLAY "│ Cette mission n'existe pas !"
+                   NOT INVALID KEY
+                       DELETE fmis RECORD
+                       DISPLAY "│ La mission a bien été supprimée      "
+                           " │"
+               END-READ
+               DISPLAY "└───────────────────────────────────────┘"
+           CLOSE fmis.
