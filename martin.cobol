@@ -168,9 +168,10 @@
                                " │"
                        DISPLAY "└──────────────────────────────────────"
                                "─┘"
-                       ACCEPT Wfiltre 
+                       ACCEPT Wfiltre
+                       MOVE Wfiltre TO fm_numM
     
-                       START fmis KEY IS Wfiltre
+                       START fmis KEY IS fm_numM
                        INVALID KEY
                            DISPLAY "Pas de mission pour ce numéro"
                    WHEN 1
@@ -179,8 +180,9 @@
                        DISPLAY "└──────────────────────────────────────"
                                "─┘"
                        ACCEPT Wfiltre
+                       MOVE Wfiltre TO fm_numP
     
-                       START fmis KEY IS Wfiltre
+                       START fmis KEY IS fm_numP
                        INVALID KEY
                            DISPLAY "Pas de mission pour ce personnel"
                    WHEN 2
@@ -189,11 +191,15 @@
                        DISPLAY "└──────────────────────────────────────"
                                "─┘"
                        ACCEPT Wfiltre
+                       MOVE Wfiltre TO fm_numCh
     
-                       START fmis KEY IS Wfiltre
+                       START fmis KEY IS fm_numCh
                        INVALID KEY
                            DISPLAY "Pas de mission pour cette chambre"
                    WHEN 3
+
+                       START fm_debut KEY IS fm_debut
+                       INVALID KEY
                    WHEN 4
                END-EVALUATE
                DISPLAY "└───────────────────────────────────────┘"
