@@ -1,32 +1,35 @@
        ADD_ROOM.
-           DISPLAY "┌───────────────────────────────────────┐"
-           DISPLAY "│          AJOUT D'UNE CHAMBRE          │"
-           DISPLAY "└───────────────────────────────────────┘"
-           OPEN I-O fch
-               DISPLAY "┌───────────────────────────────────────┐"
-               DISPLAY "│ Numéro de chambre :                   │"
-               ACCEPT fc_numCh
-               DISPLAY "│ Type de chambre :                     │"
-               ACCEPT fc_typeCh
-               DISPLAY "│ Superficie de la chambre :            │"
-               ACCEPT fc_superficie
-               DISPLAY "│ Type de lit :                         │"
-               ACCEPT fc_lit
-               DISPLAY "│ Description de la chmabre :           │"
-               ACCEPT fc_description
-               DISPLAY "└───────────────────────────────────────┘"
-               
-               DISPLAY "┌───────────────────────────────────────┐"
-               WRITE tamp_fch
-                   INVALID KEY
-                       DISPLAY "│    Echec de l'ajout de la chambre    "
-                               " │"
-                   NOT INVALID KEY
-                       DISPLAY "│               Ajout réussi           "
-                               " │"
-               END-WRITE
-               DISPLAY "└───────────────────────────────────────┘"
-           CLOSE fch.
+           MOVE 0 TO Wvalide
+           OPEN INPUT fch
+               PERFORM GET_LASTID_ROOM
+               PERFORM WITH TEST AFTER UNTIL Wvalide = 1
+                   ACCEPT ROOM-EDITING-SCREEN
+                   
+               END-PERFORM
+           CLOSE fch
+           IF MENU-VALIDATE = "Y" THEN
+               OPEN OUTPUT fch
+                   WRITE tamp_fch
+                       INVALID KEY
+                       
+                       NOT INVALID KEY
+                       
+                   END-WRITE
+               CLOSE fch
+           ELSE
+              MOVE "CREATION ABORT" TO ERROR-MESSAGE
+           END-IF.
+
+       GET_LASTID_ROOM.
+           MOVE 0 TO Wfin
+           MOVE 0 TO fc_numCh
+           PERFORM UNTIL Wfin = 1
+               READ fch
+                   AT END
+                       MOVE 1 TO Wfin
+               END-READ
+           END-PERFORM
+           ADD 1 TO fc_numch
 
        DISPLAY_CLIENT.
            DISPLAY "┌───────────────────────────────────────┐"
