@@ -54,7 +54,7 @@
        01 tamp_fcli.
            02 fcl_numCl PIC 9(6).
            02 fcl_nom PIC A(30).
-           02 fcl_prénom PIC A(30).
+           02 fcl_prenom PIC A(30).
            02 fcl_tel PIC 9(10).
            02 fcl_adr PIC X(100).
            02 fp_dateNaissance.
