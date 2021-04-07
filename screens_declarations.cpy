@@ -5,7 +5,7 @@
        01  CONNECTION-SCREEN.
            05  BLANK SCREEN.
            05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
-           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05  LINE  3 PIC X(80) VALUE ALL "─".
            05  LINE  6 COL 15 VALUE "PLEASE LOGIN:".
            05  LINE  8 COL 20 VALUE "IDENTIFICATION CODE:".
            05  LINE  9 COL 20 VALUE "PASSWORD:".
@@ -23,7 +23,7 @@
            05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
            05  LINE  2 COL  2 VALUE "WELCOME".
            05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
-           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05  LINE  3 PIC X(80) VALUE ALL "─".
            05  LINE  6 COL  20 BACKGROUND-COLOR IS 3 
            VALUE "RECEPTION MENU".
            05  LINE  8 COL 20 VALUE "PLEASE SELECT:".
@@ -42,7 +42,7 @@
            05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
            05  LINE  2 COL  2 VALUE "WELCOME".
            05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
-           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05  LINE  3 PIC X(80) VALUE ALL "─".
            05  LINE  8 COL 20 VALUE "PLEASE SELECT:".
            05  LINE  10 COL 25 VALUE "1. PLANNING".
            05  LINE  11 COL 25 VALUE "2. RESERVATIONS".
@@ -58,7 +58,7 @@
            05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
            05  LINE  2 COL  2 VALUE "WELCOME".
            05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
-           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05  LINE  3 PIC X(80) VALUE ALL "─".
            05  LINE  8 COL 20 VALUE "PLEASE SELECT:".
            05  LINE  10 COL 25 VALUE "1. ROOMS".
            05  LINE  11 COL 25 VALUE "2. STAFF".
@@ -75,7 +75,7 @@
            05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
            05  LINE  2 COL  2 VALUE "WELCOME".
            05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
-           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05  LINE  3 PIC X(80) VALUE ALL "─".
            05  LINE  8 COL 2 VALUE "ROOM NUMBER:".
            05  LINE 8 COL 15 PIC 9(4) FROM fc_numCh.
            05 LINE 10 COL 5 VALUE "ROOM TYPE:".
@@ -101,7 +101,7 @@
            05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
            05  LINE  2 COL  2 VALUE "WELCOME".
            05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
-           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05  LINE  3 PIC X(80) VALUE ALL "─".
            05  LINE  8 COL 2 VALUE "PERSONAL NUMBER:".
            05  LINE 8 COL 19 PIC 9(4) FROM fp_numP.
            05 LINE 10 COL 5 VALUE "FIRSTNAME:".
