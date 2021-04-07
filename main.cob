@@ -15,6 +15,9 @@
       
        77  MENU-PICK PIC 9 VALUE 0.
            88  MENU-PICK-IS-VALID VALUE 0 THRU 3.
+
+       77  MENU-VALIDATE PIC A.
+           88  MENU-VALIDATE-IS-VALID VALUE "Y", "N".
       
        77  ERROR-MESSAGE PIC X(79).
        77  WS-LOGIN PIC 9(4).
@@ -23,69 +26,16 @@
 
        SCREEN SECTION.
 
-       01  CONNECTION-SCREEN.
-           05  BLANK SCREEN.
-           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
-           05  LINE  6 COL 15 VALUE "PLEASE LOGIN:".
-           05  LINE  8 COL 20 VALUE "IDENTIFICATION CODE:".
-           05  LINE  9 COL 20 VALUE "PASSWORD:".
-           05  LINE 8 COL 41 PIC 9(4) USING WS-LOGIN.
-           05  LINE 9 COL 41 PIC X(30) USING WS-PASSWORD.
-           05  LINE 24 COL  1 PIC X(79) FROM ERROR-MESSAGE.
-
-       01  A-RECEPTION-SCREEN.
-           05  BLANK SCREEN.
-           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
-           05  LINE  2 COL  2 VALUE "WELCOME".
-           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
-           05  LINE  6 COL 20 VALUE "PLEASE SELECT:".
-           05  LINE  8 COL 25 VALUE "1. PLANNING".
-           05  LINE  9 COL 25 VALUE "2. RESERVATIONS".
-           05  LINE 10 COL 25 VALUE "3. CUSTOMERS".
-           05  LINE 11 COL 25 VALUE "4. ROOM STATISTICS".
-           05  LINE 12 COL 25 VALUE "5. ADMINISTRATION PANNEL".
-           05  LINE 14 COL 25 VALUE "0. EXIT".
-           05  LINE 20 COL  1 VALUE "YOUR SELECTION".
-           05  LINE 20 COL 16 PIC Z USING MENU-PICK.
-           05  LINE 24 COL  1 PIC X(79) FROM ERROR-MESSAGE.
-      
-       01  RECEPTION-SCREEN.
-           05  BLANK SCREEN.
-           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
-           05  LINE  2 COL  2 VALUE "WELCOME".
-           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
-           05  LINE  6 COL 20 VALUE "PLEASE SELECT:".
-           05  LINE  8 COL 25 VALUE "1. PLANNING".
-           05  LINE  9 COL 25 VALUE "2. RESERVATIONS".
-           05  LINE 10 COL 25 VALUE "3. CUSTOMERS".
-           05  LINE 11 COL 25 VALUE "4. ROOM STATISTICS".
-           05  LINE 13 COL 25 VALUE "0. EXIT".
-           05  LINE 20 COL  1 VALUE "YOUR SELECTION".
-           05  LINE 20 COL 16 PIC Z USING MENU-PICK.
-           05  LINE 24 COL  1 PIC X(79) FROM ERROR-MESSAGE.
-
-       01  ADMINISTRATION-SCREEN.
-           05  BLANK SCREEN.
-           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
-           05  LINE  2 COL  2 VALUE "WELCOME".
-           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
-           05  LINE  6 COL 20 VALUE "PLEASE SELECT:".
-           05  LINE  8 COL 25 VALUE "1. ROOMS".
-           05  LINE  9 COL 25 VALUE "2. STAFF".
-           05  LINE 10 COL 25 VALUE "3. MISSIONS SUPPRESSION".
-           05  LINE 11 COL 25 VALUE "4. CUSTOMERS SUPPRESSION".
-           05  LINE 13 COL 25 VALUE "0. EXIT".
-           05  LINE 20 COL  1 VALUE "YOUR SELECTION".
-           05  LINE 20 COL 16 PIC Z USING MENU-PICK.
-           05  LINE 24 COL  1 PIC X(79) FROM ERROR-MESSAGE.
+       COPY "screens_declarations.cpy".
 
        PROCEDURE DIVISION.
        
            PERFORM START_PROG
            MOVE "Florent" TO WS-CURRENT-USER-FIRSTNAME.
            MOVE FUNCTION CURRENT-DATE TO WS-CURRENT-DATE-DATA.
-           ACCEPT CONNECTION-SCREEN.
-           ACCEPT A-RECEPTION-SCREEN.
+           
+           PERFORM ADD_PERSONNEL.
+
            STOP RUN.
 
            
@@ -130,3 +80,43 @@
                 OPEN OUTPUT fmis
              END-IF
           CLOSE fmis.
+
+
+       ADD_PERSONNEL.
+           OPEN INPUT fpers
+               MOVE 0 TO Wfin
+               MOVE 0 TO fp_numP
+               MOVE 0 TO Wvalide
+               PERFORM WITH TEST AFTER UNTIL Wfin = 1
+                 READ fpers
+                    AT END 
+                       MOVE 1 TO Wfin                         
+                 END-READ
+               END-PERFORM
+               ADD 1 TO fp_numP
+               PERFORM WITH TEST AFTER UNTIL Wvalide = 1
+                 ACCEPT PERS-EDITING-SCREEN
+                 IF fp_type = 0 OR fp_type = 1 OR fp_type = 2 THEN
+                    IF fp_actif = 0 OR fp_actif = 1 OR fp_actif = 2 THEN
+                       MOVE 1 TO Wvalide
+                    ELSE
+                       MOVE "WRONG ACTIF TYPE" TO ERROR-MESSAGE
+                       ACCEPT PERS-EDITING-SCREEN
+                       MOVE " " TO ERROR-MESSAGE
+                    END-IF
+                 ELSE 
+                    MOVE "WRONG TYPE TYPE" TO ERROR-MESSAGE
+                    ACCEPT PERS-EDITING-SCREEN
+                    MOVE " " TO ERROR-MESSAGE
+                 END-IF
+               END-PERFORM
+           CLOSE fpers
+           IF MENU-VALIDATE = "Y" THEN
+              OPEN EXTEND fpers
+                 WRITE tamp_fpers
+                 END-WRITE
+              CLOSE fpers
+           ELSE
+              MOVE "CREATION ABORT" TO ERROR-MESSAGE
+           END-IF.
+          

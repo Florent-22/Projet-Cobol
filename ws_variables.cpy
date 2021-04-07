@@ -9,6 +9,8 @@
        77 Wfin                             PIC 9.
        77 Wtrouve                          PIC 9.
        77 Wstop                            PIC 9.
+       77 Wvalide                          PIC 9.
+
 
        01 WS-CURRENT-USER.
            05  WS-CURRENT-USER-FIRSTNAME   PIC A(30).

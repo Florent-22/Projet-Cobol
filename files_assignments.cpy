@@ -19,7 +19,7 @@
            ORGANIZATION INDEXED
            ACCESS MODE IS DYNAMIC
            RECORD KEY IS fcl_numCl
-           ALTERNATE RECORD KEY IS fp_dateNaissance WITH DUPLICATES
+           ALTERNATE RECORD KEY IS fcl_dateNaissance WITH DUPLICATES
            FILE STATUS IS cr_fcli. 
 
            SELECT fch ASSIGN TO 'files/chambres.dat'
