@@ -70,14 +70,19 @@
                 Wchoix = 2 OR Wchoix = 3         
                  DISPLAY "Recherche par id"
                  DISPLAY "Recherche par type"
-                 DISPLAY "Recherche chambres disponibles"
+                 DISPLAY "Voir les chambres disponibles"
                  DISPLAY "Annuler la recherche"
                  ACCEPT Wchoix
                 END-PERFORM
-
                  EVALUATE Wchoix
-                       WHEN 1                       
+                       WHEN 1
+                          DISPLAY "id de la chambre recherché :"   
+                          ACCEPT Wchoix                                              
                        WHEN 2
+                          DISPLAY "type de la chambre recherché :"   
+                          ACCEPT Wchoix   
                        WHEN 3
+                          DISPLAY "Chambres disponibles :"   
+                          ACCEPT Wchoix  
                  END-EVALUATE           
               CLOSE fcha.
