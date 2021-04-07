@@ -1,36 +1,3 @@
-       ADD_ROOM.
-           MOVE 0 TO Wvalide
-           OPEN INPUT fch
-               PERFORM GET_LASTID_ROOM
-               PERFORM WITH TEST AFTER UNTIL Wvalide = 1
-                   ACCEPT ROOM-EDITING-SCREEN
-                   
-               END-PERFORM
-           CLOSE fch
-           IF MENU-VALIDATE = "Y" THEN
-               OPEN OUTPUT fch
-                   WRITE tamp_fch
-                       INVALID KEY
-                       
-                       NOT INVALID KEY
-                       
-                   END-WRITE
-               CLOSE fch
-           ELSE
-              MOVE "CREATION ABORT" TO ERROR-MESSAGE
-           END-IF.
-
-       GET_LASTID_ROOM.
-           MOVE 0 TO Wfin
-           MOVE 0 TO fc_numCh
-           PERFORM UNTIL Wfin = 1
-               READ fch
-                   AT END
-                       MOVE 1 TO Wfin
-               END-READ
-           END-PERFORM
-           ADD 1 TO fc_numch
-
        DISPLAY_CLIENT.
            DISPLAY "┌───────────────────────────────────────┐"
            DISPLAY "│        AFFICHAGE DES CLIENTS          │"

@@ -85,6 +85,8 @@
            05 LINE 11 COL 21 VALUE "m2".
            05 LINE 12 COL 5 VALUE "BED TYPE:".
            05  LINE 12 COL 18 PIC A(10) USING fc_lit.
+           05  LINE 12 COL 25 VALUE 
+           "(0 -> NORMAL 1 -> KING SIZE 2 -> DOUBLE)".
            05 LINE 13 COL 5 VALUE "DESCRIPTION:".
            05  LINE 13 COL 18 PIC A(100) USING fc_description.
            05 LINE 14 COL 5 VALUE "PRICE:".
