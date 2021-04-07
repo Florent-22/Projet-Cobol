@@ -57,10 +57,10 @@
            02 fcl_prenom PIC A(30).
            02 fcl_tel PIC 9(10).
            02 fcl_adr PIC X(100).
-           02 fp_dateNaissance.
-	          03 fp_year PIC 9(4).
-	          03 fp_month PIC 9(2).
-	          03 fp_day PIC 9(2).
+           02 fcl_dateNaissance.
+	          03 fcl_year PIC 9(4).
+	          03 fcl_month PIC 9(2).
+	          03 fcl_day PIC 9(2).
 
            
        FD fch.
@@ -70,7 +70,9 @@
 		     02 fc_superficie PIC 9(2).
 		     02 fc_lit PIC A(10).
 		     02 fc_description PIC A(100).
-		     02 fc_prix_heure PIC 9(3)V99.
+		     02 fc_prix_heure.
+              03 fc_prix_heure_entier PIC 9(3).
+              03 fc_prix_heure_decimal PIC 9(2).
 
 
        FD fpers.
