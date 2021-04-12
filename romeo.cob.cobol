@@ -71,8 +71,6 @@
                Wchoix1 = 1 OR Wchoix1 = 2 OR Wchoix1 = 2 OR Wchoix1 = 3         
                  DISPLAY "1 - Recherche par id"
                  DISPLAY "2 - Recherche par type"
-                 DISPLAY "3 - Voir les chambres disponibles"
-                 DISPLAY "4 - Annuler la recherche"
                  ACCEPT Wchoix1
                 END-PERFORM
                  EVALUATE Wchoix1
@@ -93,8 +91,15 @@
                     DISPLAY fc_id
                  IF Wchoix2 = fc_type THEN
                     DISPLAY fc_typeCh
-                 IF Wchoix = 3 
-                    OPEN fresa
-                    CLOSE fresa.
                 END-PERFORM
               CLOSE fcha.
+
+           DELETE_PERSONNEL.
+           OPEN INPUT fpers
+           
+           CLOSE fpers.
+
+
+           
+           
+      *Ajouter methode pour check chambres disponible
