@@ -26,4 +26,3 @@
                10  WS-CURRENT-MINUTE       PIC 9(02).
                10  WS-CURRENT-SECOND       PIC 9(02).
                10  WS-CURRENT-MILLISECONDS PIC 9(02).
-               

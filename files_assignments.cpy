@@ -39,4 +39,3 @@
            ALTERNATE RECORD KEY IS fm_numP WITH DUPLICATES
            ALTERNATE RECORD KEY IS fm_numCh WITH DUPLICATES
            FILE STATUS IS cr_fmis.  
-           

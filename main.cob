@@ -40,8 +40,8 @@
 
            
        START_PROG.
-           PERFORM CREATE_FILES
-       .
+           PERFORM ADD_ROOM.
+      *    PERFORM CREATE_FILES.
 
 
        CREATE_FILES.
@@ -149,6 +149,8 @@
 
       * GENERAL SECTION
 
+      * NEED TO OPEN ROOM FILE BEFORE PERFORM
+      * RETURN fc_numCh + 1
        GET_LASTID_ROOM.
            MOVE 0 TO Wfin
            MOVE 0 TO fc_numCh
@@ -158,4 +160,4 @@
                        MOVE 1 TO Wfin
                END-READ
            END-PERFORM
-           ADD 1 TO fc_numch
+           ADD 1 TO fc_numch.
