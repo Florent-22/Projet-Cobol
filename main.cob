@@ -123,6 +123,9 @@
                  MOVE " " TO fp_motDePasse
                END-IF
            CLOSE fpers.
+           
+
+      * ADD SECTION
 
        ADD_PERSONNEL.
            OPEN INPUT fpers
@@ -170,4 +173,41 @@
            ELSE
               MOVE "CREATION ABORT" TO ERROR-MESSAGE
            END-IF.
-          
+
+       ADD_ROOM.
+           MOVE 0 TO Wvalide
+           OPEN INPUT fch
+               PERFORM GET_LASTID_ROOM
+               PERFORM WITH TEST AFTER UNTIL Wvalide = 1
+                   ACCEPT ROOM-EDITING-SCREEN
+                   IF fc_lit = 0 OR fc_lit = 1 OR fc_lit = 2 THEN
+                       MOVE 1 TO Wvalide
+                   ELSE
+                       MOVE "WRONG BED TYPE" TO ERROR-MESSAGE
+                       ACCEPT ROOM-EDITING-SCREEN
+                       MOVE " " TO ERROR-MESSAGE
+                   END-IF
+               END-PERFORM
+           CLOSE fch
+           IF MENU-VALIDATE = "Y" THEN
+               OPEN OUTPUT fch
+                   WRITE tamp_fch
+                   END-WRITE
+               CLOSE fch
+           ELSE
+              MOVE "CREATION ABORT" TO ERROR-MESSAGE
+           END-IF.
+
+
+      * GENERAL SECTION
+
+       GET_LASTID_ROOM.
+           MOVE 0 TO Wfin
+           MOVE 0 TO fc_numCh
+           PERFORM UNTIL Wfin = 1
+               READ fch
+                   AT END
+                       MOVE 1 TO Wfin
+               END-READ
+           END-PERFORM
+           ADD 1 TO fc_numch.

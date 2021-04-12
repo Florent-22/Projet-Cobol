@@ -65,19 +65,34 @@
            CLOSE fres.
 
            SRCH_ROOM.
-              OPEN INPUT fcha   
-               PERFORM WITH TEST AFTER UNTIL Wchoix = 1 OR Wchoix = 2 OR
-                Wchoix = 2 OR Wchoix = 3         
-                 DISPLAY "Recherche par id"
-                 DISPLAY "Recherche par type"
-                 DISPLAY "Recherche chambres disponibles"
-                 DISPLAY "Annuler la recherche"
-                 ACCEPT Wchoix
+              OPEN INPUT fcha
+              MOVE 0 to Wchoix1
+               PERFORM WITH TEST AFTER UNTIL 
+               Wchoix1 = 1 OR Wchoix1 = 2 OR Wchoix1 = 2 OR Wchoix1 = 3         
+                 DISPLAY "1 - Recherche par id"
+                 DISPLAY "2 - Recherche par type"
+                 DISPLAY "3 - Voir les chambres disponibles"
+                 DISPLAY "4 - Annuler la recherche"
+                 ACCEPT Wchoix1
                 END-PERFORM
-
-                 EVALUATE Wchoix
-                       WHEN 1                       
+                 EVALUATE Wchoix1
+                       WHEN 1
+                          DISPLAY "id de la chambre recherché :"   
+                          ACCEPT Wchoix2                                            
                        WHEN 2
-                       WHEN 3
-                 END-EVALUATE           
+                          DISPLAY "type de la chambre recherché :"   
+                          ACCEPT Wchoix2
+                 END-EVALUATE 
+                MOVE 0 TO Wfin
+                PERFORM UNTIL Wfin = 1 
+                read fcha
+                AT END
+                    MOVE 1 TO Wfin
+                NOT AT END
+                 IF Wchoix2 = fc_id THEN
+                    DISPLAY fc_id
+                 IF Wchoix2 = fc_type THEN
+                    DISPLAY fc_typeCh
+                 IF Wchoix = 3 
+                END-PERFORM
               CLOSE fcha.

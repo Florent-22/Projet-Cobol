@@ -1,33 +1,3 @@
-       ADD_ROOM.
-           DISPLAY "┌───────────────────────────────────────┐"
-           DISPLAY "│          AJOUT D'UNE CHAMBRE          │"
-           DISPLAY "└───────────────────────────────────────┘"
-           OPEN I-O fch
-               DISPLAY "┌───────────────────────────────────────┐"
-               DISPLAY "│ Numéro de chambre :                   │"
-               ACCEPT fc_numCh
-               DISPLAY "│ Type de chambre :                     │"
-               ACCEPT fc_typeCh
-               DISPLAY "│ Superficie de la chambre :            │"
-               ACCEPT fc_superficie
-               DISPLAY "│ Type de lit :                         │"
-               ACCEPT fc_lit
-               DISPLAY "│ Description de la chmabre :           │"
-               ACCEPT fc_description
-               DISPLAY "└───────────────────────────────────────┘"
-               
-               DISPLAY "┌───────────────────────────────────────┐"
-               WRITE tamp_fch
-                   INVALID KEY
-                       DISPLAY "│    Echec de l'ajout de la chambre    "
-                               " │"
-                   NOT INVALID KEY
-                       DISPLAY "│               Ajout réussi           "
-                               " │"
-               END-WRITE
-               DISPLAY "└───────────────────────────────────────┘"
-           CLOSE fch.
-
        DISPLAY_CLIENT.
            DISPLAY "┌───────────────────────────────────────┐"
            DISPLAY "│        AFFICHAGE DES CLIENTS          │"
