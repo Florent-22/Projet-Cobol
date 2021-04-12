@@ -31,7 +31,6 @@
        PROCEDURE DIVISION.
        
            PERFORM START_PROG
-           MOVE "Florent" TO WS-CURRENT-USER-FIRSTNAME.
            MOVE FUNCTION CURRENT-DATE TO WS-CURRENT-DATE-DATA.
            
            PERFORM ADD_PERSONNEL.
@@ -40,8 +39,8 @@
 
            
        START_PROG.
-           PERFORM ADD_ROOM.
-      *    PERFORM CREATE_FILES.
+           PERFORM CREATE_FILES.
+           PERFORM CONNECTION.
 
 
        CREATE_FILES.
@@ -82,6 +81,49 @@
           CLOSE fmis.
 
 
+       CONNECTION.
+           MOVE 0 TO Wvalide
+           PERFORM WITH TEST AFTER UNTIL 
+               Wvalide = 1
+                 ACCEPT CONNECTION-SCREEN
+                 PERFORM SEARCH_PERSONNEL
+                 IF fp_motDePasse = " " THEN
+                    MOVE "INEXISTING USER" TO ERROR-MESSAGE
+                    ACCEPT CONNECTION-SCREEN
+                    MOVE " " TO ERROR-MESSAGE      
+                 ELSE 
+                    IF WS-PASSWORD = fp_motDePasse THEN
+                       MOVE tamp_fpers TO WS-CURRENT-USER
+                       MOVE 1 TO Wvalide
+                    ELSE
+                       MOVE "WRONG PASSWORD" TO ERROR-MESSAGE
+                       ACCEPT CONNECTION-SCREEN
+                       MOVE " " TO ERROR-MESSAGE
+                    END-IF
+                 END-IF
+               END-PERFORM.
+
+      * PERSONNEL ID MUST BE IN WS-LOGIN BEFORE CALL SEARCH_PERSONNEL
+       SEARCH_PERSONNEL.
+           OPEN INPUT fpers
+              MOVE 0 TO Wfin
+              MOVE 0 TO Wtrouve
+              PERFORM WITH TEST AFTER UNTIL Wfin = 1 OR Wtrouve = 1
+                 READ fpers
+                    AT END 
+                       MOVE 1 TO Wfin  
+                    NOT AT END
+                       IF fp_numP = WS-LOGIN THEN
+                          MOVE 1 TO Wtrouve
+                       END-IF                     
+                 END-READ
+               END-PERFORM
+               IF Wtrouve = 0 THEN
+                 MOVE " " TO fp_motDePasse
+               END-IF
+           CLOSE fpers.
+           
+
       * ADD SECTION
 
        ADD_PERSONNEL.
@@ -96,7 +138,16 @@
                  END-READ
                END-PERFORM
                ADD 1 TO fp_numP
-               PERFORM WITH TEST AFTER UNTIL Wvalide = 1
+               MOVE " " TO fp_nom
+               MOVE " " TO fp_prenom
+               MOVE 0 TO fp_type
+               MOVE " " TO fp_motDePasse
+           	   MOVE 0 TO fp_year
+           	   MOVE 0 TO fp_month
+           	   MOVE 0 TO fp_day
+               MOVE 0 TO fp_actif
+               PERFORM WITH TEST AFTER UNTIL 
+               Wvalide = 1 OR MENU-VALIDATE = "N"
                  ACCEPT PERS-EDITING-SCREEN
                  IF fp_type = 0 OR fp_type = 1 OR fp_type = 2 THEN
                     IF fp_actif = 0 OR fp_actif = 1 OR fp_actif = 2 THEN
