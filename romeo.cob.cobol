@@ -78,7 +78,7 @@
                  EVALUATE Wchoix1
                        WHEN 1
                           DISPLAY "id de la chambre recherché :"   
-                          ACCEPT Wchoix2                                            
+                          ACCEPT Wchoix2                                        
                        WHEN 2
                           DISPLAY "type de la chambre recherché :"   
                           ACCEPT Wchoix2
@@ -94,5 +94,7 @@
                  IF Wchoix2 = fc_type THEN
                     DISPLAY fc_typeCh
                  IF Wchoix = 3 
+                    OPEN fresa
+                    CLOSE fresa.
                 END-PERFORM
               CLOSE fcha.
