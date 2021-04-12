@@ -11,10 +11,17 @@
        77 Wstop                            PIC 9.
        77 Wvalide                          PIC 9.
 
-
        01 WS-CURRENT-USER.
+           05  WS-CURRENT-USER-NUM         PIC 9(4).
            05  WS-CURRENT-USER-FIRSTNAME   PIC A(30).
            05  WS-CURRENT-USER-LASTNAME    PIC A(30).
+           05  WS-CURRENT-USER-TYPE        PIC 9.
+           05  WS-CURRENT-USER-PWD         PIC X(30). 
+           05  WS-CURRENT-USER-HIREDDATE.
+           	  10 WS-CURRENT-USER-YEAR      PIC 9(4).
+           	  10 WS-CURRENT-USER-MONTH     PIC 9(2).
+           	  10 WS-CURRENT-USER-DAY       PIC 9(2).
+           05 WS-CURRENT-USER-ACTIF        PIC 9.      
 
        01 WS-CURRENT-DATE-DATA.
            05  WS-CURRENT-DATE.

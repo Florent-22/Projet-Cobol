@@ -93,7 +93,7 @@
            05  LINE 14 COL 22 PIC 9(2) USING fc_prix_heure_decimal.
            05 LINE 14 COL 25 VALUE "euros".
            05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
-           05  LINE 20 COL 21 PIC Z USING MENU-PICK.
+           05  LINE 20 COL 21 PIC A USING MENU-PICK.
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
 
        01  PERS-EDITING-SCREEN.
