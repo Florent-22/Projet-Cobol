@@ -87,19 +87,16 @@
            PERFORM WITH TEST AFTER UNTIL 
                Wvalide = 1
                  ACCEPT CONNECTION-SCREEN
+                 MOVE " " TO ERROR-MESSAGE
                  PERFORM SEARCH_PERSONNEL
                  IF fp_motDePasse = " " THEN
                     MOVE "INEXISTING USER" TO ERROR-MESSAGE
-                    ACCEPT CONNECTION-SCREEN
-                    MOVE " " TO ERROR-MESSAGE      
                  ELSE 
                     IF WS-PASSWORD = fp_motDePasse THEN
                        MOVE tamp_fpers TO WS-CURRENT-USER
                        MOVE 1 TO Wvalide
                     ELSE
                        MOVE "WRONG PASSWORD" TO ERROR-MESSAGE
-                       ACCEPT CONNECTION-SCREEN
-                       MOVE " " TO ERROR-MESSAGE
                     END-IF
                  END-IF
                END-PERFORM.
@@ -150,18 +147,15 @@
                PERFORM WITH TEST AFTER UNTIL 
                Wvalide = 1 OR MENU-VALIDATE = "N"
                  ACCEPT PERS-EDITING-SCREEN
+                 MOVE " " TO ERROR-MESSAGE
                  IF fp_type = 0 OR fp_type = 1 OR fp_type = 2 THEN
                     IF fp_actif = 0 OR fp_actif = 1 OR fp_actif = 2 THEN
                        MOVE 1 TO Wvalide
                     ELSE
                        MOVE "WRONG ACTIF TYPE" TO ERROR-MESSAGE
-                       ACCEPT PERS-EDITING-SCREEN
-                       MOVE " " TO ERROR-MESSAGE
                     END-IF
                  ELSE 
                     MOVE "WRONG TYPE TYPE" TO ERROR-MESSAGE
-                    ACCEPT PERS-EDITING-SCREEN
-                    MOVE " " TO ERROR-MESSAGE
                  END-IF
                END-PERFORM
            CLOSE fpers
@@ -211,3 +205,9 @@
                END-READ
            END-PERFORM
            ADD 1 TO fc_numch.
+
+
+
+      * 
+       DISPLAY_MISSION.
+
