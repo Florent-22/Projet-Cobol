@@ -101,7 +101,7 @@
                END-PERFORM
            CLOSE fresa.
 
-      DELETE_CLIENT.
+       DELETE_CLIENT.
            DISPLAY "┌───────────────────────────────────────┐"
            DISPLAY "│       SUPPRESSION D'UN CLIENT         │"
            DISPLAY "└───────────────────────────────────────┘"
@@ -124,7 +124,7 @@
                DISPLAY "└───────────────────────────────────────┘"
            CLOSE fcl.
       
-      SRCH_PERSONNEL.
+       SRCH_PERSONNEL.
            DISPLAY "┌───────────────────────────────────────┐"
            DISPLAY "│ RECHERCHE D'UN MEMBRE DU PERSONNEL    │"
            DISPLAY "└───────────────────────────────────────┘"
