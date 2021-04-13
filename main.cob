@@ -41,6 +41,7 @@
        START_PROG.
            PERFORM CREATE_FILES.
            PERFORM CONNECTION.
+           PERFORM ADD_ROOM.
 
 
        CREATE_FILES.
@@ -122,9 +123,25 @@
                  MOVE " " TO fp_motDePasse
                END-IF
            CLOSE fpers.
-           
 
-      * ADD SECTION
+
+       GENERAL SECTION.
+
+      * NEED TO OPEN ROOM FILE BEFORE PERFORM
+      * RETURN fc_numCh + 1
+       GET_LASTID_ROOM.
+           MOVE 0 TO Wfin
+           MOVE 0 TO fc_numCh
+           PERFORM UNTIL Wfin = 1
+               READ fch
+                   AT END
+                       MOVE 1 TO Wfin
+               END-READ
+           END-PERFORM
+           ADD 1 TO fc_numch.
+
+
+       ADDING SECTION.
 
        ADD_PERSONNEL.
            OPEN INPUT fpers
@@ -189,7 +206,7 @@
                END-PERFORM
            CLOSE fch
            IF MENU-VALIDATE = "Y" THEN
-               OPEN OUTPUT fch
+               OPEN EXTEND fch
                    WRITE tamp_fch
                    END-WRITE
                CLOSE fch
@@ -198,17 +215,52 @@
            END-IF.
 
 
-      * GENERAL SECTION
+       MODIF SECTION.
 
-      * NEED TO OPEN ROOM FILE BEFORE PERFORM
-      * RETURN fc_numCh + 1
-       GET_LASTID_ROOM.
-           MOVE 0 TO Wfin
-           MOVE 0 TO fc_numCh
-           PERFORM UNTIL Wfin = 1
-               READ fch
-                   AT END
-                       MOVE 1 TO Wfin
+       MODIF_RESERVATION.
+           OPEN I-O fresa
+               READ fresa
+                   INVALID KEY
+                       DISPLAY "Cette réservation n'existe pas !"
+                   NOT INVALID KEY
+                       DISPLAY "│  NOUVELLES VALEURS DE LA RESERVATION "
+                               " │"
+                       DISPLAY "│ Numero de chambre :                  "
+                               " │"
+                       ACCEPT fr_numCh
+                       DISPLAY "│ Numero de client :                   "
+                               " │"
+                       ACCEPT fr_numCl
+                       DISPLAY "│ Jour de début de la reservation :    "
+                               " │"
+                       ACCEPT fr_date_debut_day
+                       DISPLAY "│ Mois de début de la resevration :    "
+                               " │"
+                       ACCEPT fr_date_debut_month
+                       DISPLAY "│ Année de début de la reservation :   "
+                               " │"
+                       ACCEPT fr_date_debut_year
+                       DISPLAY "│ Heure de début de la rervation :     "
+                               " │"
+                       ACCEPT fr_date_debut_hours
+                       DISPLAY "│ Minute de début de la resevation :   "
+                               " │"
+                       ACCEPT fr_date_debut_minute
+                       DISPLAY "│ Jour de fin de la reservation :      "
+                               " │"
+                       ACCEPT fr_date_fin_day
+                       DISPLAY "│ Mois de fin de la resevration :      "
+                               " │"
+                       ACCEPT fr_date_fin_month
+                       DISPLAY "│ Année de fin de la reservation :     "
+                               " │"
+                       ACCEPT fr_date_fin_year
+                       DISPLAY "│ Heure de fin de la rervation :       "
+                               " │"
+                       ACCEPT fr_date_fin_hours
+                       DISPLAY "│ Minute de fin de la resevation :     "
+                               " │"
+                       ACCEPT fr_date_fin_minute
+                       REWRITE tamp_fresa
                END-READ
-           END-PERFORM
-           ADD 1 TO fc_numch.
+           CLOSE fresa.

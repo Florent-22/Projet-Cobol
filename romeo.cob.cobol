@@ -89,14 +89,20 @@
                 NOT AT END
                  IF Wchoix2 = fc_id THEN
                     DISPLAY fc_id
+                 END IF
                  IF Wchoix2 = fc_type THEN
                     DISPLAY fc_typeCh
+                 END IF
                 END-PERFORM
               CLOSE fcha.
 
            DELETE_PERSONNEL.
+           DISPLAY "Matricule du personnel a licencier : "
+           ACCEPT Wchoix
            OPEN INPUT fpers
-           
+           IF fp_numP = Wchoix
+      *    ACTION DE SUPPRIMER LE PERSONNEL
+           END IF      
            CLOSE fpers.
 
 
