@@ -1,7 +1,7 @@
       * Screens declarations
 
 
-      ***** MENUES *****
+      ***** MENUS *****
        01  CONNECTION-SCREEN.
            05  BLANK SCREEN.
            05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
@@ -84,8 +84,8 @@
            05  LINE  11 COL 18 PIC 9(2) USING fc_superficie.
            05 LINE 11 COL 21 VALUE "m2".
            05 LINE 12 COL 5 VALUE "BED TYPE:".
-           05  LINE 12 COL 18 PIC A(10) USING fc_lit.
-           05  LINE 12 COL 25 VALUE 
+           05  LINE 12 COL 18 PIC 9(1) USING fc_lit.
+           05  LINE 12 COL 21 VALUE 
            "(0 -> NORMAL 1 -> KING SIZE 2 -> DOUBLE)".
            05 LINE 13 COL 5 VALUE "DESCRIPTION:".
            05  LINE 13 COL 18 PIC A(100) USING fc_description.
@@ -95,7 +95,7 @@
            05  LINE 14 COL 22 PIC 9(2) USING fc_prix_heure_decimal.
            05 LINE 14 COL 25 VALUE "euros".
            05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
-           05  LINE 20 COL 21 PIC A USING MENU-PICK.
+           05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
 
        01  PERS-EDITING-SCREEN.
@@ -129,4 +129,3 @@
            05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
            05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
-

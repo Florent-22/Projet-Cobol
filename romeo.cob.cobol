@@ -71,14 +71,12 @@
                Wchoix1 = 1 OR Wchoix1 = 2 OR Wchoix1 = 2 OR Wchoix1 = 3         
                  DISPLAY "1 - Recherche par id"
                  DISPLAY "2 - Recherche par type"
-                 DISPLAY "3 - Voir les chambres disponibles"
-                 DISPLAY "4 - Annuler la recherche"
                  ACCEPT Wchoix1
                 END-PERFORM
                  EVALUATE Wchoix1
                        WHEN 1
                           DISPLAY "id de la chambre recherché :"   
-                          ACCEPT Wchoix2                                            
+                          ACCEPT Wchoix2                                        
                        WHEN 2
                           DISPLAY "type de la chambre recherché :"   
                           ACCEPT Wchoix2
@@ -91,8 +89,23 @@
                 NOT AT END
                  IF Wchoix2 = fc_id THEN
                     DISPLAY fc_id
+                 END IF
                  IF Wchoix2 = fc_type THEN
                     DISPLAY fc_typeCh
-                 IF Wchoix = 3 
+                 END IF
                 END-PERFORM
               CLOSE fcha.
+
+           DELETE_PERSONNEL.
+           DISPLAY "Matricule du personnel a licencier : "
+           ACCEPT Wchoix
+           OPEN INPUT fpers
+           IF fp_numP = Wchoix
+      *    ACTION DE SUPPRIMER LE PERSONNEL
+           END IF      
+           CLOSE fpers.
+
+
+           
+           
+      *Ajouter methode pour check chambres disponible

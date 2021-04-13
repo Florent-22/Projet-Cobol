@@ -10,6 +10,7 @@
        77 Wtrouve                          PIC 9.
        77 Wstop                            PIC 9.
        77 Wvalide                          PIC 9.
+       77 Wid_personnel_to_find            PIC 9(4).
 
        01 WS-CURRENT-USER.
            05  WS-CURRENT-USER-NUM         PIC 9(4).
@@ -33,4 +34,3 @@
                10  WS-CURRENT-MINUTE       PIC 9(02).
                10  WS-CURRENT-SECOND       PIC 9(02).
                10  WS-CURRENT-MILLISECONDS PIC 9(02).
-               
