@@ -230,3 +230,18 @@
                        END-IF
                END-READ
            CLOSE fresa.
+       
+
+       DELET SECTION.
+
+       DELETE_MISSION.
+           OPEN I-O fmis
+      * ACCEPT IS TO TEST ONLY WAIT FOR DELETE SCREEN    
+               ACCEPT fm_numM
+               READ fmis
+                   INVALID KEY
+                       DISPLAY "Cette mission n'existe pas !"
+                   NOT INVALID KEY
+                       DELETE fmis RECORD
+               END-READ
+           CLOSE fmis.
