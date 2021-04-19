@@ -14,7 +14,7 @@
            COPY "ws_variables.cpy".
       
        77  MENU-PICK PIC 9 VALUE 0.
-           88  MENU-PICK-IS-VALID VALUE 0 THRU 3.
+           88  MENU-PICK-IS-VALID VALUE 0 THRU 5.
 
        77  MENU-VALIDATE PIC A.
            88  MENU-VALIDATE-IS-VALID VALUE "Y", "N".
@@ -31,19 +31,20 @@
        PROCEDURE DIVISION.
        
            MOVE FUNCTION CURRENT-DATE TO WS-CURRENT-DATE-DATA.
-      *    PERFORM START_PROG
+           PERFORM START_PROG.
            
-           PERFORM REMOVE_RESA.
+      *    PERFORM REMOVE_RESA.
       *    PERFORM DISPLAY_MISSION.
       *    PERFORM ADD_PERSONNEL.
 
-           STOP RUN.
+           
 
            
        START_PROG.
            PERFORM CREATE_FILES.
            PERFORM CONNECTION.
-           IF 
+      
+           PERFORM MENUS.
 
 
        CREATE_FILES.
@@ -83,6 +84,53 @@
              END-IF
           CLOSE fmis.
 
+      * 0 -> RECEPTION; 1 -> CLEANING; 2 -> ADMIN
+       MENUS.
+           EVALUATE WS-CURRENT-USER-TYPE
+               WHEN 0
+                  PERFORM MENU_RECEP 
+               WHEN 1
+                  PERFORM MENU_CLEAN
+               WHEN 2
+                  PERFORM MENU_A_RECEP
+           END-EVALUATE.
+
+       MENU_CLEAN.
+
+
+       MENU_A_RECEP.
+
+       MENU_RECEP.
+           PERFORM WITH TEST AFTER UNTIL 
+              MENU-PICK-IS-VALID = 0
+                ACCEPT RECEPTION-SCREEN
+                MOVE " " TO ERROR-MESSAGE
+                EVALUATE MENU-PICK
+                    WHEN 1
+                       PERFORM DISPLAY_PLANNING
+                    WHEN 2
+                       PERFORM MENU_RESERVATIONS
+                    WHEN 3
+                       PERFORM MENU_CUSTOMERS
+                    WHEN 4
+                       PERFORM STATS_ROOM
+                 END-EVALUATE
+           END-PERFORM
+           PERFORM LOGOUT.
+
+       DISPLAY_PLANNING.
+
+       MENU_RESERVATIONS.
+
+
+       MENU_CUSTOMERS.
+
+       STATS_ROOM.
+
+
+       LOGOUT.
+           DISPLAY LOGOUT-SCREEN
+           STOP RUN.
 
        CONNECTION.
            MOVE 0 TO Wvalide
@@ -95,8 +143,13 @@
                     MOVE "INEXISTING USER" TO ERROR-MESSAGE
                  ELSE 
                     IF WS-PASSWORD = fp_motDePasse THEN
-                       MOVE tamp_fpers TO WS-CURRENT-USER
-                       MOVE 1 TO Wvalide
+      * 0 -> FIRED; 1 -> HIRED; 2 -> LEAVE
+                       IF fp_actif = 1 THEN
+                          MOVE tamp_fpers TO WS-CURRENT-USER
+                          MOVE 1 TO Wvalide
+                       ELSE
+                          MOVE "NON-ACTIF USER" TO ERROR-MESSAGE
+                       END-IF
                     ELSE
                        MOVE "WRONG PASSWORD" TO ERROR-MESSAGE
                     END-IF
@@ -125,7 +178,7 @@
 
 
        ADD_MISSION.
-           OPEN I-O fmission
+           OPEN I-O fmis
                DISPLAY "Année du début de la mission : "
                ACCEPT fm_debut_year
                DISPLAY "Mois de début de la mission : "
@@ -148,13 +201,13 @@
                DISPLAY "Heure de début de la mission : "
                ACCEPT fm_fin_minute 
                
-               WRITE tamp_fmi
+               WRITE tamp_fmis
                   INVALID KEY 
                      DISPLAY "Echec de l'ajout"
                   NOT INVALID KEY 
                      DISPLAY "Ajout réussi"
                END-WRITE
-           CLOSE fmission.
+           CLOSE fmis.
 
 
        ADD_PERSONNEL.
@@ -364,11 +417,11 @@
            
        DELETE_PERSONNEL.
            DISPLAY "Matricule du personnel a licencier : "
-           ACCEPT Wchoix
+      *    ACCEPT Wchoix
            OPEN INPUT fpers
                IF fp_numP = Wchoix
       * ACTION DE SUPPRIMER LE PERSONNEL
-               END IF      
+               END-IF      
            CLOSE fpers.
 
 
@@ -426,7 +479,7 @@
 
 
        SRCH_ROOM.
-              OPEN INPUT fcha
+              OPEN INPUT fch
               MOVE 0 to Wchoix1
                PERFORM WITH TEST AFTER UNTIL 
                Wchoix1 = 1 OR Wchoix1 = 2 OR Wchoix1 = 2 OR Wchoix1 = 3         
@@ -444,15 +497,15 @@
                  END-EVALUATE 
                 MOVE 0 TO Wfin
                 PERFORM UNTIL Wfin = 1 
-                read fcha
+                read fch
                 AT END
                     MOVE 1 TO Wfin
                 NOT AT END
-                 IF Wchoix2 = fc_id THEN
-                    DISPLAY fc_id
-                 END IF
-                 IF Wchoix2 = fc_type THEN
+                 IF Wchoix2 = fc_numCh THEN
+                    DISPLAY fc_numCh
+                 END-IF
+                 IF Wchoix2 = fc_typeCh THEN
                     DISPLAY fc_typeCh
-                 END IF
+                 END-IF
                 END-PERFORM
-              CLOSE fcha.
+              CLOSE fch.
