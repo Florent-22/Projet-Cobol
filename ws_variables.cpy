@@ -11,6 +11,11 @@
        77 Wstop                            PIC 9.
        77 Wvalide                          PIC 9.
        77 Wid_personnel_to_find            PIC 9(4).
+       77 Wdisp                            PIC 9.
+
+       01 WS-TOTAL-PRICE.
+           05 WS-TOTAL-PRICE-ENTIER        PIC 9(3).
+           05 WS-TOTAL-PRICE-DECIMAL       PIC 9(2).
 
        01 WS-CURRENT-USER.
            05  WS-CURRENT-USER-NUM         PIC 9(4).
@@ -34,3 +39,134 @@
                10  WS-CURRENT-MINUTE       PIC 9(02).
                10  WS-CURRENT-SECOND       PIC 9(02).
                10  WS-CURRENT-MILLISECONDS PIC 9(02).
+
+
+      * MISSIONS TAMPON DUPLICATED SIX TIMES FOR DISPLAY SCREEN
+       01 1tamp_fmis.
+           02 1fm_numM PIC 9(5).
+           02 1fm_numP PIC 9(4).
+           02 1fm_numCh PIC 9(4).
+           02 1fm_debut.
+              03 1fm_debut_date.
+                 04 1fm_debut_year PIC 9(4).
+                 04 1fm_debut_month PIC 9(2).
+                 04 1fm_debut_day PIC 9(2).
+           	  03 1fm_debut_time.
+           		  04 1fm_debut_hours PIC 9(2).
+           		  04 1fm_debut_minute PIC 9(2).
+           02 1fm_fin.
+              03 1fm_fin_date.
+                 04 1fm_fin_year PIC 9(4).
+                 04 1fm_fin_month PIC 9(2).
+                 04 1fm_fin_day PIC 9(2).
+           	  03 1fm_fin_time.
+           		  04 1fm_fin_hours PIC 9(2).
+           		  04 1fm_fin_minute PIC 9(2).
+
+       01 2tamp_fmis.
+           02 2fm_numM PIC 9(5).
+           02 2fm_numP PIC 9(4).
+           02 2fm_numCh PIC 9(4).
+           02 2fm_debut.
+              03 2fm_debut_date.
+                 04 2fm_debut_year PIC 9(4).
+                 04 2fm_debut_month PIC 9(2).
+                 04 2fm_debut_day PIC 9(2).
+           	  03 2fm_debut_time.
+           		  04 2fm_debut_hours PIC 9(2).
+           		  04 2fm_debut_minute PIC 9(2).
+           02 2fm_fin.
+              03 2fm_fin_date.
+                 04 2fm_fin_year PIC 9(4).
+                 04 2fm_fin_month PIC 9(2).
+                 04 2fm_fin_day PIC 9(2).
+           	  03 2fm_fin_time.
+           		  04 2fm_fin_hours PIC 9(2).
+           		  04 2fm_fin_minute PIC 9(2).
+                  
+
+       01 3tamp_fmis.
+           02 3fm_numM PIC 9(5).
+           02 3fm_numP PIC 9(4).
+           02 3fm_numCh PIC 9(4).
+           02 3fm_debut.
+              03 3fm_debut_date.
+                 04 3fm_debut_year PIC 9(4).
+                 04 3fm_debut_month PIC 9(2).
+                 04 3fm_debut_day PIC 9(2).
+           	  03 3fm_debut_time.
+           		  04 3fm_debut_hours PIC 9(2).
+           		  04 3fm_debut_minute PIC 9(2).
+           02 3fm_fin.
+              03 3fm_fin_date.
+                 04 3fm_fin_year PIC 9(4).
+                 04 3fm_fin_month PIC 9(2).
+                 04 3fm_fin_day PIC 9(2).
+           	  03 3fm_fin_time.
+           		  04 3fm_fin_hours PIC 9(2).
+           		  04 3fm_fin_minute PIC 9(2).
+
+                    
+       01 4tamp_fmis.
+           02 4fm_numM PIC 9(5).
+           02 4fm_numP PIC 9(4).
+           02 4fm_numCh PIC 9(4).
+           02 4fm_debut.
+              03 4fm_debut_date.
+                 04 4fm_debut_year PIC 9(4).
+                 04 4fm_debut_month PIC 9(2).
+                 04 4fm_debut_day PIC 9(2).
+           	  03 4fm_debut_time.
+           		  04 4fm_debut_hours PIC 9(2).
+           		  04 4fm_debut_minute PIC 9(2).
+           02 4fm_fin.
+              03 4fm_fin_date.
+                 04 4fm_fin_year PIC 9(4).
+                 04 4fm_fin_month PIC 9(2).
+                 04 4fm_fin_day PIC 9(2).
+           	  03 4fm_fin_time.
+           		  04 4fm_fin_hours PIC 9(2).
+           		  04 4fm_fin_minute PIC 9(2).
+
+               
+       01 5tamp_fmis.
+           02 5fm_numM PIC 9(5).
+           02 5fm_numP PIC 9(4).
+           02 5fm_numCh PIC 9(4).
+           02 5fm_debut.
+              03 5fm_debut_date.
+                 04 5fm_debut_year PIC 9(4).
+                 04 5fm_debut_month PIC 9(2).
+                 04 5fm_debut_day PIC 9(2).
+           	  03 5fm_debut_time.
+           		  04 5fm_debut_hours PIC 9(2).
+           		  04 5fm_debut_minute PIC 9(2).
+           02 5fm_fin.
+              03 5fm_fin_date.
+                 04 5fm_fin_year PIC 9(4).
+                 04 5fm_fin_month PIC 9(2).
+                 04 5fm_fin_day PIC 9(2).
+           	  03 5fm_fin_time.
+           		  04 5fm_fin_hours PIC 9(2).
+           		  04 5fm_fin_minute PIC 9(2).
+
+       01 6tamp_fmis.
+           02 6fm_numM PIC 9(5).
+           02 6fm_numP PIC 9(4).
+           02 6fm_numCh PIC 9(4).
+           02 6fm_debut.
+              03 6fm_debut_date.
+                 04 6fm_debut_year PIC 9(4).
+                 04 6fm_debut_month PIC 9(2).
+                 04 6fm_debut_day PIC 9(2).
+           	  03 6fm_debut_time.
+           		  04 6fm_debut_hours PIC 9(2).
+           		  04 6fm_debut_minute PIC 9(2).
+           02 6fm_fin.
+              03 6fm_fin_date.
+                 04 6fm_fin_year PIC 9(4).
+                 04 6fm_fin_month PIC 9(2).
+                 04 6fm_fin_day PIC 9(2).
+           	  03 6fm_fin_time.
+           		  04 6fm_fin_hours PIC 9(2).
+           		  04 6fm_fin_minute PIC 9(2).

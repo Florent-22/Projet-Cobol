@@ -30,10 +30,11 @@
 
        PROCEDURE DIVISION.
        
-           PERFORM START_PROG
+      *    PERFORM START_PROG
            MOVE FUNCTION CURRENT-DATE TO WS-CURRENT-DATE-DATA.
-           
-           PERFORM ADD_PERSONNEL.
+           PERFORM REMOVE_RESA.
+      *    PERFORM DISPLAY_MISSION.
+      *    PERFORM ADD_PERSONNEL.
 
            STOP RUN.
 
@@ -190,12 +191,11 @@
                PERFORM GET_LASTID_ROOM
                PERFORM WITH TEST AFTER UNTIL Wvalide = 1
                    ACCEPT ROOM-EDITING-SCREEN
+                   MOVE " " TO ERROR-MESSAGE
                    IF fc_lit = 0 OR fc_lit = 1 OR fc_lit = 2 THEN
                        MOVE 1 TO Wvalide
                    ELSE
                        MOVE "WRONG BED TYPE" TO ERROR-MESSAGE
-                       ACCEPT ROOM-EDITING-SCREEN
-                       MOVE " " TO ERROR-MESSAGE
                    END-IF
                END-PERFORM
            CLOSE fch
@@ -214,47 +214,136 @@
        MODIF_RESERVATION.
            OPEN I-O fresa
                READ fresa
-                   INVALID KEY
-                       DISPLAY "Cette réservation n'existe pas !"
-                   NOT INVALID KEY
-                       DISPLAY "│  NOUVELLES VALEURS DE LA RESERVATION "
-                               " │"
-                       DISPLAY "│ Numero de chambre :                  "
-                               " │"
-                       ACCEPT fr_numCh
-                       DISPLAY "│ Numero de client :                   "
-                               " │"
-                       ACCEPT fr_numCl
-                       DISPLAY "│ Jour de début de la reservation :    "
-                               " │"
-                       ACCEPT fr_date_debut_day
-                       DISPLAY "│ Mois de début de la resevration :    "
-                               " │"
-                       ACCEPT fr_date_debut_month
-                       DISPLAY "│ Année de début de la reservation :   "
-                               " │"
-                       ACCEPT fr_date_debut_year
-                       DISPLAY "│ Heure de début de la rervation :     "
-                               " │"
-                       ACCEPT fr_date_debut_hours
-                       DISPLAY "│ Minute de début de la resevation :   "
-                               " │"
-                       ACCEPT fr_date_debut_minute
-                       DISPLAY "│ Jour de fin de la reservation :      "
-                               " │"
-                       ACCEPT fr_date_fin_day
-                       DISPLAY "│ Mois de fin de la resevration :      "
-                               " │"
-                       ACCEPT fr_date_fin_month
-                       DISPLAY "│ Année de fin de la reservation :     "
-                               " │"
-                       ACCEPT fr_date_fin_year
-                       DISPLAY "│ Heure de fin de la rervation :       "
-                               " │"
-                       ACCEPT fr_date_fin_hours
-                       DISPLAY "│ Minute de fin de la resevation :     "
-                               " │"
-                       ACCEPT fr_date_fin_minute
-                       REWRITE tamp_fresa
+      *            INVALID KEY
+      *                DISPLAY "Cette réservation n'existe pas !"
+      *            NOT INVALID KEY
+      *                DISPLAY "│  NOUVELLES VALEURS DE LA RESERVATION "
+      *                        " │"
+      *                DISPLAY "│ Numero de chambre :                  "
+      *                        " │"
+      *                ACCEPT fr_numCh
+      *                DISPLAY "│ Numero de client :                   "
+      *                        " │"
+      *                ACCEPT fr_numCl
+      *                DISPLAY "│ Jour de début de la reservation :    "
+      *                        " │"
+      *                ACCEPT fr_date_debut_day
+      *                DISPLAY "│ Mois de début de la resevration :    "
+      *                        " │"
+      *                ACCEPT fr_date_debut_month
+      *                DISPLAY "│ Année de début de la reservation :   "
+      *                        " │"
+      *                ACCEPT fr_date_debut_year
+      *                DISPLAY "│ Heure de début de la rervation :     "
+      *                        " │"
+      *                ACCEPT fr_date_debut_hours
+      *                DISPLAY "│ Minute de début de la resevation :   "
+      *                        " │"
+      *                ACCEPT fr_date_debut_minute
+      *                DISPLAY "│ Jour de fin de la reservation :      "
+      *                        " │"
+      *                ACCEPT fr_date_fin_day
+      *                DISPLAY "│ Mois de fin de la resevration :      "
+      *                        " │"
+      *                ACCEPT fr_date_fin_month
+      *                DISPLAY "│ Année de fin de la reservation :     "
+      *                        " │"
+      *                ACCEPT fr_date_fin_year
+      *                DISPLAY "│ Heure de fin de la rervation :       "
+      *                        " │"
+      *                ACCEPT fr_date_fin_hours
+      *                DISPLAY "│ Minute de fin de la resevation :     "
+      *                        " │"
+      *                ACCEPT fr_date_fin_minute
+      *                REWRITE tamp_fresa
                END-READ
            CLOSE fresa.
+
+       DISPLAYING SECTION.
+
+      * DISPLAY MISSIONS OF THE CONNECTED USER
+      * SEARCH BY ZONE ON fm_numP
+       DISPLAY_MISSION.
+           OPEN INPUT fmis
+           MOVE WS-CURRENT-USER-NUM TO fm_numP
+                 START fmis KEY IS EQUAL fm_numP 
+                    INVALID KEY
+                       MOVE "NO MISSIONS FOR YOU" TO ERROR-MESSAGE
+                       DISPLAY DISP-MISSIONS-SCREEN
+                    NOT INVALID KEY
+                       MOVE 0 TO Wfin
+                       MOVE 0 TO Wstop
+                       PERFORM WITH TEST AFTER UNTIL Wfin = 1
+                       AND Wstop = 1
+                          MOVE 1 TO Wdisp
+                          READ fmis NEXT
+                             AT END
+                                DISPLAY DISP-MISSIONS-SCREEN
+                                MOVE 1 TO Wfin
+                             NOT AT END
+                               IF fm_numP = WS-CURRENT-USER-NUM THEN
+                                   IF fm_fin < WS-CURRENT-DATE-DATA THEN
+                                      MOVE 0 TO Wfin    
+                                   ELSE
+                                      IF Wdisp = 1 THEN
+                                         MOVE tamp_fmis TO 1tamp_fmis
+                                      ELSE IF Wdisp = 2 THEN
+                                         MOVE tamp_fmis TO 2tamp_fmis
+                                      ELSE IF Wdisp = 3 THEN
+                                         MOVE tamp_fmis TO 3tamp_fmis
+                                      ELSE IF Wdisp = 4 THEN
+                                         MOVE tamp_fmis TO 4tamp_fmis
+                                      ELSE IF Wdisp = 5 THEN
+                                         MOVE tamp_fmis TO 5tamp_fmis
+                                      ELSE IF Wdisp = 6 THEN
+                                         MOVE tamp_fmis TO 6tamp_fmis
+                                         MOVE 0 TO Wdisp
+                                         DISPLAY DISP-MISSIONS-SCREEN
+                                      END-IF
+                                      ADD 1 TO Wdisp
+                                   END-IF
+                                ELSE
+                                   MOVE 1 TO Wstop
+                                END-IF
+                          END-READ
+                       END-PERFORM 
+                 END-START
+           CLOSE fmis.
+           
+       
+      * FIND THE RESERVATION AND DISPLAY THE SCREEN FOR REMOVAL
+       REMOVE_RESA.
+           OPEN I-O fresa
+              ACCEPT RES-REMOVE-SCREEN
+              READ fresa
+              INVALID KEY
+                 MOVE "NO RESERVATION FOR THIS GIVEN NUMBER" 
+                    TO ERROR-MESSAGE
+              NOT INVALID KEY
+                 OPEN INPUT fcli
+                    MOVE fr_numCl TO fcl_numCl
+                    READ fcli
+                    INVALID KEY
+                       MOVE "CORRUPT RESERVATION" 
+                       TO ERROR-MESSAGE
+                     NOT INVALID KEY
+                       ACCEPT RES-REMOVE-SCREEN
+                       MOVE " " TO ERROR-MESSAGE
+                       IF MENU-VALIDATE = "Y" THEN
+                          DELETE fresa RECORD
+                       ELSE
+                          MOVE "SUPPRESSION ABORT" TO ERROR-MESSAGE
+                       END-IF
+                 CLOSE fcli
+              END-READ 
+
+           CLOSE fresa.
+
+
+       DELETE_ROOM.
+
+
+       SEARCH_CLIENT.
+
+
+       EDIT_MISSION.

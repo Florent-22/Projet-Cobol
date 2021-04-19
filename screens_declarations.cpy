@@ -98,6 +98,94 @@
            05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
 
+       01  RES-EDITING-SCREEN.
+           05  BLANK SCREEN.
+           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05  LINE  2 COL  2 VALUE "WELCOME".
+           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05  LINE  8 COL 2 VALUE "RESERVATION NUMBER:".
+           05  LINE 8 COL 22 PIC 9(6) USING fr_numResa.
+           05 LINE 10 COL 5 VALUE "ROOM NUMBER:".
+           05  LINE  10 COL 18 PIC 9(4) USING fr_numCh.
+           05 LINE 11 COL 5 VALUE "CLIENT NAME:".
+           05  LINE  11 COL 18 PIC A(30) USING fcl_nom.
+           05  LINE  12 COL 18 PIC A(30) USING fcl_prenom.
+           05 LINE 13 COL 5 VALUE "DURATION:".
+           05  LINE 13 COL 15 PIC 9(2) USING fr_duree_hours.
+           05 LINE 13 COL 17 VALUE "h".
+           05  LINE 13 COL 18 PIC 9(2) USING fr_duree_minute.
+           05 LINE 14 COL 5 VALUE "STARTS:".
+           05 LINE 14 COL 12 PIC 9(2) USING fr_date_debut_day.
+           05 LINE 14 COL 14 VALUE "/".
+           05 LINE 14 COL 15 PIC 9(2) USING fr_date_debut_month.
+           05 LINE 14 COL 17 VALUE "/".
+           05 LINE 14 COL 18 PIC 9(4) USING fr_date_debut_year.
+           05 LINE 14 COL 24 PIC 9(2) USING fr_date_debut_hours.
+           05 LINE 14 COL 26 VALUE "h".
+           05 LINE 14 COL 27 PIC 9(2) USING fr_date_debut_minute.
+           05 LINE 15 COL 5 VALUE "ENDS:".
+           05 LINE 15 COL 12 PIC 9(2) USING fr_date_fin_day.
+           05 LINE 15 COL 14 VALUE "/".
+           05 LINE 15 COL 15 PIC 9(2) USING fr_date_fin_month.
+           05 LINE 15 COL 17 VALUE "/".
+           05 LINE 15 COL 18 PIC 9(4) USING fr_date_fin_year.
+           05 LINE 15 COL 24 PIC 9(2) USING fr_date_fin_hours.
+           05 LINE 15 COL 26 VALUE "h".
+           05 LINE 15 COL 27 PIC 9(2) USING fr_date_fin_minute.
+           05 LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
+           05 LINE 20 COL 21 PIC A USING MENU-VALIDATE.
+           05 LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+
+
+       01  RES-REMOVE-SCREEN.
+           05  BLANK SCREEN.
+           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05  LINE  2 COL  2 VALUE "WELCOME".
+           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05 LINE 5 COL 30 FOREGROUND-COLOR IS 4 
+           VALUE "! REMOVE RESERVATION !".
+           05  LINE  8 COL 2 VALUE "RESERVATION NUMBER:".
+           05  LINE 8 COL 22 PIC 9(6) USING fr_numResa.
+           05 LINE 10 COL 5 VALUE "ROOM NUMBER:".
+           05  LINE  10 COL 18 PIC 9(4) FROM fr_numCh.
+           05 LINE 11 COL 5 VALUE "CLIENT NAME:".
+           05  LINE  11 COL 18 PIC A(30) FROM fcl_nom.
+           05  LINE  12 COL 18 PIC A(30) FROM fcl_prenom.
+           05 LINE 13 COL 5 VALUE "DURATION:".
+           05  LINE 13 COL 15 PIC 9(2) FROM fr_duree_hours.
+           05 LINE 13 COL 17 VALUE "h".
+           05  LINE 13 COL 18 PIC 9(2) FROM fr_duree_minute.
+           05 LINE 14 COL 5 VALUE "STARTS:".
+           05 LINE 14 COL 12 PIC 9(2) FROM fr_date_debut_day.
+           05 LINE 14 COL 14 VALUE "/".
+           05 LINE 14 COL 15 PIC 9(2) FROM fr_date_debut_month.
+           05 LINE 14 COL 17 VALUE "/".
+           05 LINE 14 COL 18 PIC 9(4) FROM fr_date_debut_year.
+           05 LINE 14 COL 24 PIC 9(2) FROM fr_date_debut_hours.
+           05 LINE 14 COL 26 VALUE "h".
+           05 LINE 14 COL 27 PIC 9(2) FROM fr_date_debut_minute.
+           05 LINE 15 COL 5 VALUE "ENDS:".
+           05 LINE 15 COL 12 PIC 9(2) FROM fr_date_fin_day.
+           05 LINE 15 COL 14 VALUE "/".
+           05 LINE 15 COL 15 PIC 9(2) FROM fr_date_fin_month.
+           05 LINE 15 COL 17 VALUE "/".
+           05 LINE 15 COL 18 PIC 9(4) FROM fr_date_fin_year.
+           05 LINE 15 COL 24 PIC 9(2) FROM fr_date_fin_hours.
+           05 LINE 15 COL 26 VALUE "h".
+           05 LINE 15 COL 27 PIC 9(2) FROM fr_date_fin_minute.
+           05 LINE 16 COL 5 VALUE "TOTAL PRICE:".
+           05 LINE 16 COL 18 PIC 9(3) FROM WS-TOTAL-PRICE-ENTIER.
+           05 LINE 16 COL 21 VALUE ",".
+           05 LINE 16 COL 22 PIC 9(2) FROM WS-TOTAL-PRICE-DECIMAL.
+           05 LINE 16 COL 25 VALUE "euros".
+           05 LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
+           05 LINE 20 COL 21 PIC A USING MENU-VALIDATE.
+           05 LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+
+
+
        01  PERS-EDITING-SCREEN.
            05  BLANK SCREEN.
            05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
@@ -128,4 +216,83 @@
            "(0 -> FIRED 1 -> HIRED 2 -> LEAVE)".
            05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
            05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
+           05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+
+      * DISPLAY 6 MISSIONS ON SCREEN
+       01  DISP-MISSIONS-SCREEN.
+           05  BLANK SCREEN.
+           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05  LINE  2 COL  2 VALUE "WELCOME".
+           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05  LINE  3 PIC X(80) VALUE ALL "-".
+      
+           05  LINE  5 COL 5 VALUE "MISSION NUMBER:".
+           05  LINE 5 COL 21 PIC 9(5) FROM 1fm_numM.
+           05 LINE 7 COL 5 VALUE "PERSON:".
+           05 LINE 7 COL 13 PIC 9(4) FROM 1fm_numP.
+           05 LINE 8 COL 5 VALUE "ROOM:".
+           05 LINE 8 COL 11 PIC 9(4) FROM 1fm_numCh.
+           05 LINE 9 COL 5 VALUE "START AT:".
+           05 LINE 9 COL 15 PIC 9(2) FROM 1fm_debut_hours.
+           05 LINE 9 COL 17 VALUE "h".
+           05 LINE 9 COL 18 PIC 9(2) FROM 1fm_debut_minute.
+
+           05  LINE  5 COL 30 VALUE "MISSION NUMBER:".
+           05  LINE 5 COL 46 PIC 9(5) FROM 2fm_numM.
+           05 LINE 7 COL 30 VALUE "PERSON:".
+           05 LINE 7 COL 38 PIC 9(4) FROM 2fm_numP.
+           05 LINE 8 COL 30 VALUE "ROOM:".
+           05 LINE 8 COL 36 PIC 9(4) FROM 2fm_numCh.
+           05 LINE 9 COL 30 VALUE "START AT:".
+           05 LINE 9 COL 40 PIC 9(2) FROM 2fm_debut_hours.
+           05 LINE 9 COL 42 VALUE "h".
+           05 LINE 9 COL 43 PIC 9(2) FROM 2fm_debut_minute.
+
+           05  LINE  5 COL 55 VALUE "MISSION NUMBER:".
+           05  LINE 5 COL 71 PIC 9(5) FROM 3fm_numM.
+           05 LINE 7 COL 55 VALUE "PERSON:".
+           05 LINE 7 COL 63 PIC 9(4) FROM 3fm_numP.
+           05 LINE 8 COL 55 VALUE "ROOM:".
+           05 LINE 8 COL 61 PIC 9(4) FROM 3fm_numCh.
+           05 LINE 9 COL 55 VALUE "START AT:".
+           05 LINE 9 COL 65 PIC 9(2) FROM 3fm_debut_hours.
+           05 LINE 9 COL 67 VALUE "h".
+           05 LINE 9 COL 68 PIC 9(2) FROM 3fm_debut_minute.
+ 
+
+           05 LINE 12 COL 5 VALUE "MISSION NUMBER:".
+           05 LINE 12 COL 21 PIC 9(5) FROM 4fm_numM.
+           05 LINE 14 COL 5 VALUE "PERSON:".
+           05 LINE 14 COL 13 PIC 9(4) FROM 4fm_numP.
+           05 LINE 15 COL 5 VALUE "ROOM:".
+           05 LINE 15 COL 11 PIC 9(4) FROM 4fm_numCh.
+           05 LINE 16 COL 5 VALUE "START AT:".
+           05 LINE 16 COL 15 PIC 9(2) FROM 4fm_debut_hours.
+           05 LINE 16 COL 17 VALUE "h".
+           05 LINE 16 COL 18 PIC 9(2) FROM 4fm_debut_minute.
+
+           05 LINE 12 COL 30 VALUE "MISSION NUMBER:".
+           05 LINE 12 COL 46 PIC 9(5) FROM 5fm_numM.
+           05 LINE 14 COL 30 VALUE "PERSON:".
+           05 LINE 14 COL 38 PIC 9(4) FROM 5fm_numP.
+           05 LINE 15 COL 30 VALUE "ROOM:".
+           05 LINE 15 COL 36 PIC 9(4) FROM 5fm_numCh.
+           05 LINE 16 COL 30 VALUE "START AT:".
+           05 LINE 16 COL 40 PIC 9(2) FROM 5fm_debut_hours.
+           05 LINE 16 COL 42 VALUE "h".
+           05 LINE 16 COL 43 PIC 9(2) FROM 5fm_debut_minute.
+
+           05 LINE 12 COL 55 VALUE "MISSION NUMBER:".
+           05 LINE 12 COL 71 PIC 9(5) FROM 6fm_numM.
+           05 LINE 14 COL 55 VALUE "PERSON:".
+           05 LINE 14 COL 63 PIC 9(4) FROM 6fm_numP.
+           05 LINE 15 COL 55 VALUE "ROOM:".
+           05 LINE 15 COL 61 PIC 9(4) FROM 6fm_numCh.
+           05 LINE 16 COL 55 VALUE "START AT:".
+           05 LINE 16 COL 65 PIC 9(2) FROM 6fm_debut_hours.
+           05 LINE 16 COL 67 VALUE "h".
+           05 LINE 16 COL 68 PIC 9(2) FROM 6fm_debut_minute.
+
+
+           05  LINE 20 COL  2 VALUE ">ENTER FOR NEXT<".
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
