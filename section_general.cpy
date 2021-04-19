@@ -1,4 +1,4 @@
- GENERAL SECTION.
+       GENERAL SECTION.
       * NEED TO OPEN ROOM FILE BEFORE PERFORM
       * RETURN fc_numCh + 1
        GET_LASTID_ROOM.
@@ -10,4 +10,4 @@
                        MOVE 1 TO Wfin
                END-READ
            END-PERFORM
-           ADD 1 TO fc_numch.     
+           ADD 1 TO fc_numch.

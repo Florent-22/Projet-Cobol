@@ -1,4 +1,4 @@
-DELET SECTION.
+       DELET SECTION.
 
 
        DELETE_MISSION.
