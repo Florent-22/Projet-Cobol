@@ -1,11 +1,12 @@
-       SEARC SECTION.
+       SEARCH SECTION.
 
       
       * PERSONNEL ID MUST BE IN WS-LOGIN BEFORE CALL SEARCH_PERSONNEL
        SEARCH_PERSONNEL.
            OPEN INPUT fpers
               MOVE 0 TO Wfin
-              MOVE 0 TO Wtrouve
+              ACCEPT PERS-EDITING-SCREEN
+              MOVE " " TO ERROR-MESSAGE
               PERFORM WITH TEST AFTER UNTIL Wfin = 1 OR Wtrouve = 1
                  READ fpers
                     AT END 
