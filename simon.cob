@@ -172,3 +172,6 @@
                     END-READ
                 END-PERFORM
            CLOSE fresa.
+
+       MODIF_ROOM.
+           
