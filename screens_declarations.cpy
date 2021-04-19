@@ -220,12 +220,6 @@
 
       * DISPLAY 6 MISSIONS ON SCREEN
        01  DISP-MISSIONS-SCREEN.
-           05  BLANK SCREEN.
-           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
-           05  LINE  2 COL  2 VALUE "WELCOME".
-           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
-           05  LINE  3 PIC X(80) VALUE ALL "-".
-      
            05  LINE  5 COL 5 VALUE "MISSION NUMBER:".
            05  LINE 5 COL 21 PIC 9(5) FROM 1fm_numM.
            05 LINE 7 COL 5 VALUE "PERSON:".
@@ -292,7 +286,38 @@
            05 LINE 16 COL 65 PIC 9(2) FROM 6fm_debut_hours.
            05 LINE 16 COL 67 VALUE "h".
            05 LINE 16 COL 68 PIC 9(2) FROM 6fm_debut_minute.
-
-
            05  LINE 20 COL  2 VALUE ">ENTER FOR NEXT<".
+           05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+
+
+        01  RESA-EDITING-SCREEN.
+           05  BLANK SCREEN.
+           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05  LINE  2 COL  2 VALUE "WELCOME".
+           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05 LINE 8 COL 5 VALUE "RESA. NUM ROOM:".
+           05  LINE  8 COL 18 PIC 9(4) USING fr_numCh.
+           05 LINE 9 COL 5 VALUE "RESA. NUM CLIENT:".
+           05  LINE  9 COL 18 PIC 9(6) USING fr_numCl.
+           05 LINE 10 COL 5 VALUE "START DATE:".
+           05 LINE 10 COL 20 PIC 9(4) USING fr_date_debut_year.
+           05 LINE 10 COL 25 VALUE "/".
+           05  LINE 10 COL 26 PIC 9(2) USING fr_date_debut_month.
+           05 LINE 10 COL 28 VALUE "/".
+           05  LINE 10 COL 29 PIC 9(2) USING fr_date_debut_day.
+           05 LINE 10 COL 31 PIC 9(2) USING fr_date_debut_hours.
+           05 LINE 10 COL 34 VALUE ":".
+           05 LINE 10 COL 36 PIC 9(2) USING fr_date_debut_minute.
+           05 LINE 11 COL 5 VALUE "END DATE:".
+           05 LINE 11 COL 20 PIC 9(4) USING fr_date_fin_year.
+           05 LINE 11 COL 25 VALUE "/".
+           05  LINE 11 COL 26 PIC 9(2) USING fr_date_fin_month.
+           05 LINE 11 COL 28 VALUE "/".
+           05  LINE 11 COL 29 PIC 9(2) USING fr_date_fin_day.
+           05 LINE 11 COL 31 PIC 9(2) USING fr_date_fin_hours.
+           05 LINE 11 COL 34 VALUE ":".
+           05 LINE 11 COL 36 PIC 9(2) USING fr_date_fin_minute.
+           05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
+           05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.

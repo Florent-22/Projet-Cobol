@@ -42,7 +42,6 @@
        START_PROG.
            PERFORM CREATE_FILES.
            PERFORM CONNECTION.
-           PERFORM ADD_ROOM.
 
 
        CREATE_FILES.
@@ -212,50 +211,22 @@
        MODIF SECTION.
 
        MODIF_RESERVATION.
+           MOVE 0 TO Wvalide
            OPEN I-O fresa
+               ACCEPT fr_numResa
                READ fresa
-      *            INVALID KEY
-      *                DISPLAY "Cette réservation n'existe pas !"
-      *            NOT INVALID KEY
-      *                DISPLAY "│  NOUVELLES VALEURS DE LA RESERVATION "
-      *                        " │"
-      *                DISPLAY "│ Numero de chambre :                  "
-      *                        " │"
-      *                ACCEPT fr_numCh
-      *                DISPLAY "│ Numero de client :                   "
-      *                        " │"
-      *                ACCEPT fr_numCl
-      *                DISPLAY "│ Jour de début de la reservation :    "
-      *                        " │"
-      *                ACCEPT fr_date_debut_day
-      *                DISPLAY "│ Mois de début de la resevration :    "
-      *                        " │"
-      *                ACCEPT fr_date_debut_month
-      *                DISPLAY "│ Année de début de la reservation :   "
-      *                        " │"
-      *                ACCEPT fr_date_debut_year
-      *                DISPLAY "│ Heure de début de la rervation :     "
-      *                        " │"
-      *                ACCEPT fr_date_debut_hours
-      *                DISPLAY "│ Minute de début de la resevation :   "
-      *                        " │"
-      *                ACCEPT fr_date_debut_minute
-      *                DISPLAY "│ Jour de fin de la reservation :      "
-      *                        " │"
-      *                ACCEPT fr_date_fin_day
-      *                DISPLAY "│ Mois de fin de la resevration :      "
-      *                        " │"
-      *                ACCEPT fr_date_fin_month
-      *                DISPLAY "│ Année de fin de la reservation :     "
-      *                        " │"
-      *                ACCEPT fr_date_fin_year
-      *                DISPLAY "│ Heure de fin de la rervation :       "
-      *                        " │"
-      *                ACCEPT fr_date_fin_hours
-      *                DISPLAY "│ Minute de fin de la resevation :     "
-      *                        " │"
-      *                ACCEPT fr_date_fin_minute
-      *                REWRITE tamp_fresa
+                   INVALID KEY
+                       DISPLAY "Cette réservation n'existe pas !"
+                   NOT INVALID KEY
+                       PERFORM WITH TEST AFTER UNTIL Wvalide = 1
+                           ACCEPT RESA-EDITING-SCREEN
+                           MOVE 1 TO Wvalide
+                       END-PERFORM
+                       IF MENU-VALIDATE = "Y" THEN
+                           REWRITE tamp_fresa
+                       ELSE
+                           MOVE "MODIFICATION ABORT" TO ERROR-MESSAGE
+                       END-IF
                END-READ
            CLOSE fresa.
 
@@ -347,3 +318,19 @@
 
 
        EDIT_MISSION.
+              
+       
+
+       DELET SECTION.
+
+       DELETE_MISSION.
+           OPEN I-O fmis
+      * ACCEPT IS TO TEST ONLY WAIT FOR DELETE SCREEN    
+               ACCEPT fm_numM
+               READ fmis
+                   INVALID KEY
+                       DISPLAY "Cette mission n'existe pas !"
+                   NOT INVALID KEY
+                       DELETE fmis RECORD
+               END-READ
+           CLOSE fmis.
