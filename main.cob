@@ -30,8 +30,9 @@
 
        PROCEDURE DIVISION.
        
-      *    PERFORM START_PROG
            MOVE FUNCTION CURRENT-DATE TO WS-CURRENT-DATE-DATA.
+      *    PERFORM START_PROG
+           
            PERFORM REMOVE_RESA.
       *    PERFORM DISPLAY_MISSION.
       *    PERFORM ADD_PERSONNEL.
@@ -42,6 +43,7 @@
        START_PROG.
            PERFORM CREATE_FILES.
            PERFORM CONNECTION.
+           IF 
 
 
        CREATE_FILES.
