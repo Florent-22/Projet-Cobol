@@ -186,7 +186,7 @@
                DISPLAY "Jour de début de la mission : "
                ACCEPT fm_debut_day
                DISPLAY "Heure de début de la mission : "
-               ACCEPT fm_debut_hour
+               ACCEPT fm_debut_hours
                DISPLAY "Heure de début de la mission : "
                ACCEPT fm_debut_minute 
     
@@ -197,7 +197,7 @@
                DISPLAY "Jour de début de la mission : "
                ACCEPT fm_fin_day
                DISPLAY "Heure de début de la mission : "
-               ACCEPT fm_fin_hour
+               ACCEPT fm_fin_hours
                DISPLAY "Heure de début de la mission : "
                ACCEPT fm_fin_minute 
                
@@ -255,6 +255,11 @@
            END-IF.
 
 
+       ADD_RESERV.
+           OPEN I-O fresa
+           CLOSE fresa.
+
+
        ADD_ROOM.
            MOVE 0 TO Wvalide
            OPEN INPUT fch
@@ -292,6 +297,7 @@
                    NOT INVALID KEY
                        PERFORM WITH TEST AFTER UNTIL Wvalide = 1
                            ACCEPT RESA-EDITING-SCREEN
+                           MOVE " " TO ERROR-MESSAGE
                            MOVE 1 TO Wvalide
                        END-PERFORM
                        IF MENU-VALIDATE = "Y" THEN
@@ -356,38 +362,53 @@
            CLOSE fmis.
            
 
-       DISPLAY_PERSONNEL.
-           DISPLAY "***** AFFICHAGE PERSONNELS *****"
+      * DISPLAY PERSONNEL
+       DISPLAY_MISSION.
            OPEN INPUT fpers
-               MOVE 0 TO Wfin
-               PERFORM UNTIL Wfin = 1
-                   READ fpers
-                       AT END
-                           MOVE 1 TO Wfin
-                       NOT AT END
-                           DISPLAY "*** PERSONNEL ***"
-                           DISPLAY "Numéro du personnel : " fp_numpP
-                           DISPLAY "Nom du personnel : " fp_nom
-                           DISPLAY "Prénom du personnel : " fp_prenom
-                           DISPLAY "Type du personnel : " fp_type
-                           DISPLAY "Mot de passe du personnel : " 
-                               fp_motDePasse
-                           DISPLAY "Année d'embauche du personnel : " 
-                               fp_year
-                           DISPLAY "Mois d'embauche du personnel : " 
-                               fp_month
-                           DISPLAY "Jour d'embauche du personnel : "
-                               fp_day
-                           DISPLAY "Type du personnel : " fp_actif
-                           DISPLAY "----------------------------------"
-                   END-READ
-               END-PERFORM 
-           CLOSE fpers
-           DISPLAY " ".
-
-           ADD_RESERV.
-           OPEN I-O fres
-           CLOSE fres.
+           MOVE WS-CURRENT-USER-NUM TO fm_numP
+                 START fmis KEY IS EQUAL fm_numP 
+                    INVALID KEY
+                       MOVE "NO MISSIONS FOR YOU" TO ERROR-MESSAGE
+                       DISPLAY DISP-MISSIONS-SCREEN
+                    NOT INVALID KEY
+                       MOVE 0 TO Wfin
+                       MOVE 0 TO Wstop
+                       PERFORM WITH TEST AFTER UNTIL Wfin = 1
+                       AND Wstop = 1
+                          MOVE 1 TO Wdisp
+                          READ fmis NEXT
+                             AT END
+                                DISPLAY DISP-MISSIONS-SCREEN
+                                MOVE 1 TO Wfin
+                             NOT AT END
+                               IF fm_numP = WS-CURRENT-USER-NUM THEN
+                                   IF fm_fin < WS-CURRENT-DATE-DATA THEN
+                                      MOVE 0 TO Wfin    
+                                   ELSE
+                                      IF Wdisp = 1 THEN
+                                         MOVE tamp_fmis TO 1tamp_fmis
+                                      ELSE IF Wdisp = 2 THEN
+                                         MOVE tamp_fmis TO 2tamp_fmis
+                                      ELSE IF Wdisp = 3 THEN
+                                         MOVE tamp_fmis TO 3tamp_fmis
+                                      ELSE IF Wdisp = 4 THEN
+                                         MOVE tamp_fmis TO 4tamp_fmis
+                                      ELSE IF Wdisp = 5 THEN
+                                         MOVE tamp_fmis TO 5tamp_fmis
+                                      ELSE IF Wdisp = 6 THEN
+                                         MOVE tamp_fmis TO 6tamp_fmis
+                                         MOVE 0 TO Wdisp
+                                         DISPLAY DISP-MISSIONS-SCREEN
+                                      END-IF
+                                      ADD 1 TO Wdisp
+                                   END-IF
+                                ELSE
+                                   MOVE 1 TO Wstop
+                                END-IF
+                          END-READ
+                       END-PERFORM 
+                 END-START
+           CLOSE fmis.
 
 
        DELETE_ROOM.
@@ -420,8 +441,8 @@
       *    ACCEPT Wchoix
            OPEN INPUT fpers
                IF fp_numP = Wchoix
-      * ACTION DE SUPPRIMER LE PERSONNEL
-               END-IF      
+                 fp_actif = 0
+               END-IF     
            CLOSE fpers.
 
 
@@ -501,8 +522,8 @@
                 AT END
                     MOVE 1 TO Wfin
                 NOT AT END
-                 IF Wchoix2 = fc_numCh THEN
-                    DISPLAY fc_numCh
+                 IF Wchoix2 = fc_numch THEN
+                    DISPLAY fc_numch
                  END-IF
                  IF Wchoix2 = fc_typeCh THEN
                     DISPLAY fc_typeCh

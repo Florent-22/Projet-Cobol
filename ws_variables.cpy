@@ -170,3 +170,76 @@
            	  03 6fm_fin_time.
            		  04 6fm_fin_hours PIC 9(2).
            		  04 6fm_fin_minute PIC 9(2).
+
+      * PERSONNEL TAMPON DUPLICATED SIX TIMES FOR DISPLAY SCREEN
+       01 1tamp_fpers.
+           02 1fp_numP PIC 9(4).
+           02 1fp_nom PIC A(30).
+           02 1fp_prenom PIC A(30).
+           02 1fp_type PIC 9.
+           02 1fp_motDePasse PIC X(30).
+           02 1fp_dateEmbauche.
+           	  03 1fp_year PIC 9(4).
+           	  03 1fp_month PIC 9(2).
+           	  03 1fp_day PIC 9(2).
+           02 1fp_actif PIC 9.
+
+       01 2tamp_fpers.
+           02 2fp_numP PIC 9(4).
+           02 2fp_nom PIC A(30).
+           02 2fp_prenom PIC A(30).
+           02 2fp_type PIC 9.
+           02 2fp_motDePasse PIC X(30).
+           02 2fp_dateEmbauche.
+           	  03 2fp_year PIC 9(4).
+           	  03 2fp_month PIC 9(2).
+           	  03 2fp_day PIC 9(2).
+           02 2fp_actif PIC 9.
+
+       01 3tamp_fpers.
+           02 3fp_numP PIC 9(4).
+           02 3fp_nom PIC A(30).
+           02 3fp_prenom PIC A(30).
+           02 3fp_type PIC 9.
+           02 3fp_motDePasse PIC X(30).
+           02 3fp_dateEmbauche.
+           	  03 3fp_year PIC 9(4).
+           	  03 3fp_month PIC 9(2).
+           	  03 3fp_day PIC 9(2).
+           02 3fp_actif PIC 9.
+
+       01 4tamp_fpers.
+           02 4fp_numP PIC 9(4).
+           02 4fp_nom PIC A(30).
+           02 4fp_prenom PIC A(30).
+           02 4fp_type PIC 9.
+           02 4fp_motDePasse PIC X(30).
+           02 4fp_dateEmbauche.
+           	  03 4fp_year PIC 9(4).
+           	  03 4fp_month PIC 9(2).
+           	  03 4fp_day PIC 9(2).
+           02 4fp_actif PIC 9.
+
+       01 5tamp_fpers.
+           02 5fp_numP PIC 9(4).
+           02 5fp_nom PIC A(30).
+           02 5fp_prenom PIC A(30).
+           02 5fp_type PIC 9.
+           02 5fp_motDePasse PIC X(30).
+           02 5fp_dateEmbauche.
+           	  03 5fp_year PIC 9(4).
+           	  03 5fp_month PIC 9(2).
+           	  03 5fp_day PIC 9(2).
+           02 5fp_actif PIC 9.
+       
+       01 6tamp_fpers.
+           02 6fp_numP PIC 9(4).
+           02 6fp_nom PIC A(30).
+           02 6fp_prenom PIC A(30).
+           02 6fp_type PIC 9.
+           02 6fp_motDePasse PIC X(30).
+           02 6fp_dateEmbauche.
+           	  03 6fp_year PIC 9(4).
+           	  03 6fp_month PIC 9(2).
+           	  03 6fp_day PIC 9(2).
+           02 6fp_actif PIC 9.

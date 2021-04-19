@@ -321,3 +321,74 @@
            05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
            05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+
+      * DISPLAY 6 MISSIONS ON SCREEN 
+       01  DISP-MISSIONS-SCREEN.
+           05  LINE  5 COL 5 VALUE "MISSION NUMBER:".
+           05  LINE 5 COL 21 PIC 9(5) FROM 1fm_numM.
+           05 LINE 7 COL 5 VALUE "PERSON:".
+           05 LINE 7 COL 13 PIC 9(4) FROM 1fm_numP.
+           05 LINE 8 COL 5 VALUE "ROOM:".
+           05 LINE 8 COL 11 PIC 9(4) FROM 1fm_numCh.
+           05 LINE 9 COL 5 VALUE "START AT:".
+           05 LINE 9 COL 15 PIC 9(2) FROM 1fm_debut_hours.
+           05 LINE 9 COL 17 VALUE "h".
+           05 LINE 9 COL 18 PIC 9(2) FROM 1fm_debut_minute.
+
+           05  LINE  5 COL 30 VALUE "MISSION NUMBER:".
+           05  LINE 5 COL 46 PIC 9(5) FROM 2fm_numM.
+           05 LINE 7 COL 30 VALUE "PERSON:".
+           05 LINE 7 COL 38 PIC 9(4) FROM 2fm_numP.
+           05 LINE 8 COL 30 VALUE "ROOM:".
+           05 LINE 8 COL 36 PIC 9(4) FROM 2fm_numCh.
+           05 LINE 9 COL 30 VALUE "START AT:".
+           05 LINE 9 COL 40 PIC 9(2) FROM 2fm_debut_hours.
+           05 LINE 9 COL 42 VALUE "h".
+           05 LINE 9 COL 43 PIC 9(2) FROM 2fm_debut_minute.
+
+           05  LINE  5 COL 55 VALUE "MISSION NUMBER:".
+           05  LINE 5 COL 71 PIC 9(5) FROM 3fm_numM.
+           05 LINE 7 COL 55 VALUE "PERSON:".
+           05 LINE 7 COL 63 PIC 9(4) FROM 3fm_numP.
+           05 LINE 8 COL 55 VALUE "ROOM:".
+           05 LINE 8 COL 61 PIC 9(4) FROM 3fm_numCh.
+           05 LINE 9 COL 55 VALUE "START AT:".
+           05 LINE 9 COL 65 PIC 9(2) FROM 3fm_debut_hours.
+           05 LINE 9 COL 67 VALUE "h".
+           05 LINE 9 COL 68 PIC 9(2) FROM 3fm_debut_minute.
+ 
+
+           05 LINE 12 COL 5 VALUE "MISSION NUMBER:".
+           05 LINE 12 COL 21 PIC 9(5) FROM 4fm_numM.
+           05 LINE 14 COL 5 VALUE "PERSON:".
+           05 LINE 14 COL 13 PIC 9(4) FROM 4fm_numP.
+           05 LINE 15 COL 5 VALUE "ROOM:".
+           05 LINE 15 COL 11 PIC 9(4) FROM 4fm_numCh.
+           05 LINE 16 COL 5 VALUE "START AT:".
+           05 LINE 16 COL 15 PIC 9(2) FROM 4fm_debut_hours.
+           05 LINE 16 COL 17 VALUE "h".
+           05 LINE 16 COL 18 PIC 9(2) FROM 4fm_debut_minute.
+
+           05 LINE 12 COL 30 VALUE "MISSION NUMBER:".
+           05 LINE 12 COL 46 PIC 9(5) FROM 5fm_numM.
+           05 LINE 14 COL 30 VALUE "PERSON:".
+           05 LINE 14 COL 38 PIC 9(4) FROM 5fm_numP.
+           05 LINE 15 COL 30 VALUE "ROOM:".
+           05 LINE 15 COL 36 PIC 9(4) FROM 5fm_numCh.
+           05 LINE 16 COL 30 VALUE "START AT:".
+           05 LINE 16 COL 40 PIC 9(2) FROM 5fm_debut_hours.
+           05 LINE 16 COL 42 VALUE "h".
+           05 LINE 16 COL 43 PIC 9(2) FROM 5fm_debut_minute.
+
+           05 LINE 12 COL 55 VALUE "MISSION NUMBER:".
+           05 LINE 12 COL 71 PIC 9(5) FROM 6fm_numM.
+           05 LINE 14 COL 55 VALUE "PERSON:".
+           05 LINE 14 COL 63 PIC 9(4) FROM 6fm_numP.
+           05 LINE 15 COL 55 VALUE "ROOM:".
+           05 LINE 15 COL 61 PIC 9(4) FROM 6fm_numCh.
+           05 LINE 16 COL 55 VALUE "START AT:".
+           05 LINE 16 COL 65 PIC 9(2) FROM 6fm_debut_hours.
+           05 LINE 16 COL 67 VALUE "h".
+           05 LINE 16 COL 68 PIC 9(2) FROM 6fm_debut_minute.
+           05  LINE 20 COL  2 VALUE ">ENTER FOR NEXT<".
+           05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
