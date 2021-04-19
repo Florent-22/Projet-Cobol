@@ -103,28 +103,9 @@
                  END-IF
                END-PERFORM.
 
-      * PERSONNEL ID MUST BE IN WS-LOGIN BEFORE CALL SEARCH_PERSONNEL
-       SEARCH_PERSONNEL.
-           OPEN INPUT fpers
-              MOVE 0 TO Wfin
-              MOVE 0 TO Wtrouve
-              PERFORM WITH TEST AFTER UNTIL Wfin = 1 OR Wtrouve = 1
-                 READ fpers
-                    AT END 
-                       MOVE 1 TO Wfin  
-                    NOT AT END
-                       IF fp_numP = WS-LOGIN THEN
-                          MOVE 1 TO Wtrouve
-                       END-IF                     
-                 END-READ
-               END-PERFORM
-               IF Wtrouve = 0 THEN
-                 MOVE " " TO fp_motDePasse
-               END-IF
-           CLOSE fpers.
-
 
        GENERAL SECTION.
+
 
       * NEED TO OPEN ROOM FILE BEFORE PERFORM
       * RETURN fc_numCh + 1
@@ -141,6 +122,40 @@
 
 
        ADDING SECTION.
+
+
+       ADD_MISSION.
+           OPEN I-O fmission
+               DISPLAY "Année du début de la mission : "
+               ACCEPT fm_debut_year
+               DISPLAY "Mois de début de la mission : "
+               ACCEPT fm_debut_month
+               DISPLAY "Jour de début de la mission : "
+               ACCEPT fm_debut_day
+               DISPLAY "Heure de début de la mission : "
+               ACCEPT fm_debut_hour
+               DISPLAY "Heure de début de la mission : "
+               ACCEPT fm_debut_minute 
+    
+               DISPLAY "Année de fin de la mission : "
+               ACCEPT fm_fin_year
+               DISPLAY "Mois de début de la mission : "
+               ACCEPT fm_fin_month
+               DISPLAY "Jour de début de la mission : "
+               ACCEPT fm_fin_day
+               DISPLAY "Heure de début de la mission : "
+               ACCEPT fm_fin_hour
+               DISPLAY "Heure de début de la mission : "
+               ACCEPT fm_fin_minute 
+               
+               WRITE tamp_fmi
+                  INVALID KEY 
+                     DISPLAY "Echec de l'ajout"
+                  NOT INVALID KEY 
+                     DISPLAY "Ajout réussi"
+               END-WRITE
+           CLOSE fmission.
+
 
        ADD_PERSONNEL.
            OPEN INPUT fpers
@@ -186,6 +201,7 @@
               MOVE "CREATION ABORT" TO ERROR-MESSAGE
            END-IF.
 
+
        ADD_ROOM.
            MOVE 0 TO Wvalide
            OPEN INPUT fch
@@ -212,6 +228,7 @@
 
        MODIF SECTION.
 
+
        MODIF_RESERVATION.
            MOVE 0 TO Wvalide
            OPEN I-O fresa
@@ -232,7 +249,9 @@
                END-READ
            CLOSE fresa.
 
+
        DISPLAYING SECTION.
+
 
       * DISPLAY MISSIONS OF THE CONNECTED USER
       * SEARCH BY ZONE ON fm_numP
@@ -283,9 +302,78 @@
                  END-START
            CLOSE fmis.
            
+
+       DISPLAY_PERSONNEL.
+           DISPLAY "***** AFFICHAGE PERSONNELS *****"
+           OPEN INPUT fpers
+               MOVE 0 TO Wfin
+               PERFORM UNTIL Wfin = 1
+                   READ fpers
+                       AT END
+                           MOVE 1 TO Wfin
+                       NOT AT END
+                           DISPLAY "*** PERSONNEL ***"
+                           DISPLAY "Numéro du personnel : " fp_numpP
+                           DISPLAY "Nom du personnel : " fp_nom
+                           DISPLAY "Prénom du personnel : " fp_prenom
+                           DISPLAY "Type du personnel : " fp_type
+                           DISPLAY "Mot de passe du personnel : " 
+                               fp_motDePasse
+                           DISPLAY "Année d'embauche du personnel : " 
+                               fp_year
+                           DISPLAY "Mois d'embauche du personnel : " 
+                               fp_month
+                           DISPLAY "Jour d'embauche du personnel : "
+                               fp_day
+                           DISPLAY "Type du personnel : " fp_actif
+                           DISPLAY "----------------------------------"
+                   END-READ
+               END-PERFORM 
+           CLOSE fpers
+           DISPLAY " ".
+
+           ADD_RESERV.
+           OPEN I-O fres
+           CLOSE fres.
+
+
+       DELETE_ROOM.
+
+
+       SEARCH_CLIENT.
+
+
+       EDIT_MISSION.
+              
        
+       DELET SECTION.
+
+
+       DELETE_MISSION.
+           OPEN I-O fmis
+      * ACCEPT IS TO TEST ONLY WAIT FOR DELETE SCREEN    
+               ACCEPT fm_numM
+               READ fmis
+                   INVALID KEY
+                       DISPLAY "Cette mission n'existe pas !"
+                   NOT INVALID KEY
+                       DELETE fmis RECORD
+               END-READ
+           CLOSE fmis.
+
+           
+       DELETE_PERSONNEL.
+           DISPLAY "Matricule du personnel a licencier : "
+           ACCEPT Wchoix
+           OPEN INPUT fpers
+               IF fp_numP = Wchoix
+      * ACTION DE SUPPRIMER LE PERSONNEL
+               END IF      
+           CLOSE fpers.
+
+
       * FIND THE RESERVATION AND DISPLAY THE SCREEN FOR REMOVAL
-       REMOVE_RESA.
+       DELETE_RESA.
            OPEN I-O fresa
               ACCEPT RES-REMOVE-SCREEN
               READ fresa
@@ -312,27 +400,59 @@
 
            CLOSE fresa.
 
-
-       DELETE_ROOM.
-
-
-       SEARCH_CLIENT.
-
-
-       EDIT_MISSION.
-              
        
+       SEARC SECTION.
 
-       DELET SECTION.
+       
+      * PERSONNEL ID MUST BE IN WS-LOGIN BEFORE CALL SEARCH_PERSONNEL
+       SEARCH_PERSONNEL.
+           OPEN INPUT fpers
+              MOVE 0 TO Wfin
+              MOVE 0 TO Wtrouve
+              PERFORM WITH TEST AFTER UNTIL Wfin = 1 OR Wtrouve = 1
+                 READ fpers
+                    AT END 
+                       MOVE 1 TO Wfin  
+                    NOT AT END
+                       IF fp_numP = WS-LOGIN THEN
+                          MOVE 1 TO Wtrouve
+                       END-IF                     
+                 END-READ
+               END-PERFORM
+               IF Wtrouve = 0 THEN
+                 MOVE " " TO fp_motDePasse
+               END-IF
+           CLOSE fpers.
 
-       DELETE_MISSION.
-           OPEN I-O fmis
-      * ACCEPT IS TO TEST ONLY WAIT FOR DELETE SCREEN    
-               ACCEPT fm_numM
-               READ fmis
-                   INVALID KEY
-                       DISPLAY "Cette mission n'existe pas !"
-                   NOT INVALID KEY
-                       DELETE fmis RECORD
-               END-READ
-           CLOSE fmis.
+
+       SRCH_ROOM.
+              OPEN INPUT fcha
+              MOVE 0 to Wchoix1
+               PERFORM WITH TEST AFTER UNTIL 
+               Wchoix1 = 1 OR Wchoix1 = 2 OR Wchoix1 = 2 OR Wchoix1 = 3         
+                 DISPLAY "1 - Recherche par id"
+                 DISPLAY "2 - Recherche par type"
+                 ACCEPT Wchoix1
+                END-PERFORM
+                 EVALUATE Wchoix1
+                       WHEN 1
+                          DISPLAY "id de la chambre recherché :"   
+                          ACCEPT Wchoix2                                        
+                       WHEN 2
+                          DISPLAY "type de la chambre recherché :"   
+                          ACCEPT Wchoix2
+                 END-EVALUATE 
+                MOVE 0 TO Wfin
+                PERFORM UNTIL Wfin = 1 
+                read fcha
+                AT END
+                    MOVE 1 TO Wfin
+                NOT AT END
+                 IF Wchoix2 = fc_id THEN
+                    DISPLAY fc_id
+                 END IF
+                 IF Wchoix2 = fc_type THEN
+                    DISPLAY fc_typeCh
+                 END IF
+                END-PERFORM
+              CLOSE fcha.
