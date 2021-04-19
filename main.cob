@@ -96,13 +96,61 @@
            END-EVALUATE.
 
        MENU_CLEAN.
+           PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
+                ACCEPT CLEANING-SCREEN
+                MOVE " " TO ERROR-MESSAGE
+                EVALUATE MENU-PICK
+                    WHEN 1
+                       PERFORM DISPLAY_YOUR_MISSIONS
+                    WHEN 2
+                       PERFORM ASSIGNING_MISSION
+                    WHEN 3
+                       PERFORM CLOCK_IN_MISSION
+                    WHEN 4
+                       PERFORM STATS_PERF
+                 END-EVALUATE
+           END-PERFORM
+           PERFORM LOGOUT.
 
 
        MENU_A_RECEP.
+           PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
+                ACCEPT A-RECEPTION-SCREEN
+                MOVE " " TO ERROR-MESSAGE
+                EVALUATE MENU-PICK
+                    WHEN 1
+                       PERFORM DISPLAY_PLANNING
+                    WHEN 2
+                       PERFORM MENU_RESERVATIONS
+                    WHEN 3
+                       PERFORM MENU_CUSTOMERS
+                    WHEN 4
+                       PERFORM STATS_ROOM
+                    WHEN 5
+                       PERFORM MENU_ADMIN
+                 END-EVALUATE
+           END-PERFORM
+           PERFORM LOGOUT.
+
+       MENU_ADMIN.
+           PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
+                ACCEPT ADMINISTRATION-SCREEN
+                MOVE " " TO ERROR-MESSAGE
+                EVALUATE MENU-PICK
+                    WHEN 1
+                       PERFORM ROOMS-MENU
+                    WHEN 2
+                       PERFORM STAFF-MENU
+                    WHEN 3
+                       PERFORM DELETE-MISSION
+                    WHEN 4
+                       PERFORM DELETE-CUSTOMER
+                 END-EVALUATE
+           END-PERFORM
+           PERFORM MENU_A_RECEP.
 
        MENU_RECEP.
-           PERFORM WITH TEST AFTER UNTIL 
-              MENU-PICK-IS-VALID = 0
+           PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
                 ACCEPT RECEPTION-SCREEN
                 MOVE " " TO ERROR-MESSAGE
                 EVALUATE MENU-PICK
@@ -118,14 +166,45 @@
            END-PERFORM
            PERFORM LOGOUT.
 
+       DISPLAY_YOUR_MISSIONS.
+       MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+       
+       ASSIGNING_MISSION.
+       MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+       
+       CLOCK_IN_MISSION.
+       MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+       
+
+
+       STATS_PERF.
+           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+
        DISPLAY_PLANNING.
+           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        MENU_RESERVATIONS.
+           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
 
        MENU_CUSTOMERS.
+           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        STATS_ROOM.
+           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+
+       ROOMS-MENU.
+           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+
+       STAFF-MENU.
+           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+
+       DELETE-MISSION.
+           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+
+       DELETE-CUSTOMER.
+           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+
 
 
        LOGOUT.
@@ -440,8 +519,8 @@
            DISPLAY "Matricule du personnel a licencier : "
       *    ACCEPT Wchoix
            OPEN INPUT fpers
-               IF fp_numP = Wchoix
-                 fp_actif = 0
+               IF fp_numP = Wchoix THEN
+                 MOVE 0 TO fp_actif
                END-IF     
            CLOSE fpers.
 
