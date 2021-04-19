@@ -1,4 +1,4 @@
-      ADDING SECTION.
+       ADDING SECTION.
 
        ADD_MISSION.
            OPEN I-O fmis
@@ -105,3 +105,4 @@
            ELSE
               MOVE "CREATION ABORT" TO ERROR-MESSAGE
            END-IF.
+
