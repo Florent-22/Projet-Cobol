@@ -174,4 +174,21 @@
            CLOSE fresa.
 
        MODIF_ROOM.
-           
+           OPEN INPUT fch
+           DISPLAY "Numero de la chambre :"
+                ACCEPT Wchoix1
+                MOVE 0 TO Wfin
+                MOVE 0 TO Wtrouve
+                PERFORM WITH TEST AFTER UNTIL Wfin = 1 OR Wtrouve = 1
+                    READ fch
+                        AT END
+                            MOVE 1 TO Wfin
+                            DISPLAY "Pas de chambre pour ce numéro"
+                        NOT AT END
+                            IF fc_numCh = Wchoix1 THEN
+                                
+                                MOVE 1 TO Wtrouve
+                            END-IF
+                    END-READ
+                END-PERFORM
+           CLOSE fch.
