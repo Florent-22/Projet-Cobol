@@ -1,4 +1,4 @@
-      ADDING SECTION.
+       ADDING SECTION.
 
        ADD_MISSION.
            OPEN I-O fmis

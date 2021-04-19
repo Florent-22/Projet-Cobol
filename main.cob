@@ -237,7 +237,7 @@
 
        COPY "section_general.cpy".
 
-       COPY "section_add.cpy".
+       COPY "section_adding.cpy".
 
        COPY "section_delete.cpy".
 

@@ -1,4 +1,4 @@
-       DELET SECTION.
+       DELETEING SECTION.
 
 
        DELETE_MISSION.
@@ -16,11 +16,11 @@
            
        DELETE_PERSONNEL.
            DISPLAY "Matricule du personnel a licencier : "
-           ACCEPT Wchoix
+      *    ACCEPT Wchoix
            OPEN INPUT fpers
-               IF fp_numP = Wchoix
-                 fp_actif = 0
-               END-IF     
+      *        IF fp_numP = Wchoix
+      *          fp_actif = 0
+      *        END-IF     
            CLOSE fpers.
 
 
