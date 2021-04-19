@@ -179,16 +179,29 @@
                 ACCEPT Wchoix1
                 MOVE 0 TO Wfin
                 MOVE 0 TO Wtrouve
+                MOVE 0 TO Wcompteur
                 PERFORM WITH TEST AFTER UNTIL Wfin = 1 OR Wtrouve = 1
                     READ fch
                         AT END
                             MOVE 1 TO Wfin
                             DISPLAY "Pas de chambre pour ce numéro"
                         NOT AT END
-                            IF fc_numCh = Wchoix1 THEN
-                                
+                            IF fc_numCh != Wchoix1 THEN
+                                MOVE Wcompteur + 1 TO Wcompteur
                                 MOVE 1 TO Wtrouve
                             END-IF
                     END-READ
                 END-PERFORM
+                MOVE 0 TO Wtrouve
+                IF Wtrouve = 1 THEN
+                    PERFORM WITH TEST AFTER UNTIL Wtrouve = 1
+                       READ fch
+                          AT END
+                            MOVE 1 TO Wfin
+                            DISPLAY "Erreur de lecture"
+                          NOT AT END
+
+                       END-READ
+                    END-PERFORM
+                END-IF
            CLOSE fch.
