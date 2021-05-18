@@ -32,7 +32,6 @@
                     DISPLAY SRCH-CLI-SCREEN
            CLOSE fcli.
 
-
       *SRCH_ROOM.
       *       OPEN INPUT fch
       *       MOVE 0 to Wchoix1

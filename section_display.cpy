@@ -82,7 +82,7 @@
                    END-READ
                END-PERFORM
            CLOSE fpers.
-       
+
        DISPLAY_NB_MISSION_JOUR.
            OPEN INPUT fmis
               ACCEPT NB-MIS-JOUR-SCREEN
@@ -118,3 +118,35 @@
                  END-START
               DISPLAY NB-IS-JOUR-SCREEN
            CLOSE fmis.
+
+      * DISPLAY CLIENT
+       DISPLAY_CLIENT.
+           OPEN INPUT fcli
+           MOVE 0 TO Wfin
+           MOVE 0 TO Wstop
+               PERFORM WITH TEST AFTER UNTIL Wfin = 1
+               AND Wstop = 1
+                   MOVE 1 TO Wdisp
+                   READ fcli NEXT
+                       AT END
+                           DISPLAY DISP-CLIENT-SCREEN
+                           MOVE 1 TO Wfin
+                       NOT AT END                  
+                           IF Wdisp = 1 THEN
+                               MOVE tamp_fcli TO 1tamp_fcli
+                           ELSE IF Wdisp = 2 THEN
+                               MOVE tamp_fcli TO 2tamp_fcli
+                           ELSE IF Wdisp = 3 THEN
+                               MOVE tamp_fcli TO 3tamp_fcli
+                           ELSE IF Wdisp = 4 THEN
+                               MOVE tamp_fcli TO 4tamp_fcli
+                           ELSE IF Wdisp = 5 THEN
+                               MOVE tamp_fcli TO 5tamp_fcli
+                           ELSE IF Wdisp = 6 THEN
+                               MOVE tamp_fcli TO 6tamp_fcli
+                               MOVE 0 TO Wdisp
+                           DISPLAY DISP-CLIENT-SCREEN
+                           ADD 1 TO Wdisp
+                       END-READ
+               END-PERFORM
+           CLOSE fcli.

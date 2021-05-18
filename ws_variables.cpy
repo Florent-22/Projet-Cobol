@@ -251,3 +251,70 @@
            	  03 6fp_month PIC 9(2).
            	  03 6fp_day PIC 9(2).
            02 6fp_actif PIC 9.
+
+      * CLIENT TAMPON DUPLICATED SIX TIMES FOR DISPLAY SCREEN
+       01 1tamp_fcli.
+           02 1fcl_numCl PIC 9(6).
+           02 1fcl_nom PIC A(30).
+           02 1fcl_prenom PIC A(30).
+           02 1fcl_tel PIC 9(10).
+           02 1fcl_adr PIC X(100).
+           02 1fcl_dateNaissance.
+           	  03 1fcl_year PIC 9(4).
+           	  03 1fcl_month PIC 9(2).
+           	  03 1fcl_day PIC 9(2).
+
+       01 2tamp_fcli.
+           02 2fcl_numCl PIC 9(6).
+           02 2fcl_nom PIC A(30).
+           02 2fcl_prenom PIC A(30).
+           02 2fcl_tel PIC 9(10).
+           02 2fcl_adr PIC X(100).
+           02 2fcl_dateNaissance.
+           	  03 2fcl_year PIC 9(4).
+           	  03 2fcl_month PIC 9(2).
+           	  03 2fcl_day PIC 9(2).
+
+       01 3tamp_fcli.
+           02 3fcl_numCl PIC 9(6).
+           02 3fcl_nom PIC A(30).
+           02 3fcl_prenom PIC A(30).
+           02 3fcl_tel PIC 9(10).
+           02 3fcl_adr PIC X(100).
+           02 3fcl_dateNaissance.
+           	  03 3fcl_year PIC 9(4).
+           	  03 3fcl_month PIC 9(2).
+           	  03 3fcl_day PIC 9(2).
+
+       01 4tamp_fcli.
+           02 4fcl_numCl PIC 9(6).
+           02 4fcl_nom PIC A(30).
+           02 4fcl_prenom PIC A(30).
+           02 4fcl_tel PIC 9(10).
+           02 4fcl_adr PIC X(100).
+           02 4fcl_dateNaissance.
+           	  03 4fcl_year PIC 9(4).
+           	  03 4fcl_month PIC 9(2).
+           	  03 4fcl_day PIC 9(2).
+
+       01 5tamp_fcli.
+           02 5fcl_numCl PIC 9(6).
+           02 5fcl_nom PIC A(30).
+           02 5fcl_prenom PIC A(30).
+           02 5fcl_tel PIC 9(10).
+           02 5fcl_adr PIC X(100).
+           02 5fcl_dateNaissance.
+           	  03 5fcl_year PIC 9(4).
+           	  03 5fcl_month PIC 9(2).
+           	  03 5fcl_day PIC 9(2).
+       
+       01 6tamp_fcli.
+           02 6fcl_numCl PIC 9(6).
+           02 6fcl_nom PIC A(30).
+           02 6fcl_prenom PIC A(30).
+           02 6fcl_tel PIC 9(10).
+           02 6fcl_adr PIC X(100).
+           02 6fcl_dateNaissance.
+           	  03 6fcl_year PIC 9(4).
+           	  03 6fcl_month PIC 9(2).
+           	  03 6fcl_day PIC 9(2).
