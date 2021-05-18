@@ -421,3 +421,106 @@
            05 LINE 20 COL  2 VALUE "PRESS ENTER TO RETURN TO MENU".
            05 LINE 20 COL 21 PIC A USING MENU-VALIDATE.
            05 LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+       
+       01 SRCH-MIS-SCREEN.
+           05 BLANK SCREEN.
+           05 LINE 2 COL 71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05 LINE 2 COL 2 VALUE "WELCOME".
+           05 LINE 2 COL 10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05 LINE 3 PIC X(80) VALUE ALL "-".
+           05 LINE 8 COL 2 VALUE "MISSION NUMBER:".
+           05 LINE 8 COL 22 PIC 9(5) USING fm_numM.
+           05 LINE 10 COL 2 VALUE "PERSONNEL NUMBER:".
+           05 LINE 10 COL 22 PIC 9(4) FROM fm_numP.
+           05 LINE 11 COL 2 VALUE "ROOM NUMBER:".
+           05 LINE 11 COL 22 PIC 9(4) FROM fm_numCh.
+           05 LINE 12 COL 2 VALUE "START DATE:".
+           05 LINE 12 COL 22 PIC 9(2) FROM fm_debut_day.
+           05 LINE 12 COL 25 VALUE "/".
+           05 LINE 12 COL 26 PIC 9(2) FROM fm_debut_month.
+           05 LINE 12 COL 28 VALUE "/".
+           05 LINE 12 COL 29 PIC 9(4) FROM fm_debut_year.
+           05 LINE 13 COL 2 VALUE "END DATE:".
+           05 LINE 13 COL 22 PIC 9(2) FROM fm_fin_day.
+           05 LINE 13 COL 25 VALUE "/".
+           05 LINE 13 COL 26 PIC 9(2) FROM fm_fin_month.
+           05 LINE 13 COL 28 VALUE "/".
+           05 LINE 13 COL 29 PIC 9(4) FROM fm_fin_year.
+       
+
+      * DISPLAY 6 CLIENT ON SCREEN 
+       01  DISP-CLIENT-SCREEN.
+           05  LINE  5 COL 5 VALUE "CLIENT NUMBER:".
+           05  LINE 5 COL 21 PIC 9(5) FROM 1fcl_numCl.
+           05 LINE 7 COL 5 VALUE "NAME:".
+           05 LINE 7 COL 13 PIC A(30) FROM 1fcl_nom.
+           05 LINE 8 COL 13 PIC A(30) FROM 1fcl_prenom.
+           05 LINE 8 COL 5 VALUE "DATE:".
+           05 LINE 8 COL 15 PIC 9(2) FROM 1fcl_day.
+           05 LINE 8 COL 17 VALUE "/".
+           05 LINE 8 COL 18 PIC 9(2) FROM 1fcl_month.
+           05 LINE 8 COL 20 VALUE "/".
+           05 LINE 8 COL 21 PIC 9(4) FROM 1fcl_year.
+
+           05  LINE  5 COL 5 VALUE "CLIENT NUMBER:".
+           05  LINE 5 COL 21 PIC 9(5) FROM 2fcl_numCl.
+           05 LINE 7 COL 5 VALUE "NAME:".
+           05 LINE 7 COL 13 PIC A(30) FROM 2fcl_nom.
+           05 LINE 8 COL 13 PIC A(30) FROM 2fcl_prenom.
+           05 LINE 8 COL 5 VALUE "DATE:".
+           05 LINE 8 COL 15 PIC 9(2) FROM 2fcl_day.
+           05 LINE 8 COL 17 VALUE "/".
+           05 LINE 8 COL 18 PIC 9(2) FROM 2fcl_month.
+           05 LINE 8 COL 20 VALUE "/".
+           05 LINE 8 COL 21 PIC 9(4) FROM 2fcl_year.
+
+           05  LINE  5 COL 5 VALUE "CLIENT NUMBER:".
+           05  LINE 5 COL 21 PIC 9(5) FROM 3fcl_numCl.
+           05 LINE 7 COL 5 VALUE "NAME:".
+           05 LINE 7 COL 13 PIC A(30) FROM 3fcl_nom.
+           05 LINE 8 COL 13 PIC A(30) FROM 3fcl_prenom.
+           05 LINE 8 COL 5 VALUE "DATE:".
+           05 LINE 8 COL 15 PIC 9(2) FROM 3fcl_day.
+           05 LINE 8 COL 17 VALUE "/".
+           05 LINE 8 COL 18 PIC 9(2) FROM 3fcl_month.
+           05 LINE 8 COL 20 VALUE "/".
+           05 LINE 8 COL 21 PIC 9(4) FROM 3fcl_year.
+ 
+
+           05  LINE  5 COL 5 VALUE "CLIENT NUMBER:".
+           05  LINE 5 COL 21 PIC 9(5) FROM 4fcl_numCl.
+           05 LINE 7 COL 5 VALUE "NAME:".
+           05 LINE 7 COL 13 PIC A(30) FROM 4fcl_nom.
+           05 LINE 8 COL 13 PIC A(30) FROM 4fcl_prenom.
+           05 LINE 8 COL 5 VALUE "DATE:".
+           05 LINE 8 COL 15 PIC 9(2) FROM 4fcl_day.
+           05 LINE 8 COL 17 VALUE "/".
+           05 LINE 8 COL 18 PIC 9(2) FROM 4fcl_month.
+           05 LINE 8 COL 20 VALUE "/".
+           05 LINE 8 COL 21 PIC 9(4) FROM 4fcl_year.
+
+           05  LINE  5 COL 5 VALUE "CLIENT NUMBER:".
+           05  LINE 5 COL 21 PIC 9(5) FROM 5fcl_numCl.
+           05 LINE 7 COL 5 VALUE "NAME:".
+           05 LINE 7 COL 13 PIC A(30) FROM 5fcl_nom.
+           05 LINE 8 COL 13 PIC A(30) FROM 5fcl_prenom.
+           05 LINE 8 COL 5 VALUE "DATE:".
+           05 LINE 8 COL 15 PIC 9(2) FROM 5fcl_day.
+           05 LINE 8 COL 17 VALUE "/".
+           05 LINE 8 COL 18 PIC 9(2) FROM 5fcl_month.
+           05 LINE 8 COL 20 VALUE "/".
+           05 LINE 8 COL 21 PIC 9(4) FROM 5fcl_year.
+
+           05  LINE  5 COL 5 VALUE "CLIENT NUMBER:".
+           05  LINE 5 COL 21 PIC 9(5) FROM 6fcl_numCl.
+           05 LINE 7 COL 5 VALUE "NAME:".
+           05 LINE 7 COL 13 PIC A(30) FROM 6fcl_nom.
+           05 LINE 8 COL 13 PIC A(30) FROM 6fcl_prenom.
+           05 LINE 8 COL 5 VALUE "DATE:".
+           05 LINE 8 COL 15 PIC 9(2) FROM 6fcl_day.
+           05 LINE 8 COL 17 VALUE "/".
+           05 LINE 8 COL 18 PIC 9(2) FROM 6fcl_month.
+           05 LINE 8 COL 20 VALUE "/".
+           05 LINE 8 COL 21 PIC 9(4) FROM 6fcl_year.
+           05  LINE 20 COL  2 VALUE ">ENTER FOR NEXT<".
+           05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
