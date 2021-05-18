@@ -590,3 +590,5 @@
            05 LINE 8 COL 21 PIC 9(4) FROM 6fcl_year.
            05  LINE 20 COL  2 VALUE ">ENTER FOR NEXT<".
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+
+           

@@ -116,7 +116,7 @@
                           END-READ
                        END-PERFORM 
                  END-START
-              DISPLAY NB-IS-JOUR-SCREEN
+              DISPLAY NB-MIS-JOUR-SCREEN
            CLOSE fmis.
 
       * DISPLAY CLIENT
