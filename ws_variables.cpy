@@ -12,6 +12,14 @@
        77 Wvalide                          PIC 9.
        77 Wid_personnel_to_find            PIC 9(4).
        77 Wdisp                            PIC 9.
+       77 WS-NB-MIS                        PIC 9(3).
+       77 WS-NUMP                          PIC 9(4).
+
+       
+       05  WS-FIN-MIS-DATE.
+               10  WS-FIN-MIS-YEAR         PIC 9(04).
+               10  WS-FIN-MIS-MONTH        PIC 9(02).
+               10  WS-FIN-MIS-DAY          PIC 9(02).
 
        01 WS-TOTAL-PRICE.
            05 WS-TOTAL-PRICE-ENTIER        PIC 9(3).

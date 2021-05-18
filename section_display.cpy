@@ -82,3 +82,39 @@
                    END-READ
                END-PERFORM
            CLOSE fpers.
+       
+       DISPLAY_NB_MISSION_JOUR.
+           OPEN INPUT fmis
+              ACCEPT NB-MIS-JOUR-SCREEN
+              MOVE " " TO ERROR-MESSAGE
+              MOVE 0 TO WS-NB-MIS
+              MOVE fm_numP TO WS-NUMP
+              MOVE fm_fin_date TO WS-FIN-MIS-DATE
+              START fmis KEY IS EQUAL fm_numP 
+                    INVALID KEY
+                       MOVE "NO MISSIONS FOR THIS STAFF" TO 
+                          ERROR-MESSAGE
+                       DISPLAY NB-MIS-JOUR-SCREEN
+                    NOT INVALID KEY
+                       MOVE 0 TO Wfin
+                       MOVE 0 TO Wstop
+                       PERFORM WITH TEST AFTER UNTIL Wfin = 1
+                       AND Wstop = 1
+                          READ fmis NEXT
+                             AT END
+                                DISPLAY NB-MIS-JOUR-SCREEN
+                                MOVE 1 TO Wfin
+                             NOT AT END
+                              IF fm_numP = WS-NUMP THEN
+                                   IF fm_fin_date = WS-FIN-MIS-DATE THEN
+                                      MOVE 0 TO Wfin    
+                                      ADD 1 TO WS-NB-MIS
+                                   END-IF
+                                ELSE
+                                   MOVE 1 TO Wstop
+                                END-IF
+                          END-READ
+                       END-PERFORM 
+                 END-START
+              DISPLAY NB-IS-JOUR-SCREEN
+           CLOSE fmis.

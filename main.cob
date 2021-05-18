@@ -188,6 +188,17 @@
 
 
        MENU_CUSTOMERS.
+           PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
+                ACCEPT CUSTOMERS-MENU-SCREEN
+                MOVE " " TO ERROR-MESSAGE
+                EVALUATE MENU-PICK
+                    WHEN 1
+                       PERFORM SEARCH_CLIENT
+      * SUITE
+                 END-EVALUATE
+           END-PERFORM.
+       
+
            MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        STATS_ROOM.

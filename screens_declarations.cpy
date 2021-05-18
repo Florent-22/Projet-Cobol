@@ -397,27 +397,91 @@
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
 
        01  SRCH-CLI-SCREEN.
+           05 BLANK SCREEN.
+           05 LINE 2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05 LINE 2 COL  2 VALUE "WELCOME".
+           05 LINE 2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05 LINE 3 PIC X(80) VALUE ALL "-".
+           05 LINE 8 COL 2 VALUE "CLIENT NUMBER:".
+           05 LINE 8 COL 22 PIC 9(6) USING fcl_numCl.
+           05 LINE 10 COL 5 VALUE "CLIENT NAME:".
+           05 LINE 10 COL 18 PIC A(30) FROM fcl_nom.
+           05 LINE 11 COL 18 PIC A(30) FROM fcl_prenom.
+           05 LINE 12 COL 5 VALUE "TELEPHONE:".
+           05 LINE 12 COL 16 PIC 9(10) FROM fcl_tel.
+           05 LINE 13 COL 5 VALUE "ADDRESS:".
+           05 LINE 13 COL 14 PIC X(100) FROM fcl_adr.
+           05 LINE 14 COL 5 VALUE "BIRTHDAY:".
+           05 LINE 14 COL 15 PIC 9(2) FROM fcl_day.
+           05 LINE 14 COL 17 VALUE "/".
+           05 LINE 14 COL 18 PIC 9(2) FROM fcl_month.
+           05 LINE 14 COL 20 VALUE "/".
+           05 LINE 14 COL 21 PIC 9(4) FROM fcl_year.
+
+           05 LINE 20 COL  2 VALUE "PRESS ENTER TO RETURN TO MENU".
+           05 LINE 20 COL 21 PIC A USING MENU-VALIDATE.
+           05 LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+
+       01  ADD-CLI-SCREEN.
+           05 BLANK SCREEN.
+           05 LINE 2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05 LINE 2 COL  2 VALUE "WELCOME".
+           05 LINE 2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05 LINE 3 PIC X(80) VALUE ALL "-".
+           05 LINE 8 COL 2 VALUE "CLIENT NUMBER:".
+           05 LINE 8 COL 22 PIC 9(6) FROM fcl_numCl.
+           05 LINE 10 COL 5 VALUE "CLIENT NAME:".
+           05 LINE 10 COL 18 PIC A(30) USING fcl_nom.
+           05 LINE 11 COL 18 PIC A(30) USING fcl_prenom.
+           05 LINE 12 COL 5 VALUE "TELEPHONE:".
+           05 LINE 12 COL 16 PIC 9(10) USING fcl_tel.
+           05 LINE 13 COL 5 VALUE "ADDRESS:".
+           05 LINE 13 COL 14 PIC X(100) USING fcl_adr.
+           05 LINE 14 COL 5 VALUE "BIRTHDAY:".
+           05 LINE 14 COL 15 PIC 9(2) USING fcl_day.
+           05 LINE 14 COL 17 VALUE "/".
+           05 LINE 14 COL 18 PIC 9(2) USING fcl_month.
+           05 LINE 14 COL 20 VALUE "/".
+           05 LINE 14 COL 21 PIC 9(4) USING fcl_year.
+
+           05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
+           05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
+           05 LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+
+       01  CUSTOMERS-MENU-SCREEN.
            05  BLANK SCREEN.
            05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
            05  LINE  2 COL  2 VALUE "WELCOME".
            05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
            05  LINE  3 PIC X(80) VALUE ALL "-".
-           05  LINE  8 COL 2 VALUE "CLIENT NUMBER:".
-           05  LINE 8 COL 22 PIC 9(6) USING fcl_numCl.
-           05 LINE 10 COL 5 VALUE "CLIENT NAME:".
-           05  LINE  10 COL 18 PIC A(30) FROM fcl_nom.
-           05  LINE  11 COL 18 PIC A(30) FROM fcl_prenom.
-           05 LINE 12 COL 5 VALUE "TELEPHONE:".
-           05  LINE 12 COL 16 PIC 9(10) FROM fcl_tel.
-           05 LINE 13 COL 5 VALUE "ADDRESS:".
-           05  LINE 13 COL 14 PIC X(100) FROM fcl_adr.
-           05 LINE 14 COL 5 VALUE "BIRTHDAY:".
-           05 LINE 14 COL 12 PIC 9(2) FROM fcl_day.
-           05 LINE 14 COL 14 VALUE "/".
-           05 LINE 14 COL 15 PIC 9(2) FROM fcl_month.
-           05 LINE 14 COL 17 VALUE "/".
-           05 LINE 14 COL 18 PIC 9(4) FROM fcl_year.
+           05  LINE  8 COL 20 VALUE "PLEASE SELECT:".
+           05  LINE  10 COL 25 VALUE "1. SEARCH CLIENT".
+           05  LINE  11 COL 25 VALUE "2. MODIFY CLIENT".
+           05  LINE 12 COL 25 VALUE "3. CREATE CLIENT".
+           05  LINE 13 COL 25 VALUE "4. DELETE CLIENT".
+           05  LINE 15 COL 25 VALUE "0. EXIT".
+           05  LINE 20 COL  2 VALUE "YOUR SELECTION >".
+           05  LINE 20 COL 19 PIC Z USING MENU-PICK.
+           05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
 
-           05 LINE 20 COL  2 VALUE "PRESS ENTER TO RETURN TO MENU".
-           05 LINE 20 COL 21 PIC A USING MENU-VALIDATE.
-           05 LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+       01  NB-MIS-JOUR-SCREEN.
+           05  BLANK SCREEN.
+           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05  LINE  2 COL  2 VALUE "WELCOME".
+           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05  LINE  8 COL 5 VALUE "STAFF NUMBER:".
+           05  LINE 8 COL 19 PIC 9(4) USING fp_numP.
+           05  LINE  9 COL 5 VALUE "DATE:".
+           05  LINE  9 COL 11 PIC 9(2) USING fm_fin_day.
+           05 LINE 9 COL 13 VALUE "/".
+           05 LINE 9 COL 14 PIC 9(2) USING fm_fin_month.
+           05 LINE 9 COL 16 VALUE "/".
+           05 LINE 9 COL 17 PIC 9(4) USING fm_fin_year.
+
+           05 LINE 12 COL 5 VALUE "NUMBER OF MISSIONS DONE:".
+           05 LINE 12 COL 30 PIC 9(3) FROM WS-NB-MIS.
+
+           05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
+           05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
+           05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.

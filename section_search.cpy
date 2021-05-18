@@ -5,8 +5,6 @@
        SEARCH_PERSONNEL.
            OPEN INPUT fpers
               MOVE 0 TO Wfin
-              ACCEPT PERS-EDITING-SCREEN
-              MOVE " " TO ERROR-MESSAGE
               PERFORM WITH TEST AFTER UNTIL Wfin = 1 OR Wtrouve = 1
                  READ fpers
                     AT END 
@@ -22,15 +20,16 @@
                END-IF
            CLOSE fpers.
 
+      * WS-NUMCLI MUST BE FULL BEFORE CALL THIS FUNCTION
        SEARCH_CLIENT.
            OPEN INPUT fcli
               ACCEPT SRCH-CLI-SCREEN
               MOVE " " TO ERROR-MESSAGE
               READ fcli
                  INVALID KEY 
-                 
+                    MOVE "THIS CLIENT DOESN'T EXIST" TO ERROR-MESSAGE
                  NOT INVALID KEY
-                 
+                    DISPLAY SRCH-CLI-SCREEN
            CLOSE fcli.
 
 
