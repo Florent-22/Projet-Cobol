@@ -22,6 +22,17 @@
                END-IF
            CLOSE fpers.
 
+       SEARCH_CLIENT.
+           OPEN INPUT fcli
+              ACCEPT SRCH-CLI-SCREEN
+              MOVE " " TO ERROR-MESSAGE
+              READ fcli
+                 INVALID KEY 
+                 
+                 NOT INVALID KEY
+                 
+           CLOSE fcli.
+
 
       *SRCH_ROOM.
       *       OPEN INPUT fch

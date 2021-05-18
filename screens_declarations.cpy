@@ -395,3 +395,29 @@
            05 LINE 16 COL 65 PIC 9(2) FROM 6fp_type.
            05  LINE 20 COL  2 VALUE ">ENTER FOR NEXT<".
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+
+       01  SRCH-CLI-SCREEN.
+           05  BLANK SCREEN.
+           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05  LINE  2 COL  2 VALUE "WELCOME".
+           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05  LINE  8 COL 2 VALUE "CLIENT NUMBER:".
+           05  LINE 8 COL 22 PIC 9(6) USING fcl_numCl.
+           05 LINE 10 COL 5 VALUE "CLIENT NAME:".
+           05  LINE  10 COL 18 PIC A(30) FROM fcl_nom.
+           05  LINE  11 COL 18 PIC A(30) FROM fcl_prenom.
+           05 LINE 12 COL 5 VALUE "TELEPHONE:".
+           05  LINE 12 COL 16 PIC 9(10) FROM fcl_tel.
+           05 LINE 13 COL 5 VALUE "ADDRESS:".
+           05  LINE 13 COL 14 PIC X(100) FROM fcl_adr.
+           05 LINE 14 COL 5 VALUE "BIRTHDAY:".
+           05 LINE 14 COL 12 PIC 9(2) FROM fcl_day.
+           05 LINE 14 COL 14 VALUE "/".
+           05 LINE 14 COL 15 PIC 9(2) FROM fcl_month.
+           05 LINE 14 COL 17 VALUE "/".
+           05 LINE 14 COL 18 PIC 9(4) FROM fcl_year.
+
+           05 LINE 20 COL  2 VALUE "PRESS ENTER TO RETURN TO MENU".
+           05 LINE 20 COL 21 PIC A USING MENU-VALIDATE.
+           05 LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
