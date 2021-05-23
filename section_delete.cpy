@@ -4,6 +4,7 @@
        DELETE_MISSION.
            OPEN I-O fmis  
                ACCEPT MISS-REMOVE-SCREEN
+               MOVE " " TO ERROR-MESSAGE
                READ fmis
                    INVALID KEY
                        DISPLAY "Cette mission n'existe pas !"
@@ -27,6 +28,7 @@
        DELETE_RESA.
            OPEN I-O fresa
               ACCEPT RESA-REMOVE-SCREEN
+              MOVE " " TO ERROR-MESSAGE
               READ fresa
               INVALID KEY
                  MOVE "NO RESERVATION FOR THIS GIVEN NUMBER" 
@@ -50,3 +52,20 @@
               END-READ 
 
            CLOSE fresa.
+
+
+       DELETE_CLIENT.
+           OPEN I-O fcli
+               ACCEPT SRCH-CLI-SCREEN
+               MOVE " " TO ERROR-MESSAGE
+               READ fcli
+                   INVALID KEY
+                       MOVE "CUSTOMER DOESNT SEEM TO EXIST" 
+                       TO ERROR-MESSAGE
+                   NOT INVALID KEY
+      * CHECK IF EXIST IN RESA
+                       DELETE fcli RECORD
+                       MOVE "CUSTOMER REMOVED" 
+                       TO ERROR-MESSAGE
+               END-READ
+           CLOSE fcli.

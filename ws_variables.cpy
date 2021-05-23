@@ -12,6 +12,7 @@
        77 Wvalide                          PIC 9.
        77 Wid_personnel_to_find            PIC 9(4).
        77 Wdisp                            PIC 9.
+       77 WS-NUM-CH                        PIC 9(4).
        77 WS-NB-MIS                        PIC 9(3).
        77 WS-NUMP                          PIC 9(4).
        77 WS-H-RESA-ROOM                   PIC 9(2).

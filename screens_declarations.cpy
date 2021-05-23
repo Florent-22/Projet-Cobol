@@ -591,6 +591,16 @@
            05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
            05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+
+       01  ROOM_GET_ID.
+           05  BLANK SCREEN.
+           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05  LINE  2 COL  2  VALUE "WELCOME".
+           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05  LINE  8 COL  5  VALUE   "ROOM NUMBER:".
+           05  LINE  8 COL  20 PIC 9(4) USING fc_numCh.
+           05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
        
        01  ROOM_RES_BEST_HOUR.
            05  BLANK SCREEN.
