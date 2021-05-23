@@ -31,6 +31,17 @@
                  NOT INVALID KEY
                     DISPLAY SRCH-CLI-SCREEN
            CLOSE fcli.
+       
+       SEARCH_MISSION.
+           OPEN INPUT fcli
+              ACCEPT SRCH-MIS-SCREEN
+              MOVE " " TO ERROR-MESSAGE
+              READ fcli
+                 INVALID KEY 
+                    MOVE "THIS MISSION DOESN'T EXIST" TO ERROR-MESSAGE
+                 NOT INVALID KEY
+                    DISPLAY SRCH-MIS-SCREEN
+           CLOSE fcli.
 
       *SRCH_ROOM.
       *       OPEN INPUT fch

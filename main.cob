@@ -205,7 +205,6 @@
       * SUITE
                  END-EVALUATE
            END-PERFORM.
-       
 
            MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
