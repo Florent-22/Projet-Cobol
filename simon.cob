@@ -1,39 +1,3 @@
-       ADD_CLIENT.
-           DISPLAY "┌───────────────────────────────────────┐"
-           DISPLAY "│          AJOUT D'UN CLIENT            │"
-           DISPLAY "└───────────────────────────────────────┘"
-           OPEN I-O fcli
-               DISPLAY "┌───────────────────────────────────────┐"
-               DISPLAY "│ Numéro de client :                    │"
-               ACCEPT fcl_numCl
-               DISPLAY "│ Nom :                                 │"
-               ACCEPT fcl_nom
-               DISPLAY "│ Prénom :                              │"
-               ACCEPT fcl_prenom
-               DISPLAY "│ Numéro de téléphone :                 │"
-               ACCEPT fcl_tel
-               DISPLAY "│ Adresse :                             │"
-               ACCEPT fcl_adr
-               DISPLAY "│ Année de naissance :                   │"
-               ACCEPT fp_year
-               DISPLAY "│ Mois de naissance :                   │"
-               ACCEPT fp_month
-               DISPLAY "│ Jour de naissance :                   │"
-               ACCEPT fp_day
-               DISPLAY "└───────────────────────────────────────┘"
-               
-               DISPLAY "┌───────────────────────────────────────┐"
-               WRITE tamp_fcli
-                   INVALID KEY
-                       DISPLAY "│    Echec de l'ajout du client   "
-                               " │"
-                   NOT INVALID KEY
-                       DISPLAY "│               Ajout réussi           "
-                               " │"
-               END-WRITE
-               DISPLAY "└───────────────────────────────────────┘"
-           CLOSE fcli.
-
        DISPLAY_ROOM.
            DISPLAY "┌───────────────────────────────────────┐"
            DISPLAY "│        AFFICHAGE DES CHAMBRES         │"

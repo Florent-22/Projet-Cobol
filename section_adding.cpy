@@ -129,3 +129,33 @@
               MOVE "CREATION ABORT" TO ERROR-MESSAGE
            END-IF.
 
+       ADD_CLIENT.
+           MOVE 0 TO Wvalide
+           OPEN I-O fcli
+               
+               PERFORM GET_LASTID_CLIENT
+               PERFORM WITH TEST AFTER UNTIL Wvalide = 1
+                   ACCEPT ADD-CLI-SCREEN
+                   MOVE " " TO ERROR-MESSAGE
+                   IF (WS-CURRENT-YEAR - fcl_year) >= 18 THEN
+                       MOVE 1 TO Wvalide
+                   ELSE
+                       MOVE "CUSTOMER MUST HAVE AT LEAST 18 YEARS OLD" 
+                          TO ERROR-MESSAGE
+                   END-IF
+               END-PERFORM
+               IF MENU-VALIDATE = "Y" THEN
+                    
+                        WRITE tamp_fcli
+                          INVALID KEY
+                             MOVE "ERROR OCCURED DURING CREATION"
+                             TO ERROR-MESSAGE
+                          NOT INVALID KEY
+                             MOVE "CUSTOMER ADDED"
+                             TO ERROR-MESSAGE
+                        END-WRITE
+                   
+              ELSE     
+                 MOVE "CREATION ABORT" TO ERROR-MESSAGE
+              END-IF
+           CLOSE fcli.

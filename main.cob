@@ -188,14 +188,17 @@
                 ACCEPT RESA-MENU-SCREEN
                 MOVE " " TO ERROR-MESSAGE
                 EVALUATE MENU-PICK
+                   WHEN 1
+      *                PERFORM SRCH_RESA
                    WHEN 2
                        PERFORM MODIF_RESERVATION
                    WHEN 3
                        PERFORM ADD_RESERV
+                   WHEN 4
+                       PERFORM DELETE_RESA
                  END-EVALUATE
-           END-PERFORM.
-
-           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+           END-PERFORM
+           MOVE 1 TO MENU-PICK.
 
        MENU_CUSTOMERS.
            PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
@@ -203,12 +206,16 @@
                 MOVE " " TO ERROR-MESSAGE
                 EVALUATE MENU-PICK
                     WHEN 1
-                       PERFORM SEARCH_CLIENT
-      * SUITE
+      *                PERFORM SEARCH_CLIENT
+                    WHEN 2
+      *                PERFORM MODIF_CLIENT
+                    WHEN 3
+      *                PERFORM ADD_CLIENT
+                    WHEN 4
+      *                PERFORM DELETE_CLIENT
                  END-EVALUATE
-           END-PERFORM.
-
-           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+           END-PERFORM
+           MOVE 1 TO MENU-PICK.
 
        STATS_ROOM.
            PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
@@ -218,9 +225,8 @@
                    WHEN 2
                        PERFORM DISPLAY_BEST_HOUR
                  END-EVALUATE
-           END-PERFORM.
-
-           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+           END-PERFORM
+           MOVE 1 TO MENU-PICK.
 
        ROOMS-MENU.
            PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
@@ -230,12 +236,25 @@
                    WHEN 3
                        PERFORM ADD_ROOM
                  END-EVALUATE
-           END-PERFORM.
-
-           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+           END-PERFORM
+           MOVE 1 TO MENU-PICK.
 
        STAFF-MENU.
-           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+           PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
+                ACCEPT STAFF-MENU-SCREEN
+                MOVE " " TO ERROR-MESSAGE
+                EVALUATE MENU-PICK
+                    WHEN 1
+      *                PERFORM SEARCH_PERS
+                    WHEN 2
+      *                PERFORM MODIF_PERS
+                    WHEN 3
+      *                PERFORM ADD_PERS
+                    WHEN 4
+      *                PERFORM DELETE_PERS
+                 END-EVALUATE
+           END-PERFORM
+           MOVE 1 TO MENU-PICK.
 
        DELETE-CUSTOMER.
            MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.

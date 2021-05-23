@@ -22,7 +22,7 @@
                END-READ
            END-PERFORM
            ADD 1 TO fr_numResa.
-       
+
        CLIENT_EXIST.
            MOVE 0 TO Wfin
            OPEN fcli
@@ -33,3 +33,14 @@
                        Wvalide = 1
                END-READ
            CLOSE fcli.
+
+       GET_LASTID_CLIENT.
+           MOVE 0 TO Wfin
+           MOVE 0 TO fcl_numCl
+           PERFORM UNTIL Wfin = 1
+               READ fcli
+                   AT END
+                       MOVE 1 TO Wfin
+               END-READ
+           END-PERFORM
+           ADD 1 TO fcl_numCl.
