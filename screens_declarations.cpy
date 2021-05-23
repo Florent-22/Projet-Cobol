@@ -200,7 +200,8 @@
            05 LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
 
 
-
+      * USE 1tamp_fper BECAUSE OF THE SEQUENTIAL SEARCH REWRITE THE INIT
+      * tamp
        01  PERS-EDITING-SCREEN.
            05  BLANK SCREEN.
            05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
@@ -208,25 +209,25 @@
            05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
            05  LINE  3 PIC X(80) VALUE ALL "-".
            05  LINE  8 COL 2 VALUE "PERSONAL NUMBER:".
-           05  LINE 8 COL 19 PIC 9(4) FROM fp_numP.
+           05  LINE 8 COL 19 PIC 9(4) FROM 1fp_numP.
            05 LINE 10 COL 5 VALUE "FIRSTNAME:".
-           05  LINE  10 COL 18 PIC A(30) USING fp_nom.
+           05  LINE  10 COL 18 PIC A(30) USING 1fp_nom.
            05 LINE 11 COL 5 VALUE "LASTNAME:".
-           05  LINE  11 COL 18 PIC A(30) USING fp_prenom.
+           05  LINE  11 COL 18 PIC A(30) USING 1fp_prenom.
            05 LINE 12 COL 5 VALUE "PERS TYPE:".
-           05  LINE 12 COL 18 PIC 9 USING fp_type.
+           05  LINE 12 COL 18 PIC 9 USING 1fp_type.
            05  LINE 12 COL 25 VALUE 
            "(0 -> RECEPTION 1 -> CLEANING 2 -> ADMIN)".
            05 LINE 13 COL 5 VALUE "PASSWORD:".
-           05  LINE 13 COL 18 PIC X(30) USING fp_motDePasse.
+           05  LINE 13 COL 18 PIC X(30) USING 1fp_motDePasse.
            05 LINE 14 COL 5 VALUE "DATE EMBAUCHE:".
-           05  LINE 14 COL 21 PIC 9(4) USING fp_year.
+           05  LINE 14 COL 21 PIC 9(4) USING 1fp_year.
            05 LINE 14 COL 25 VALUE "/".
-           05  LINE 14 COL 26 PIC 9(2) USING fp_month.
+           05  LINE 14 COL 26 PIC 9(2) USING 1fp_month.
            05 LINE 14 COL 28 VALUE "/".
-           05  LINE 14 COL 29 PIC 9(2) USING fp_day.
+           05  LINE 14 COL 29 PIC 9(2) USING 1fp_day.
            05  LINE 15 COL 5 VALUE "ACTIF:".
-           05  LINE 15 COL 18 PIC 9 USING fp_actif.
+           05  LINE 15 COL 18 PIC 9 USING 1fp_actif.
            05  LINE 15 COL 25 VALUE 
            "(0 -> FIRED 1 -> HIRED 2 -> LEAVE)".
            05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
