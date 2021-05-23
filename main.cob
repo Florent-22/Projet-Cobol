@@ -142,7 +142,7 @@
                     WHEN 2
                        PERFORM STAFF-MENU
                     WHEN 3
-                       PERFORM DELETE-MISSION
+                       PERFORM DELETE_MISSION
                     WHEN 4
                        PERFORM DELETE-CUSTOMER
                  END-EVALUATE
@@ -225,9 +225,6 @@
            MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        STAFF-MENU.
-           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
-
-       DELETE-MISSION.
            MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        DELETE-CUSTOMER.

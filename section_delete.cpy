@@ -3,7 +3,7 @@
 
        DELETE_MISSION.
            OPEN I-O fmis  
-               ACCEPT MISS-EDITING-SCREEN
+               ACCEPT MISS-REMOVE-SCREEN
                READ fmis
                    INVALID KEY
                        DISPLAY "Cette mission n'existe pas !"

@@ -240,11 +240,11 @@
            05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
            05  LINE  3 PIC X(80) VALUE ALL "-".
            05  LINE  8 COL 2 VALUE "MISSION NUMBER:".
-           05  LINE 8 COL 17 PIC 9(4) FROM fm_numM.
+           05  LINE 8 COL 17 PIC 9(5) USING fm_numM.
            05 LINE 10 COL 5 VALUE "PERSONNEL NUMBER:".
-           05  LINE  10 COL 23 PIC A(30) USING fm_numP.
+           05  LINE  10 COL 23 PIC 9(4) USING fm_numP.
            05 LINE 11 COL 5 VALUE "ROOM NUMBER:".
-           05  LINE  11 COL 15 PIC 9(2) USING fm_numCh.
+           05  LINE  11 COL 15 PIC 9(4) USING fm_numCh.
            05 LINE 14 COL 5 VALUE "START DATE:".
            05  LINE 14 COL 21 PIC 9(2) USING fm_debut_day.
            05 LINE 14 COL 23 VALUE "/".
@@ -278,11 +278,11 @@
            05 LINE 5 COL 30 FOREGROUND-COLOR IS 4 
            VALUE "! REMOVE MISSION !".
            05  LINE  8 COL 2 VALUE "MISSION NUMBER:".
-           05  LINE 8 COL 17 PIC 9(4) FROM fm_numM.
+           05  LINE 8 COL 23 PIC 9(5) USING fm_numM.
            05 LINE 10 COL 5 VALUE "PERSONNEL NUMBER:".
-           05  LINE  10 COL 23 PIC A(30) USING fm_numP.
+           05  LINE  10 COL 23 PIC 9(4) USING fm_numP.
            05 LINE 11 COL 5 VALUE "ROOM NUMBER:".
-           05  LINE  11 COL 15 PIC 9(2) USING fm_numCh.
+           05  LINE  11 COL 23 PIC 9(4) USING fm_numCh.
            05 LINE 14 COL 5 VALUE "START DATE:".
            05  LINE 14 COL 21 PIC 9(2) USING fm_debut_day.
            05 LINE 14 COL 23 VALUE "/".
