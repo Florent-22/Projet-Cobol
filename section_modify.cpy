@@ -54,7 +54,7 @@
            OPEN INPUT fch
            ACCEPT ROOM_GET_ID
            MOVE " " TO ERROR-MESSAGE
-           MOVE fch_numCh TO WS-NUM-CH
+           MOVE fc_numCh TO WS-NUM-CH
            MOVE 0 TO Wfin
            MOVE 0 TO Wtrouve
            MOVE 0 TO Wcompteur

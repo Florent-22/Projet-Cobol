@@ -25,12 +25,12 @@
 
        CLIENT_EXIST.
            MOVE 0 TO Wfin
-           OPEN fcli
+           OPEN INPUT fcli
                READ fcli
                    INVALID KEY
-                       Wvalide = 0
+                       MOVE 0 TO Wvalide
                    NOT INVALID KEY
-                       Wvalide = 1
+                       MOVE 1 TO Wvalide
                END-READ
            CLOSE fcli.
 

@@ -18,6 +18,7 @@
        77 WS-H-RESA-ROOM                   PIC 9(2).
        77 WS-M-RESA-ROOM                   PIC 9(2).
        77 WS-NB-RESA-ROOM                  PIC 9(3).
+       77 Wcompteur                        PIC 9(4).
 
        
        01  WS-FIN-MIS-DATE.
