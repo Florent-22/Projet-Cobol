@@ -4,7 +4,6 @@
        MODIF_RESERVATION.
            MOVE 0 TO Wvalide
            OPEN I-O fresa
-               ACCEPT fr_numResa
                READ fresa
                    INVALID KEY
                        DISPLAY "Cette réservation n'existe pas !"
