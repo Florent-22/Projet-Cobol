@@ -16,7 +16,7 @@
                    NOT INVALID KEY
                        REWRITE tamp_fresa
                    END-READ
-               CLOSE fresa.
+               CLOSE fresa
            ELSE
                MOVE "MODIFICATION ABORT" TO ERROR-MESSAGE
            END-IF.
