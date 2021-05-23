@@ -120,7 +120,7 @@
            05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
            05  LINE  3 PIC X(80) VALUE ALL "-".
            05  LINE  8 COL 2 VALUE "RESERVATION NUMBER:".
-           05  LINE 8 COL 22 PIC 9(6) USING fr_numResa.
+           05  LINE 8 COL 22 PIC 9(6) FROM fr_numResa.
            05 LINE 10 COL 5 VALUE "ROOM NUMBER:".
            05  LINE  10 COL 18 PIC 9(4) USING fr_numCh.
            05 LINE 11 COL 5 VALUE "CLIENT NAME:".

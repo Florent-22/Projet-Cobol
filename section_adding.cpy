@@ -80,6 +80,18 @@
 
        ADD_RESERV.
            OPEN I-O fresa
+               PERFORM GET_LASTID_RESA
+               ACCEPT RESA-EDITING-SCREEN
+               IF MENU-VALIDATE = "Y" THEN
+                   WRITE tamp_fresa
+                       INVALID KEY 
+                           MOVE "CREATION ERROR" TO ERROR-MESSAGE
+                       NOT INVALID KEY 
+                           MOVE "CREATION SUCCESS" TO ERROR-MESSAGE
+                   END-WRITE
+               ELSE
+                   MOVE "CREATION ABORT" TO ERROR-MESSAGE
+               END-IF.
            CLOSE fresa.
 
 

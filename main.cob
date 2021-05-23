@@ -190,6 +190,8 @@
                 EVALUATE MENU-PICK
                    WHEN 2
                        PERFORM MODIF_RESERVATION
+                   WHEN 3
+                       PERFORM ADD_RESERV
                  END-EVALUATE
            END-PERFORM.
 
