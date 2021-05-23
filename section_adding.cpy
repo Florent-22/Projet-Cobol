@@ -95,7 +95,12 @@
                    IF Wtrouve = 0 THEN
                        MOVE "CLIENT DOESN'T EXIST" TO ERROR-MESSAGE
                    ELSE
-                       MOVE 1 TO Wvalide
+                       PERFORM ROOM_EXIST
+                       IF Wtrouve = 0 THEN
+                           MOVE "ROOM DOESN'T EXIST" TO ERROR-MESSAGE
+                       ELSE
+                           MOVE 1 TO Wvalide
+                       END-IF
                    END-IF
                    IF MENU-VALIDATE = "N" THEN
                        MOVE 1 TO Wvalide
