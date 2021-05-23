@@ -65,28 +65,6 @@
                END-PERFORM
            CLOSE fresa.
 
-       DELETE_CLIENT.
-           DISPLAY "┌───────────────────────────────────────┐"
-           DISPLAY "│       SUPPRESSION D'UN CLIENT         │"
-           DISPLAY "└───────────────────────────────────────┘"
-           OPEN I-O fcl
-               DISPLAY "┌───────────────────────────────────────┐"
-               DISPLAY "│ Numero du client :                    │"
-               DISPLAY "└───────────────────────────────────────┘"
-               ACCEPT fcl_numCl
- 
-               DISPLAY "┌───────────────────────────────────────┐"
-               READ fcl
-                   INVALID KEY
-                       DISPLAY "│ Ce client n'existe pas !             "
-                           " │"
-                   NOT INVALID KEY
-                       DELETE fcl RECORD
-                       DISPLAY "│ Le client a bien été supprimé        "
-                           " │"
-               END-READ
-               DISPLAY "└───────────────────────────────────────┘"
-           CLOSE fcl.
       
        SRCH_PERSONNEL.
            DISPLAY "┌───────────────────────────────────────┐"
@@ -137,35 +115,36 @@
                 END-PERFORM
            CLOSE fresa.
 
-       MODIF_ROOM.
-           OPEN INPUT fch
-           DISPLAY "Numero de la chambre :"
-                ACCEPT Wchoix1
-                MOVE 0 TO Wfin
-                MOVE 0 TO Wtrouve
-                MOVE 0 TO Wcompteur
-                PERFORM WITH TEST AFTER UNTIL Wfin = 1 OR Wtrouve = 1
-                    READ fch
-                        AT END
-                            MOVE 1 TO Wfin
-                            DISPLAY "Pas de chambre pour ce numéro"
-                        NOT AT END
-                            IF fc_numCh != Wchoix1 THEN
-                                MOVE Wcompteur + 1 TO Wcompteur
-                                MOVE 1 TO Wtrouve
-                            END-IF
-                    END-READ
-                END-PERFORM
-                MOVE 0 TO Wtrouve
-                IF Wtrouve = 1 THEN
-                    PERFORM WITH TEST AFTER UNTIL Wtrouve = 1
-                       READ fch
-                          AT END
-                            MOVE 1 TO Wfin
-                            DISPLAY "Erreur de lecture"
-                          NOT AT END
 
-                       END-READ
-                    END-PERFORM
-                END-IF
-           CLOSE fch.
+
+       ADD_ROOM.
+           MOVE 0 TO Wvalide
+           OPEN INPUT fch
+               PERFORM GET_LASTID_ROOM
+               MOVE " " TO fc_typeCh
+               MOVE 0 TO fc_superficie
+               MOVE 0 TO fc_lit
+               MOVE " " TO fc_description
+               MOVE 0 TO fc_prix_heure_entier
+               MOVE 0 TO fc_prix_heure_decimal
+               PERFORM WITH TEST AFTER UNTIL Wvalide = 1
+                   ACCEPT ROOM-EDITING-SCREEN
+                   MOVE " " TO ERROR-MESSAGE
+                   IF fc_lit = 0 OR fc_lit = 1 OR fc_lit = 2 THEN
+                       MOVE 1 TO Wvalide
+                   ELSE
+                       MOVE "WRONG BED TYPE" TO ERROR-MESSAGE
+                   END-IF
+               END-PERFORM
+           CLOSE fch
+           IF MENU-VALIDATE = "Y" THEN
+               OPEN EXTEND fch
+                   WRITE tamp_fch
+                   END-WRITE
+               CLOSE fch
+           ELSE
+              MOVE "CREATION ABORT" TO ERROR-MESSAGE
+           END-IF.
+
+
+       
