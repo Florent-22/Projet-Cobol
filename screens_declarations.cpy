@@ -123,10 +123,8 @@
            05  LINE 8 COL 22 PIC 9(6) FROM fr_numResa.
            05 LINE 10 COL 5 VALUE "ROOM NUMBER:".
            05  LINE  10 COL 18 PIC 9(4) USING fr_numCh.
-           05 LINE 11 COL 5 VALUE "CLIENT NAME:".
-           05  LINE  11 COL 21 PIC A(30) USING fcl_nom.
-           05 LINE 12 COL 5 VALUE "CLIENT SURNAME:".
-           05  LINE  12 COL 21 PIC A(30) USING fcl_prenom.
+           05 LINE 11 COL 5 VALUE "CLIENT NUMBER:".
+           05  LINE  11 COL 21 PIC 9(6) USING fr_numCL.
            05 LINE 13 COL 5 VALUE "DURATION:".
            05  LINE 13 COL 15 PIC 9(2) USING fr_duree_hours.
            05 LINE 13 COL 17 VALUE "h".
