@@ -23,6 +23,7 @@
            END-PERFORM
            ADD 1 TO fr_numResa.
 
+      * fcl_numCl MUST BE COMPLETED
        CLIENT_EXIST.
            MOVE 0 TO Wfin
            OPEN INPUT fcli
