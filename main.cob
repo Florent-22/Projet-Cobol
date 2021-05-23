@@ -142,7 +142,7 @@
                     WHEN 2
                        PERFORM STAFF-MENU
                     WHEN 3
-                       PERFORM DELETE-MISSION
+                       PERFORM DELETE_MISSION
                     WHEN 4
                        PERFORM DELETE-CUSTOMER
                  END-EVALUATE
@@ -184,8 +184,16 @@
            MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        MENU_RESERVATIONS.
-           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+           PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
+                ACCEPT RESA-MENU-SCREEN
+                MOVE " " TO ERROR-MESSAGE
+                EVALUATE MENU-PICK
+                   WHEN 2
+                       PERFORM MODIF_RESERVATION
+                 END-EVALUATE
+           END-PERFORM.
 
+           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        MENU_CUSTOMERS.
            PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
@@ -197,7 +205,6 @@
       * SUITE
                  END-EVALUATE
            END-PERFORM.
-       
 
            MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
@@ -205,12 +212,18 @@
            MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        ROOMS-MENU.
+           PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
+                ACCEPT ROOMS-MENU-SCREEN
+                MOVE " " TO ERROR-MESSAGE
+                EVALUATE MENU-PICK
+                   WHEN 3
+                       PERFORM ADD_ROOM
+                 END-EVALUATE
+           END-PERFORM.
+
            MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        STAFF-MENU.
-           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
-
-       DELETE-MISSION.
            MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        DELETE-CUSTOMER.

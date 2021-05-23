@@ -2,9 +2,8 @@
 
 
        DELETE_MISSION.
-           OPEN I-O fmis
-      * ACCEPT IS TO TEST ONLY WAIT FOR DELETE SCREEN    
-               ACCEPT fm_numM
+           OPEN I-O fmis  
+               ACCEPT MISS-REMOVE-SCREEN
                READ fmis
                    INVALID KEY
                        DISPLAY "Cette mission n'existe pas !"
@@ -27,7 +26,7 @@
       * FIND THE RESERVATION AND DISPLAY THE SCREEN FOR REMOVAL
        DELETE_RESA.
            OPEN I-O fresa
-              ACCEPT RES-REMOVE-SCREEN
+              ACCEPT RESA-REMOVE-SCREEN
               READ fresa
               INVALID KEY
                  MOVE "NO RESERVATION FOR THIS GIVEN NUMBER" 
@@ -40,7 +39,7 @@
                        MOVE "CORRUPT RESERVATION" 
                        TO ERROR-MESSAGE
                      NOT INVALID KEY
-                       ACCEPT RES-REMOVE-SCREEN
+                       ACCEPT RESA-REMOVE-SCREEN
                        MOVE " " TO ERROR-MESSAGE
                        IF MENU-VALIDATE = "Y" THEN
                           DELETE fresa RECORD
