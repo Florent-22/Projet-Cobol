@@ -80,8 +80,13 @@
 
        ADD_RESERV.
            OPEN I-O fresa
+               MOVE 0 TO Wvalide
                PERFORM GET_LASTID_RESA
-               ACCEPT RESA-EDITING-SCREEN
+               PERFORM WITH TEST AFTER UNTIL Wvalide = 1
+                   ACCEPT RESA-EDITING-SCREEN
+                   MOVE " " TO ERROR-MESSAGE
+                   PERFORM CLIENT_EXIST
+               END-PERFORM
                IF MENU-VALIDATE = "Y" THEN
                    WRITE tamp_fresa
                        INVALID KEY 

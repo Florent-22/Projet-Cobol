@@ -22,3 +22,14 @@
                END-READ
            END-PERFORM
            ADD 1 TO fr_numResa.
+       
+       CLIENT_EXIST.
+           MOVE 0 TO Wfin
+           OPEN fcli
+               READ fcli
+                   INVALID KEY
+                       Wvalide = 0
+                   NOT INVALID KEY
+                       Wvalide = 1
+               END-READ
+           CLOSE fcli.
