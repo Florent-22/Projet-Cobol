@@ -29,9 +29,9 @@
            OPEN INPUT fcli
                READ fcli
                    INVALID KEY
-                       MOVE 0 TO Wvalide
+                       MOVE 0 TO Wtrouve
                    NOT INVALID KEY
-                       MOVE 1 TO Wvalide
+                       MOVE 1 TO Wtrouve
                END-READ
            CLOSE fcli.
 
