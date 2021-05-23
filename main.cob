@@ -209,6 +209,15 @@
            MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        STATS_ROOM.
+           PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
+                ACCEPT STATS-MENU-SCREEN
+                MOVE " " TO ERROR-MESSAGE
+                EVALUATE MENU-PICK
+                   WHEN 2
+                       PERFORM DISPLAY_BEST_HOUR
+                 END-EVALUATE
+           END-PERFORM.
+
            MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        ROOMS-MENU.

@@ -122,10 +122,8 @@
       * DISPLAY CLIENT
        DISPLAY_CLIENT.
            OPEN INPUT fcli
-           MOVE 0 TO Wfin
-           MOVE 0 TO Wstop
+               MOVE 0 TO Wfin
                PERFORM WITH TEST AFTER UNTIL Wfin = 1
-               AND Wstop = 1
                    MOVE 1 TO Wdisp
                    READ fcli NEXT
                        AT END
@@ -150,3 +148,45 @@
                        END-READ
                END-PERFORM
            CLOSE fcli.
+       
+       DISPLAY_BEST_HOUR.
+           OPEN INPUT fresa
+               MOVE 0 TO WS-H-RESA-ROOM
+               MOVE 0 TO WS-M-RESA-ROOM
+               MOVE 0 TO WS-NB-RESA-ROOM
+               MOVE 1 TO Wfin
+               MOVE 0 TO Wvalide
+               PERFORM WITH TEST AFTER UNTIL Wvalide = 1
+                   ACCEPT ROOM_RES_BEST_HOUR
+                   MOVE " " TO ERROR-MESSAGE
+                   MOVE 1 TO Wvalide
+               END-PERFORM
+               IF MENU-VALIDATE = "Y" THEN
+                   MOVE fc_numCh TO fr_numCh
+                   START fresa, KEY = fr_numCh
+                   INVALID KEY 
+                       MOVE "NO RESERVATION FOR THIS ROOM" 
+                           TO ERROR-MESSAGE
+                       ACCEPT ROOM_RES_BEST_HOUR_DISP
+                   NOT INVALID KEY
+                       PERFORM WITH TEST AFTER UNTIL Wfin = 0
+                           READ fresa NEXT
+                           AT END
+                               DIVIDE WS-NB-RESA-ROOM 
+                                   INTO WS-H-RESA-ROOM
+                               DIVIDE WS-NB-RESA-ROOM 
+                                   INTO WS-M-RESA-ROOM
+                               ACCEPT ROOM_RES_BEST_HOUR_DISP
+                               MOVE 0 TO Wfin
+                           NOT AT END
+                               IF fc_numCh = fr_numCh THEN
+                                   ADD fr_date_debut_hours 
+                                       TO WS-H-RESA-ROOM
+                                   ADD fr_date_debut_minute 
+                                       TO WS-M-RESA-ROOM
+                                   ADD 1 TO WS-NB-RESA-ROOM
+                               END-IF
+                       END-READ
+                   END-PERFORM
+                END-IF
+           CLOSE fresa.

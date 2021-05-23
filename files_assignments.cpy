@@ -5,6 +5,7 @@
            RECORD KEY IS fr_numResa
            ALTERNATE RECORD KEY IS fr_date_debut_date WITH DUPLICATES
            ALTERNATE RECORD KEY IS fr_numCl WITH DUPLICATES
+           ALTERNATE RECORD KEY IS fr_numCh WITH DUPLICATES
            FILE STATUS IS cr_fresa.
 
            SELECT fresaarch ASSIGN TO 'files/reservations_archives.dat'
@@ -13,6 +14,7 @@
            RECORD KEY IS fra_numResa
            ALTERNATE RECORD KEY IS fra_date_debut_date WITH DUPLICATES
            ALTERNATE RECORD KEY IS fra_numCl WITH DUPLICATES
+           ALTERNATE RECORD KEY IS fra_numCh WITH DUPLICATES
            FILE STATUS IS cr_fresaarch.
        
            SELECT fcli ASSIGN TO 'files/clients.dat'
