@@ -205,6 +205,17 @@
            MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        ROOMS-MENU.
+           PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
+                ACCEPT ROOMS-MENU-SCREEN
+                MOVE " " TO ERROR-MESSAGE
+                EVALUATE MENU-PICK
+                   WHEN 3
+                       PERFORM ADD_ROOM
+                 END-EVALUATE
+           END-PERFORM.
+
+           MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
+
            MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        STAFF-MENU.

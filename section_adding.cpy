@@ -87,6 +87,12 @@
            MOVE 0 TO Wvalide
            OPEN INPUT fch
                PERFORM GET_LASTID_ROOM
+               MOVE " " TO fc_typeCh
+               MOVE 0 TO fc_superficie
+               MOVE 0 TO fc_lit
+               MOVE " " TO fc_description
+               MOVE 0 TO fc_prix_heure_entier
+               MOVE 0 TO fc_prix_heure_decimal
                PERFORM WITH TEST AFTER UNTIL Wvalide = 1
                    ACCEPT ROOM-EDITING-SCREEN
                    MOVE " " TO ERROR-MESSAGE
