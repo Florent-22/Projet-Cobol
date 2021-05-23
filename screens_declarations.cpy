@@ -113,6 +113,34 @@
            05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
            05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+       
+       01  ROOM-DISPLAY-SCREEN.
+           05  BLANK SCREEN.
+           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05  LINE  2 COL  2 VALUE "WELCOME".
+           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05  LINE  8 COL 2 VALUE "ROOM NUMBER:".
+           05  LINE 8 COL 15 PIC 9(4) FROM fc_numCh.
+           05 LINE 10 COL 5 VALUE "ROOM TYPE:".
+           05  LINE  10 COL 18 PIC A(30) FROM fc_typeCh.
+           05 LINE 11 COL 5 VALUE "SURFACE:".
+           05  LINE  11 COL 18 PIC 9(2) FROM fc_superficie.
+           05 LINE 11 COL 21 VALUE "m2".
+           05 LINE 12 COL 5 VALUE "BED TYPE:".
+           05  LINE 12 COL 18 PIC 9(1) FROM fc_lit.
+           05  LINE 12 COL 21 VALUE 
+           "(0 -> NORMAL 1 -> KING SIZE 2 -> DOUBLE)".
+           05 LINE 13 COL 5 VALUE "DESCRIPTION:".
+           05  LINE 13 COL 18 PIC A(100) FROM fc_description.
+           05 LINE 14 COL 5 VALUE "PRICE:".
+           05  LINE 14 COL 18 PIC 9(3) FROM fc_prix_heure_entier.
+           05 LINE 14 COL 21 VALUE ",".
+           05  LINE 14 COL 22 PIC 9(2) FROM fc_prix_heure_decimal.
+           05 LINE 14 COL 25 VALUE "euros".
+           05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
+           05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
+           05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
 
        01  RESA-EDITING-SCREEN.
            05  BLANK SCREEN.
