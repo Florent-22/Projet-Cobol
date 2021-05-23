@@ -82,6 +82,11 @@
            OPEN I-O fresa
                MOVE 0 TO Wvalide
                PERFORM GET_LASTID_RESA
+               MOVE 0 TO fr_numCh
+               MOVE 0 TO fr_numCL
+               MOVE " " TO fr_duree
+               MOVE " " TO fr_date_debut
+               MOVE " " TO fr_date_fin
                PERFORM WITH TEST AFTER UNTIL Wvalide = 1
                    ACCEPT RESA-EDITING-SCREEN
                    MOVE " " TO ERROR-MESSAGE
