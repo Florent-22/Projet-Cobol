@@ -26,7 +26,9 @@
       * fcl_numCl MUST BE COMPLETED BEFORE PERFORM THIS FUNCTION
        CLIENT_EXIST.
            MOVE 0 TO Wfin
+           MOVE 0 TO Wtrouve
            OPEN INPUT fcli
+               MOVE fr_numCL TO fcl_numCl
                READ fcli
                    INVALID KEY
                        MOVE 0 TO Wtrouve
@@ -119,7 +121,7 @@
        RESA_EXIST_DATE.
            MOVE 0 TO Wfin
            MOVE 0 TO Wtrouve
-           PERFORM WITH TEST AFTER UNTIL Wfin = 1
+           PERFORM WITH TEST AFTER UNTIL Wfin = 1 OR Wtrouve = 1
                READ fresa
                AT END
                    MOVE 1 TO Wfin
