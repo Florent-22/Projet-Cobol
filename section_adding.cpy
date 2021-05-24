@@ -35,7 +35,7 @@
                  END-IF
                END-PERFORM
            CLOSE fpers
-           IF MENU-VALIDATE = "Y" THEN
+           IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
               OPEN EXTEND fpers
                  WRITE tamp_fpers
                  END-WRITE
@@ -80,7 +80,7 @@
                        MOVE 1 TO Wvalide
                    END-IF
                END-PERFORM
-               IF MENU-VALIDATE = "Y" THEN
+               IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
                    PERFORM CALCULATE_HOUR_RESA
                    MOVE 1tamp_fresa TO tamp_fresa
                    WRITE tamp_fresa
@@ -115,7 +115,7 @@
                    END-IF
                END-PERFORM
            CLOSE fch
-           IF MENU-VALIDATE = "Y" THEN
+           IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
                OPEN EXTEND fch
                    WRITE tamp_fch
                    END-WRITE
@@ -145,7 +145,7 @@
                           TO ERROR-MESSAGE
                    END-IF
                END-PERFORM
-               IF MENU-VALIDATE = "Y" THEN
+               IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
                     
                         WRITE tamp_fcli
                           INVALID KEY

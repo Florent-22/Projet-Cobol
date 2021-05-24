@@ -69,7 +69,6 @@
           OPEN I-O fpers
              IF cr_fpers = 35 THEN
                 OPEN OUTPUT fpers
-                PERFORM ADD_PERSONNEL
              END-IF
           CLOSE fpers
 
@@ -206,12 +205,14 @@
                 EVALUATE MENU-PICK
                    WHEN 1
                        PERFORM SEARCH_CLIENT
-      *             WHEN 2
-      *                PERFORM MODIF_CLIENT
-                    WHEN 3
+                       ACCEPT SRCH-CLI-SCREEN
+                   WHEN 2
+                       PERFORM SEARCH_CLIENT
+                       PERFORM MODIF_CLIENT
+                   WHEN 3
                        PERFORM ADD_CLIENT
-      *             WHEN 4
-      *                PERFORM DELETE_CLIENT
+                   WHEN 4
+                       PERFORM DELETE_CLIENT
                  END-EVALUATE
            END-PERFORM
            MOVE 1 TO MENU-PICK.
@@ -232,10 +233,15 @@
                 ACCEPT ROOMS-MENU-SCREEN
                 MOVE " " TO ERROR-MESSAGE
                 EVALUATE MENU-PICK
+                   WHEN 1
+                       PERFORM SRCH_ROOM
                    WHEN 2
+                       PERFORM SRCH_ROOM
                        PERFORM MODIF_ROOM
                    WHEN 3
                        PERFORM ADD_ROOM
+                   WHEN 4
+      *                PERFORM DELETE_ROOM
                  END-EVALUATE
            END-PERFORM
            MOVE 1 TO MENU-PICK.
@@ -268,6 +274,7 @@
            STOP RUN.
 
        CONNECTION.
+           PERFORM ADD_PERSONNEL
            MOVE 0 TO Wvalide
            PERFORM WITH TEST AFTER UNTIL 
                Wvalide = 1
