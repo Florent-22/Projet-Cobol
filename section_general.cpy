@@ -121,7 +121,7 @@
        RESA_EXIST_DATE.
            MOVE 0 TO Wfin
            MOVE 0 TO Wtrouve
-           PERFORM WITH TEST AFTER UNTIL Wfin = 1
+           PERFORM WITH TEST AFTER UNTIL Wfin = 1 OR Wtrouve = 1
                READ fresa
                AT END
                    MOVE 1 TO Wfin
@@ -131,7 +131,24 @@
                            THEN
                            IF fr_date_debut_year = 1fr_date_debut_year
                                THEN
+                               IF (fr_date_debut_hours 
+                                   >= 1fr_date_debut_hours AND 
+                                   fr_date_fin_hours >= 
+                                   1fr_date_fin_hours) OR 
+                                   (fr_date_debut_hours 
+                                   <= 1fr_date_debut_hours AND 
+                                   fr_date_fin_hours <= 
+                                   1fr_date_fin_hours) OR 
+                                   (fr_date_debut_hours 
+                                   <= 1fr_date_debut_hours AND 
+                                   fr_date_fin_hours <= 
+                                   1fr_date_fin_hours) OR 
+                                   (fr_date_debut_hours 
+                                   >= 1fr_date_debut_hours AND 
+                                   fr_date_fin_hours >= 
+                                   1fr_date_fin_hours) THEN
                                    MOVE 1 TO Wtrouve
+                               END-IF
                            END-IF
                        END-IF
                    END-IF
