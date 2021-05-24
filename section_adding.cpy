@@ -66,14 +66,7 @@
                        IF Wtrouve = 0 THEN
                            MOVE "ROOM DOESN'T EXIST" TO ERROR-MESSAGE
                        ELSE
-                           MOVE tamp_fresa TO 1tamp_fresa
-                           PERFORM RESA_EXIST_DATE
-                           IF Wtrouve = 1 THEN
-                           MOVE "RESERVATION ALREADY EXIST ON THIS DATE" 
-                               TO ERROR-MESSAGE
-                           ELSE
-                               MOVE 1 TO Wvalide
-                           END-IF
+                           MOVE 1 TO Wvalide
                        END-IF
                    END-IF
                    IF MENU-VALIDATE = "N" THEN
@@ -82,7 +75,6 @@
                END-PERFORM
                IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
                    PERFORM CALCULATE_HOUR_RESA
-                   MOVE 1tamp_fresa TO tamp_fresa
                    WRITE tamp_fresa
                        INVALID KEY 
                            MOVE "CREATION ERROR" TO ERROR-MESSAGE

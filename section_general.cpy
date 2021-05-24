@@ -26,7 +26,9 @@
       * fcl_numCl MUST BE COMPLETED BEFORE PERFORM THIS FUNCTION
        CLIENT_EXIST.
            MOVE 0 TO Wfin
+           MOVE 0 TO Wtrouve
            OPEN INPUT fcli
+               MOVE fr_numCL TO fcl_numCl
                READ fcli
                    INVALID KEY
                        MOVE 0 TO Wtrouve
@@ -129,24 +131,7 @@
                            THEN
                            IF fr_date_debut_year = 1fr_date_debut_year
                                THEN
-                               IF (fr_date_debut_hours 
-                                   >= 1fr_date_debut_hours AND 
-                                   fr_date_fin_hours >= 
-                                   1fr_date_fin_hours) OR 
-                                   (fr_date_debut_hours 
-                                   <= 1fr_date_debut_hours AND 
-                                   fr_date_fin_hours <= 
-                                   1fr_date_fin_hours) OR 
-                                   (fr_date_debut_hours 
-                                   <= 1fr_date_debut_hours AND 
-                                   fr_date_fin_hours <= 
-                                   1fr_date_fin_hours) OR 
-                                   (fr_date_debut_hours 
-                                   >= 1fr_date_debut_hours AND 
-                                   fr_date_fin_hours >= 
-                                   1fr_date_fin_hours) THEN
                                    MOVE 1 TO Wtrouve
-                               END-IF
                            END-IF
                        END-IF
                    END-IF

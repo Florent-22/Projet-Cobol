@@ -240,7 +240,7 @@
                        PERFORM MODIF_ROOM
                    WHEN 3
                        PERFORM ADD_ROOM
-                   WHEN 4
+      *            WHEN 4
       *                PERFORM DELETE_ROOM
                  END-EVALUATE
            END-PERFORM
