@@ -70,4 +70,85 @@
            IF fr_date_fin_hours >= 24 THEN
                SUBTRACT 24 FROM fr_date_fin_hours
                ADD 1 TO fr_date_fin_day
-           END-IF
+           END-IF.
+
+      * tamp_fresa MUST BE COMPLETED BEFORE CALL
+       MISSION_EXIST.
+           MOVE 0 TO Wstop
+           MOVE 0 TO Wtrouve
+           OPEN INPUT fmis
+               MOVE fr_numCh TO fm_numCh
+               START fmis, KEY = fm_numCh
+               NOT INVALID KEY 
+                   PERFORM WITH TEST AFTER UNTIL Wstop = 1
+                       READ fmis NEXT
+                       NOT AT END
+                           IF fm_debut_day = WS-CURRENT-DAY AND 
+                               fm_debut_hours = fr_date_fin_hours THEN
+                               MOVE 1 TO Wtrouve
+                           END-IF
+                   END-PERFORM
+               END-START
+           CLOSE fmis.
+       
+       GET_LASTID_MISSION.
+           MOVE 0 TO Wstop
+           MOVE 0 TO fm_numM
+           PERFORM UNTIL Wstop = 1
+               READ fmis
+                   AT END
+                       MOVE 1 TO Wstop
+               END-READ
+           END-PERFORM
+           ADD 1 TO fm_numM.
+
+       GET_NB_PERS.
+           MOVE 0 TO Wstop
+           MOVE 0 TO Wcompteur
+           OPEN INPUT fpers
+           PERFORM WITH TEST AFTER UNTIL Wstop = 1
+               READ fpers
+               AT END
+                   MOVE 1 TO Wstop
+               NOT AT END
+                   ADD 1 TO Wcompteur
+               END-READ
+           END-PERFORM
+           CLOSE fpers.
+
+       RESA_EXIST_DATE.
+           MOVE 0 TO Wfin
+           MOVE 0 TO Wtrouve
+           PERFORM WITH TEST AFTER UNTIL Wfin = 1
+               READ fresa
+               AT END
+                   MOVE 1 TO Wfin
+               NOT AT END
+                   IF fr_date_debut_day = 1fr_date_debut_day THEN
+                       IF fr_date_debut_month = 1fr_date_debut_month 
+                           THEN
+                           IF fr_date_debut_year = 1fr_date_debut_year
+                               THEN
+                               IF (fr_date_debut_hours 
+                                   >= 1fr_date_debut_hours AND 
+                                   fr_date_fin_hours >= 
+                                   1fr_date_fin_hours) OR 
+                                   (fr_date_debut_hours 
+                                   <= 1fr_date_debut_hours AND 
+                                   fr_date_fin_hours <= 
+                                   1fr_date_fin_hours) OR 
+                                   (fr_date_debut_hours 
+                                   <= 1fr_date_debut_hours AND 
+                                   fr_date_fin_hours <= 
+                                   1fr_date_fin_hours) OR 
+                                   (fr_date_debut_hours 
+                                   >= 1fr_date_debut_hours AND 
+                                   fr_date_fin_hours >= 
+                                   1fr_date_fin_hours) THEN
+                                   MOVE 1 TO Wtrouve
+                               END-IF
+                           END-IF
+                       END-IF
+                   END-IF
+               END-READ
+           END-PERFORM.

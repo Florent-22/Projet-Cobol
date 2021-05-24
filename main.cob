@@ -139,6 +139,8 @@
                        PERFORM DELETE_MISSION
                     WHEN 4
                        PERFORM DELETE-CUSTOMER
+                    WHEN 5
+                       PERFORM GENERATE_MISSION
                  END-EVALUATE
            END-PERFORM
            PERFORM MENU_A_RECEP.

@@ -154,7 +154,7 @@
                MOVE 0 TO WS-H-RESA-ROOM
                MOVE 0 TO WS-M-RESA-ROOM
                MOVE 0 TO WS-NB-RESA-ROOM
-               MOVE 1 TO Wfin
+               MOVE 0 TO Wfin
                MOVE 0 TO Wvalide
                PERFORM WITH TEST AFTER UNTIL Wvalide = 1
                    ACCEPT ROOM_RES_BEST_HOUR
@@ -169,7 +169,7 @@
                            TO ERROR-MESSAGE
                        ACCEPT ROOM_RES_BEST_HOUR_DISP
                    NOT INVALID KEY
-                       PERFORM WITH TEST AFTER UNTIL Wfin = 0
+                       PERFORM WITH TEST AFTER UNTIL Wfin = 1
                            READ fresa NEXT
                            AT END
                                DIVIDE WS-NB-RESA-ROOM 
@@ -177,7 +177,7 @@
                                DIVIDE WS-NB-RESA-ROOM 
                                    INTO WS-M-RESA-ROOM
                                ACCEPT ROOM_RES_BEST_HOUR_DISP
-                               MOVE 0 TO Wfin
+                               MOVE 1 TO Wfin
                            NOT AT END
                                IF fc_numCh = fr_numCh THEN
                                    ADD fr_date_debut_hours 
