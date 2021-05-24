@@ -103,7 +103,7 @@
            05  LINE 12 COL 25 VALUE "3. MISSIONS SUPPRESSION".
            05  LINE 13 COL 25 VALUE "4. CUSTOMERS SUPPRESSION".
            05  LINE 14 COL 25 VALUE "5. GENERATE MISSION".
-           05  LINE 15 COL 25 VALUE "0. EXIT".
+           05  LINE 16 COL 25 VALUE "0. EXIT".
            05  LINE 20 COL  2 VALUE "YOUR SELECTION >".
            05  LINE 20 COL 19 PIC Z USING MENU-PICK.
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
@@ -409,6 +409,42 @@
            05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
        
+       01  MISS-SEARCH-SCREEN.
+           05  BLANK SCREEN.
+           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05  LINE  2 COL  2 VALUE "WELCOME".
+           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05  LINE  8 COL 2 VALUE "MISSION NUMBER:".
+           05  LINE 8 COL 17 PIC 9(5) USING fm_numM.
+           05 LINE 10 COL 5 VALUE "PERSONNEL NUMBER:".
+           05  LINE  10 COL 23 PIC 9(4) FROM fm_numP.
+           05 LINE 11 COL 5 VALUE "ROOM NUMBER:".
+           05  LINE  11 COL 15 PIC 9(4) FROM fm_numCh.
+           05 LINE 14 COL 5 VALUE "START DATE:".
+           05  LINE 14 COL 21 PIC 9(2) FROM fm_debut_day.
+           05 LINE 14 COL 23 VALUE "/".
+           05  LINE 14 COL 24 PIC 9(2) FROM fm_debut_month.
+           05 LINE 14 COL 26 VALUE "/".
+           05  LINE 14 COL 27 PIC 9(4) FROM fm_debut_year.
+           05 LINE 14 COL 31 VALUE "-".
+           05 LINE 14 COL 32 PIC 9(2) FROM fm_debut_hours.
+           05 LINE 14 COL 34 VALUE ":".
+           05 LINE 14 COL 35 PIC 9(2) FROM fm_debut_minute.
+           05 LINE 15 COL 5 VALUE "END DATE:".
+           05  LINE 15 COL 21 PIC 9(2) FROM fm_fin_day.
+           05 LINE 15 COL 23 VALUE "/".
+           05  LINE 15 COL 24 PIC 9(2) FROM fm_fin_month.
+           05 LINE 15 COL 26 VALUE "/".
+           05  LINE 15 COL 27 PIC 9(4) FROM fm_fin_year.
+           05 LINE 15 COL 31 VALUE "-".
+           05 LINE 15 COL 32 PIC 9(2) FROM fm_fin_hours.
+           05 LINE 15 COL 34 VALUE ":".
+           05 LINE 15 COL 35 PIC 9(2) FROM fm_fin_minute.
+           05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
+           05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
+           05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+       
        01  MISS-REMOVE-SCREEN.
            05  BLANK SCREEN.
            05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
@@ -444,6 +480,44 @@
            05 LINE 15 COL 34 VALUE ":".
            05 LINE 15 COL 35 PIC 9(2) FROM fm_fin_minute.
            05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
+           05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
+           05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+       
+       01  MISS-DISPLAY-SCREEN.
+           05  BLANK SCREEN.
+           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05  LINE  2 COL  2 VALUE "WELCOME".
+           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05 LINE 5 COL 30 FOREGROUND-COLOR IS 4 
+           VALUE "! POINT MISSION !".
+           05  LINE  8 COL 2 VALUE "MISSION NUMBER:".
+           05  LINE 8 COL 17 PIC 9(5) FROM fm_numM.
+           05 LINE 10 COL 5 VALUE "PERSONNEL NUMBER:".
+           05  LINE  10 COL 23 PIC 9(4) FROM fm_numP.
+           05 LINE 11 COL 5 VALUE "ROOM NUMBER:".
+           05  LINE  11 COL 15 PIC 9(4) FROM fm_numCh.
+           05 LINE 14 COL 5 VALUE "START DATE:".
+           05  LINE 14 COL 21 PIC 9(2) FROM fm_debut_day.
+           05 LINE 14 COL 23 VALUE "/".
+           05  LINE 14 COL 24 PIC 9(2) FROM fm_debut_month.
+           05 LINE 14 COL 26 VALUE "/".
+           05  LINE 14 COL 27 PIC 9(4) FROM fm_debut_year.
+           05 LINE 14 COL 31 VALUE "-".
+           05 LINE 14 COL 32 PIC 9(2) FROM fm_debut_hours.
+           05 LINE 14 COL 34 VALUE ":".
+           05 LINE 14 COL 35 PIC 9(2) FROM fm_debut_minute.
+           05 LINE 15 COL 5 VALUE "END DATE:".
+           05  LINE 15 COL 21 PIC 9(2) FROM fm_fin_day.
+           05 LINE 15 COL 23 VALUE "/".
+           05  LINE 15 COL 24 PIC 9(2) FROM fm_fin_month.
+           05 LINE 15 COL 26 VALUE "/".
+           05  LINE 15 COL 27 PIC 9(4) FROM fm_fin_year.
+           05 LINE 15 COL 31 VALUE "-".
+           05 LINE 15 COL 32 PIC 9(2) FROM fm_fin_hours.
+           05 LINE 15 COL 34 VALUE ":".
+           05 LINE 15 COL 35 PIC 9(2) FROM fm_fin_minute.
+           05  LINE 20 COL  2 VALUE "POINT AT THIS DATE ? (Y/N) >".
            05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
 

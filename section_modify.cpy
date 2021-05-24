@@ -138,3 +138,26 @@
                  MOVE "MODIFICATION ABORT" TO ERROR-MESSAGE
               END-IF
            END-IF.
+
+      * CALL SEARCH_MISSION BEFORE THIS METHOD
+       POINT_MISSION.
+           IF Wtrouve = 1 THEN
+               MOVE 0 TO Wvalide
+               PERFORM WITH TEST AFTER UNTIL Wvalide = 1
+                   ACCEPT MISS-DISPLAY-SCREEN
+                   MOVE " " TO ERROR-MESSAGE
+                   MOVE 1 TO Wvalide
+               END-PERFORM
+               IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
+                   MOVE WS-CURRENT-YEAR TO fm_fin_year
+                   MOVE WS-CURRENT-MONTH TO fm_fin_month
+                   MOVE WS-CURRENT-DAY TO fm_fin_day
+                   MOVE WS-CURRENT-HOURS TO fm_fin_hours
+                   MOVE WS-CURRENT-MINUTE TO fm_fin_minute
+                   OPEN I-O fmis
+                       REWRITE tamp_fmis
+                   CLOSE fmis
+               END-IF
+           ELSE
+               MOVE "NO MISSION WITH THIS NUMBER" TO ERROR-MESSAGE
+           END-IF.

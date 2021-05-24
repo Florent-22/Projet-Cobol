@@ -30,18 +30,6 @@
                     MOVE "THIS CLIENT DOESN'T EXIST" TO ERROR-MESSAGE
                END-READ
            CLOSE fcli.
-       
-       SEARCH_MISSION.
-           OPEN INPUT fcli
-              ACCEPT SRCH-MIS-SCREEN
-              MOVE " " TO ERROR-MESSAGE
-              READ fcli
-                 INVALID KEY 
-                    MOVE "THIS MISSION DOESN'T EXIST" TO ERROR-MESSAGE
-                 NOT INVALID KEY
-                    DISPLAY SRCH-MIS-SCREEN
-              END-READ
-           CLOSE fcli.
 
       * SEARCH RESA WITH THE RESA NUMBER
        SEARCH_RESA.
@@ -92,3 +80,24 @@
       *          END-IF
       *         END-PERFORM
       *       CLOSE fch.
+
+       SEARCH_MISSION.
+           MOVE 0 TO Wtrouve
+           MOVE 0 TO Wvalide
+           PERFORM WITH TEST AFTER UNTIL Wvalide = 1
+               ACCEPT MISS-SEARCH-SCREEN
+               MOVE " " TO ERROR-MESSAGE
+               MOVE 1 TO Wvalide
+           END-PERFORM
+           IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
+               OPEN INPUT fmis
+                READ fmis
+                    INVALID KEY 
+                        MOVE "THIS MISSION DOESN'T EXIST" 
+                            TO ERROR-MESSAGE
+                        MOVE 0 TO Wtrouve
+                    NOT INVALID KEY
+                        MOVE 1 TO Wtrouve
+                END-READ
+               CLOSE fmis
+           END-IF.
