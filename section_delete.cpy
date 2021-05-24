@@ -1,4 +1,4 @@
-       DELETEING SECTION.
+       DELETING SECTION.
 
 
        DELETE_MISSION.
@@ -15,12 +15,30 @@
 
            
        DELETE_PERSONNEL.
-           DISPLAY "Matricule du personnel a licencier : "
-      *    ACCEPT Wchoix
-           OPEN INPUT fpers
-      *        IF fp_numP = Wchoix
-      *          fp_actif = 0
-      *        END-IF     
+           OPEN I-O fpers
+               MOVE 0 TO Wfin
+               MOVE 0 TO Wtrouve
+               ACCEPT PERS-REMOVE-SCREEN
+               MOVE " " TO ERROR-MESSAGE
+               PERFORM WITH TEST AFTER UNTIL Wfin = 1 AND Wtrouve = 1
+                   READ fpers
+                   AT END
+                       MOVE 1 TO Wfin
+                   NOT AT END
+                       IF 1fp_numP = fp_numP THEN
+                           MOVE tamp_fpers TO 1tamp_fpers
+                           ACCEPT PERS-REMOVE-SCREEN
+                           MOVE " " TO ERROR-MESSAGE
+                           IF MENU-VALIDATE = "Y" THEN
+                               MOVE 0 TO fp_actif
+                               REWRITE tamp_fpers
+                           ELSE
+                               MOVE "SUPPRESSION ABORT" TO ERROR-MESSAGE
+                           END-IF
+                           MOVE 1 TO Wtrouve
+                       END-IF
+                   END-READ
+               END-PERFORM
            CLOSE fpers.
 
 
@@ -50,7 +68,6 @@
                        END-IF
                  CLOSE fcli
               END-READ 
-
            CLOSE fresa.
 
 
