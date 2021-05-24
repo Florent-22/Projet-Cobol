@@ -97,10 +97,8 @@
                     WHEN 1
                        PERFORM DISPLAY_YOUR_MISSIONS
                     WHEN 2
-                       PERFORM ASSIGNING_MISSION
-                    WHEN 3
                        PERFORM CLOCK_IN_MISSION
-                    WHEN 4
+                    WHEN 3
                        PERFORM STATS_PERF
                  END-EVALUATE
            END-PERFORM
@@ -164,9 +162,6 @@
 
        DISPLAY_YOUR_MISSIONS.
            PERFORM DISPLAY_MISSION.
-
-       ASSIGNING_MISSION.
-       MOVE "NOT IMPLEMENTED YET" TO ERROR-MESSAGE.
 
        CLOCK_IN_MISSION.
            PERFORM SEARCH_MISSION
