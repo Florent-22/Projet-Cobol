@@ -218,6 +218,44 @@
            05 LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
 
 
+       01  RESA-DISPLAY-SCREEN.
+           05  BLANK SCREEN.
+           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05  LINE  2 COL  2 VALUE "WELCOME".
+           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05  LINE  8 COL 2 VALUE "RESERVATION NUMBER:".
+           05  LINE 8 COL 22 PIC 9(6) FROM fr_numResa.
+           05 LINE 10 COL 5 VALUE "ROOM NUMBER:".
+           05  LINE  10 COL 18 PIC 9(4) FROM fr_numCh.
+           05 LINE 11 COL 5 VALUE "CLIENT NUMBER:".
+           05  LINE  11 COL 21 PIC 9(6) FROM fr_numCL.
+           05 LINE 13 COL 5 VALUE "DURATION:".
+           05  LINE 13 COL 15 PIC 9(2) FROM fr_duree_hours.
+           05 LINE 13 COL 17 VALUE "h".
+           05  LINE 13 COL 18 PIC 9(2) FROM fr_duree_minute.
+           05 LINE 14 COL 5 VALUE "STARTS:".
+           05 LINE 14 COL 15 PIC 9(2) FROM fr_date_debut_day.
+           05 LINE 14 COL 17 VALUE "/".
+           05 LINE 14 COL 18 PIC 9(2) FROM fr_date_debut_month.
+           05 LINE 14 COL 20 VALUE "/".
+           05 LINE 14 COL 21 PIC 9(4) FROM fr_date_debut_year.
+           05 LINE 14 COL 30 PIC 9(2) FROM fr_date_debut_hours.
+           05 LINE 14 COL 32 VALUE "h".
+           05 LINE 14 COL 33 PIC 9(2) FROM fr_date_debut_minute.
+           05 LINE 15 COL 5 VALUE "ENDS:".
+           05 LINE 15 COL 15 PIC 9(2) FROM fr_date_fin_day.
+           05 LINE 15 COL 17 VALUE "/".
+           05 LINE 15 COL 18 PIC 9(2) FROM fr_date_fin_month.
+           05 LINE 15 COL 20 VALUE "/".
+           05 LINE 15 COL 21 PIC 9(4) FROM fr_date_fin_year.
+           05 LINE 15 COL 30 PIC 9(2) FROM fr_date_fin_hours.
+           05 LINE 15 COL 32 VALUE "h".
+           05 LINE 15 COL 33 PIC 9(2) FROM fr_date_fin_minute.
+           05 LINE 20 COL  2 VALUE "PRESS ANY KEY TO CONTINUE".
+           05 LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+
+
        01  RESA-REMOVE-SCREEN.
            05  BLANK SCREEN.
            05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
@@ -561,7 +599,6 @@
            05 LINE 14 COL 21 PIC 9(4) FROM fcl_year.
 
            05 LINE 20 COL  2 VALUE "PRESS ENTER TO RETURN TO MENU".
-           05 LINE 20 COL 21 PIC A USING MENU-VALIDATE.
            05 LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
 
        01  ADD-CLI-SCREEN.
@@ -710,6 +747,18 @@
            05  LINE  3 PIC X(80) VALUE ALL "-".
            05  LINE  8 COL  5  VALUE   "ROOM NUMBER:".
            05  LINE  8 COL  20 PIC 9(4) USING fc_numCh.
+           05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
+           05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
+           05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+
+       01  SEARCH_RESA_NUM_SCREEN.
+           05  BLANK SCREEN.
+           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05  LINE  2 COL  2  VALUE "WELCOME".
+           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05  LINE  3 PIC X(80) VALUE ALL "-".
+           05  LINE  8 COL  5  VALUE   "RESERVATION NUMBER:".
+           05  LINE  8 COL  25 PIC 9(4) USING fr_numResa.
            05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
            05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
