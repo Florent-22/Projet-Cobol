@@ -107,6 +107,7 @@
                    END-IF
                END-PERFORM
                IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
+                   PERFORM CALCULATE_HOUR_RESA
                    WRITE tamp_fresa
                        INVALID KEY 
                            MOVE "CREATION ERROR" TO ERROR-MESSAGE

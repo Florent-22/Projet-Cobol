@@ -2,24 +2,28 @@
 
 
        MODIF_RESERVATION.
-           MOVE 0 TO Wvalide
-           PERFORM WITH TEST AFTER UNTIL Wvalide = 1
-               ACCEPT RESA-EDITING-SCREEN
-               MOVE " " TO ERROR-MESSAGE
-               MOVE 1 TO Wvalide
-           END-PERFORM
-           IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
-               OPEN I-O fresa
-                   READ fresa
-                   INVALID KEY
-                       MOVE "INEXISTING RESERVATION" TO ERROR-MESSAGE
-                   NOT INVALID KEY
-                       REWRITE tamp_fresa
-                   END-READ
-               CLOSE fresa
-           ELSE
-               MOVE "MODIFICATION ABORT" TO ERROR-MESSAGE
-           END-IF.
+           IF Wtrouve EQUAL 1 THEN
+              MOVE 0 TO Wtrouve
+              MOVE 0 TO Wvalide
+              PERFORM WITH TEST AFTER UNTIL Wvalide = 1
+                  ACCEPT RESA-EDITING-SCREEN
+                  MOVE " " TO ERROR-MESSAGE
+                  MOVE 1 TO Wvalide
+              END-PERFORM
+              IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
+                  OPEN I-O fresa
+                      READ fresa
+                      INVALID KEY
+                          MOVE "INEXISTING RESERVATION" TO ERROR-MESSAGE
+                      NOT INVALID KEY
+                          REWRITE tamp_fresa
+                      END-READ
+                  CLOSE fresa
+              ELSE
+                  MOVE "MODIFICATION ABORT" TO ERROR-MESSAGE
+              END-IF
+            END-IF.
+
 
        MODIF_PERSONNEL.
            MOVE 0 TO Wvalide

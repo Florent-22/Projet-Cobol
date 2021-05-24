@@ -45,6 +45,7 @@
 
       * SEARCH RESA WITH THE RESA NUMBER
        SEARCH_RESA.
+           MOVE 0 TO Wtrouve
            OPEN INPUT fresa
            ACCEPT SEARCH_RESA_NUM_SCREEN
               MOVE " " TO ERROR-MESSAGE
@@ -52,6 +53,9 @@
                  INVALID KEY 
                     MOVE "THIS RESERVATION DOESN'T EXIST" 
                     TO ERROR-MESSAGE
+                    MOVE 0 TO Wtrouve
+                 NOT INVALID KEY
+                    MOVE 1 TO Wtrouve
               END-READ
            CLOSE fresa.
            
