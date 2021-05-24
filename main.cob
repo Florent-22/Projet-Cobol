@@ -243,16 +243,16 @@
            PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
                 ACCEPT STAFF-MENU-SCREEN
                 MOVE " " TO ERROR-MESSAGE
-      *         EVALUATE MENU-PICK
+                EVALUATE MENU-PICK
       *             WHEN 1
       *                PERFORM SEARCH_PERS
       *             WHEN 2
       *                PERFORM MODIF_PERS
       *             WHEN 3
       *                PERFORM ADD_PERS
-      *             WHEN 4
-      *                PERFORM DELETE_PERS
-      *          END-EVALUATE
+                    WHEN 4
+                       PERFORM DELETE_PERSONNEL
+                 END-EVALUATE
            END-PERFORM
            MOVE 1 TO MENU-PICK.
 
