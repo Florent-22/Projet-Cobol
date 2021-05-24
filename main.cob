@@ -140,6 +140,8 @@
                        PERFORM DELETE_MISSION
                     WHEN 4
                        PERFORM DELETE-CUSTOMER
+                    WHEN 5
+                       PERFORM GENERATE_MISSION
                  END-EVALUATE
            END-PERFORM
            PERFORM MENU_A_RECEP.
@@ -206,8 +208,8 @@
                        PERFORM SEARCH_CLIENT
       *             WHEN 2
       *                PERFORM MODIF_CLIENT
-      *             WHEN 3
-      *                PERFORM ADD_CLIENT
+                    WHEN 3
+                       PERFORM ADD_CLIENT
       *             WHEN 4
       *                PERFORM DELETE_CLIENT
                  END-EVALUATE
@@ -230,6 +232,8 @@
                 ACCEPT ROOMS-MENU-SCREEN
                 MOVE " " TO ERROR-MESSAGE
                 EVALUATE MENU-PICK
+                   WHEN 2
+                       PERFORM MODIF_ROOM
                    WHEN 3
                        PERFORM ADD_ROOM
                  END-EVALUATE
