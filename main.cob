@@ -32,13 +32,7 @@
        
            MOVE FUNCTION CURRENT-DATE TO WS-CURRENT-DATE-DATA.
            PERFORM START_PROG.
-           
-      *    PERFORM REMOVE_RESA.
-      *    PERFORM DISPLAY_MISSION.
-      *    PERFORM ADD_PERSONNEL.
-
-           
-
+  
            
        START_PROG.
            PERFORM CREATE_FILES.
@@ -75,6 +69,7 @@
           OPEN I-O fpers
              IF cr_fpers = 35 THEN
                 OPEN OUTPUT fpers
+                PERFORM ADD_PERSONNEL
              END-IF
           CLOSE fpers
 
@@ -190,6 +185,7 @@
                 EVALUATE MENU-PICK
                    WHEN 1
                        PERFORM SEARCH_RESA
+                       DISPLAY RESA-DISPLAY-SCREEN
                    WHEN 2
                        PERFORM SEARCH_RESA
                        PERFORM MODIF_RESERVATION

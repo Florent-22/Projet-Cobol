@@ -30,6 +30,7 @@
                     MOVE "THIS CLIENT DOESN'T EXIST" TO ERROR-MESSAGE
                  NOT INVALID KEY
                     DISPLAY SRCH-CLI-SCREEN
+               END-READ
            CLOSE fcli.
        
        SEARCH_MISSION.
@@ -41,10 +42,21 @@
                     MOVE "THIS MISSION DOESN'T EXIST" TO ERROR-MESSAGE
                  NOT INVALID KEY
                     DISPLAY SRCH-MIS-SCREEN
+              END-READ
            CLOSE fcli.
 
       * SEARCH RESA WITH THE RESA NUMBER
        SEARCH_RESA.
+           OPEN INPUT fresa
+           ACCEPT SEARCH_RESA_NUM_SCREEN
+              MOVE " " TO ERROR-MESSAGE
+              READ fresa
+                 INVALID KEY 
+                    MOVE "THIS RESERVATION DOESN'T EXIST" 
+                    TO ERROR-MESSAGE
+              END-READ
+           CLOSE fresa.
+           
 
 
       *SRCH_ROOM.
