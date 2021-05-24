@@ -2,6 +2,43 @@
 
 
       ***** MENUS *****
+       01  CUPIDON.
+           05 BLANK SCREEN.
+           05 LINE 3 COL 10 VALUE 
+           "                                (              ". 
+           05 LINE 4 COL 10 VALUE 
+           "                       .-'''-..' \             ". 
+           05 LINE 5 COL 10 VALUE 
+           "             _______ .'       -   \            ". 
+           05 LINE 6 COL 10 VALUE 
+           "           <<<<<<<< );__   ,,,_)   \           ". 
+           05 LINE 7 COL 10 VALUE 
+           "              <<<<<<<<< ) ;C  /     \          ". 
+           05 LINE 8 COL 10 VALUE 
+           "                <<<<<< (.-'-.  )====_)_=======>". 
+           05 LINE 9 COL 10 VALUE 
+           "                  <<<<< \    '''''''   )       ". 
+           05 LINE 10 COL 10 VALUE 
+           "                  ;  <<<     .......__/        ". 
+           05 LINE 11 COL 10 VALUE 
+           "             .-'''         (         )         ". 
+           05 LINE 12 COL 10 VALUE 
+           "          .-'              ;.       /          ". 
+           05 LINE 13 COL 10 VALUE 
+           "         /  .-'     .     =  .     /           ". 
+           05 LINE 14 COL 10 VALUE 
+           "     _-''\_/         '. .'    .   /            ". 
+           05 LINE 15 COL 10 VALUE 
+           "  .-'  )  ;\          '''.     . /             ". 
+           05 LINE 16 COL 10 VALUE 
+           " ;   .''''  `.       '    ;     (              ". 
+           05 LINE 17 COL 10 VALUE 
+           " O -'        .'''       .'                     ". 
+           05 LINE 18 COL 10 VALUE 
+           "           .'   .-'''''`                       ". 
+           05 LINE 19 COL 10 VALUE 
+           "           'o-'                                ".
+
        01  CONNECTION-SCREEN.
            05  BLANK SCREEN.
            05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
