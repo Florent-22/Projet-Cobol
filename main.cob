@@ -95,10 +95,13 @@
                 MOVE " " TO ERROR-MESSAGE
                 EVALUATE MENU-PICK
                     WHEN 1
+                       PERFORM CLEAN_TAMP
                        PERFORM DISPLAY_YOUR_MISSIONS
                     WHEN 2
+                       PERFORM CLEAN_TAMP
                        PERFORM CLOCK_IN_MISSION
                     WHEN 3
+                       PERFORM CLEAN_TAMP
                        PERFORM STATS_PERF
                  END-EVALUATE
            END-PERFORM
@@ -174,6 +177,13 @@
 
        DISPLAY_PLANNING.
            PERFORM PLANNING.
+       
+       CLEAN_TAMP.
+           MOVE " " TO tamp_fmis
+           MOVE " " TO tamp_fch
+           MOVE " " TO tamp_fcli
+           MOVE " " TO tamp_fpers
+           MOVE " " TO tamp_fresa.
 
        MENU_RESERVATIONS.
            PERFORM WITH TEST AFTER UNTIL MENU-PICK = 0
@@ -181,14 +191,18 @@
                 MOVE " " TO ERROR-MESSAGE
                 EVALUATE MENU-PICK
                    WHEN 1
+                       PERFORM CLEAN_TAMP
                        PERFORM SEARCH_RESA
-                       DISPLAY RESA-DISPLAY-SCREEN
+                       ACCEPT RESA-DISPLAY-SCREEN
                    WHEN 2
+                       PERFORM CLEAN_TAMP
                        PERFORM SEARCH_RESA
                        PERFORM MODIF_RESERVATION
                    WHEN 3
+                       PERFORM CLEAN_TAMP
                        PERFORM ADD_RESERV
                    WHEN 4
+                       PERFORM CLEAN_TAMP
                        PERFORM DELETE_RESA
                  END-EVALUATE
            END-PERFORM
@@ -200,14 +214,18 @@
                 MOVE " " TO ERROR-MESSAGE
                 EVALUATE MENU-PICK
                    WHEN 1
+                       PERFORM CLEAN_TAMP
                        PERFORM SEARCH_CLIENT
                        ACCEPT SRCH-CLI-SCREEN
                    WHEN 2
+                       PERFORM CLEAN_TAMP
                        PERFORM SEARCH_CLIENT
                        PERFORM MODIF_CLIENT
                    WHEN 3
+                       PERFORM CLEAN_TAMP
                        PERFORM ADD_CLIENT
                    WHEN 4
+                       PERFORM CLEAN_TAMP
                        PERFORM DELETE_CLIENT
                  END-EVALUATE
            END-PERFORM
@@ -219,6 +237,7 @@
                 MOVE " " TO ERROR-MESSAGE
                 EVALUATE MENU-PICK
                    WHEN 2
+                       PERFORM CLEAN_TAMP
                        PERFORM DISPLAY_BEST_HOUR
                  END-EVALUATE
            END-PERFORM
@@ -230,13 +249,17 @@
                 MOVE " " TO ERROR-MESSAGE
                 EVALUATE MENU-PICK
                    WHEN 1
+                       PERFORM CLEAN_TAMP
                        PERFORM SRCH_ROOM
                    WHEN 2
+                       PERFORM CLEAN_TAMP
                        PERFORM SRCH_ROOM
                        PERFORM MODIF_ROOM
                    WHEN 3
+                       PERFORM CLEAN_TAMP
                        PERFORM ADD_ROOM
       *            WHEN 4
+      *                PERFORM CLEAN_TAMP
       *                PERFORM DELETE_ROOM
                  END-EVALUATE
            END-PERFORM
@@ -248,12 +271,16 @@
                 MOVE " " TO ERROR-MESSAGE
                 EVALUATE MENU-PICK
       *             WHEN 1
+      *                PERFORM CLEAN_TAMP
       *                PERFORM SEARCH_PERS
       *             WHEN 2
+      *                PERFORM CLEAN_TAMP
       *                PERFORM MODIF_PERS
       *             WHEN 3
+      *                PERFORM CLEAN_TAMP
       *                PERFORM ADD_PERS
                     WHEN 4
+                       PERFORM CLEAN_TAMP
                        PERFORM DELETE_PERSONNEL
                  END-EVALUATE
            END-PERFORM

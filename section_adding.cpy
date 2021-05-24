@@ -11,6 +11,7 @@
                        MOVE 1 TO Wfin                         
                  END-READ
                END-PERFORM
+               MOVE 1tamp_fpers TO tamp_fpers
                ADD 1 TO fp_numP
                MOVE " " TO fp_nom
                MOVE " " TO fp_prenom
@@ -20,6 +21,7 @@
            	   MOVE 0 TO fp_month
            	   MOVE 0 TO fp_day
                MOVE 0 TO fp_actif
+               MOVE tamp_fpers TO 1tamp_fpers
                PERFORM WITH TEST AFTER UNTIL 
                Wvalide = 1 OR MENU-VALIDATE = "N"
                  ACCEPT PERS-EDITING-SCREEN
@@ -36,6 +38,7 @@
                END-PERFORM
            CLOSE fpers
            IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
+               MOVE 1tamp_fpers TO tamp_fpers
               OPEN EXTEND fpers
                  WRITE tamp_fpers
                  END-WRITE

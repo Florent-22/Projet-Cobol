@@ -253,6 +253,7 @@
            05 LINE 15 COL 32 VALUE "h".
            05 LINE 15 COL 33 PIC 9(2) FROM fr_date_fin_minute.
            05 LINE 20 COL  2 VALUE "PRESS ANY KEY TO CONTINUE".
+           05 LINE 20 COL 21 PIC A USING MENU-VALIDATE.
            05 LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
 
 
