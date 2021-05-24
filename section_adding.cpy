@@ -128,7 +128,6 @@
            MOVE 0 TO Wvalide
            OPEN I-O fcli
                PERFORM GET_LASTID_CLIENT
-               MOVE 0 TO fcl_numCl
                MOVE " " TO fcl_nom
                MOVE " " TO fcl_prenom
                MOVE 0 TO fcl_tel
