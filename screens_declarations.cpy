@@ -205,14 +205,14 @@
            05 LINE 14 COL 32 VALUE "h".
            05 LINE 14 COL 33 PIC 9(2) USING fr_date_debut_minute.
            05 LINE 15 COL 5 VALUE "ENDS:".
-           05 LINE 15 COL 15 PIC 9(2) USING fr_date_fin_day.
+           05 LINE 15 COL 15 PIC 9(2) FROM fr_date_fin_day.
            05 LINE 15 COL 17 VALUE "/".
-           05 LINE 15 COL 18 PIC 9(2) USING fr_date_fin_month.
+           05 LINE 15 COL 18 PIC 9(2) FROM fr_date_fin_month.
            05 LINE 15 COL 20 VALUE "/".
-           05 LINE 15 COL 21 PIC 9(4) USING fr_date_fin_year.
-           05 LINE 15 COL 30 PIC 9(2) USING fr_date_fin_hours.
+           05 LINE 15 COL 21 PIC 9(4) FROM fr_date_fin_year.
+           05 LINE 15 COL 30 PIC 9(2) FROM fr_date_fin_hours.
            05 LINE 15 COL 32 VALUE "h".
-           05 LINE 15 COL 33 PIC 9(2) USING fr_date_fin_minute.
+           05 LINE 15 COL 33 PIC 9(2) FROM fr_date_fin_minute.
            05 LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
            05 LINE 20 COL 21 PIC A USING MENU-VALIDATE.
            05 LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.

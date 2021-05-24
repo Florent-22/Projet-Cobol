@@ -61,3 +61,11 @@
                END-READ
            END-PERFORM
            ADD 1 TO fcl_numCl.
+
+      * tamp_fresa must be completed
+       CALCULATE_HOUR_RESA.
+           ADD fr_duree_hours TO fr_date_fin_hours
+           IF fr_date_fin_hours >= 24 THEN
+               SUBTRACT 24 FROM fr_date_fin_hours
+               ADD 1 TO fr_date_fin_day
+           END-IF
