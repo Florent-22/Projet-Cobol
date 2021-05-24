@@ -324,7 +324,7 @@
            	  03 6fcl_month PIC 9(2).
            	  03 6fcl_day PIC 9(2).
 
-
+      * TEMP RESA
        01 1tamp_fresa. 
            02 1fr_numResa PIC 9(6).
            02 1fr_numCh PIC 9(4).
@@ -348,3 +348,123 @@
               03 1fr_date_fin_time.
 	              04 1fr_date_fin_hours PIC 9(2).
 				     04 1fr_date_fin_minute PIC 9(2).
+
+       01 2tamp_fresa. 
+           02 2fr_numResa PIC 9(6).
+           02 2fr_numCh PIC 9(4).
+           02 2fr_numCL PIC 9(6).
+           02 2fr_duree.
+              03 2fr_duree_hours PIC 9(2).
+			     03 2fr_duree_minute PIC 9(2).
+           02 2fr_date_debut.
+              03 2fr_date_debut_date.
+                 04 2fr_date_debut_year PIC 9(4).
+                 04 2fr_date_debut_month PIC 9(2).
+                 04 2fr_date_debut_day PIC 9(2). 
+              03 2fr_date_debut_time.
+	              04 2fr_date_debut_hours PIC 9(2).
+				     04 2fr_date_debut_minute PIC 9(2).
+           02 2fr_date_fin.
+              03 2fr_date_fin_date.
+                 04 2fr_date_fin_year PIC 9(4).
+                 04 2fr_date_fin_month PIC 9(2).
+                 04 2fr_date_fin_day PIC 9(2). 
+              03 2fr_date_fin_time.
+	              04 2fr_date_fin_hours PIC 9(2).
+				     04 2fr_date_fin_minute PIC 9(2).
+       
+       01 3tamp_fresa. 
+           02 3fr_numResa PIC 9(6).
+           02 3fr_numCh PIC 9(4).
+           02 3fr_numCL PIC 9(6).
+           02 3fr_duree.
+              03 3fr_duree_hours PIC 9(2).
+			     03 3fr_duree_minute PIC 9(2).
+           02 3fr_date_debut.
+              03 3fr_date_debut_date.
+                 04 3fr_date_debut_year PIC 9(4).
+                 04 3fr_date_debut_month PIC 9(2).
+                 04 3fr_date_debut_day PIC 9(2). 
+              03 3fr_date_debut_time.
+	              04 3fr_date_debut_hours PIC 9(2).
+				     04 3fr_date_debut_minute PIC 9(2).
+           02 3fr_date_fin.
+              03 3fr_date_fin_date.
+                 04 3fr_date_fin_year PIC 9(4).
+                 04 3fr_date_fin_month PIC 9(2).
+                 04 3fr_date_fin_day PIC 9(2). 
+              03 3fr_date_fin_time.
+	              04 3fr_date_fin_hours PIC 9(2).
+				     04 3fr_date_fin_minute PIC 9(2).
+
+       01 4tamp_fresa. 
+           02 4fr_numResa PIC 9(6).
+           02 4fr_numCh PIC 9(4).
+           02 4fr_numCL PIC 9(6).
+           02 4fr_duree.
+              03 4fr_duree_hours PIC 9(2).
+			     03 4fr_duree_minute PIC 9(2).
+           02 4fr_date_debut.
+              03 4fr_date_debut_date.
+                 04 4fr_date_debut_year PIC 9(4).
+                 04 4fr_date_debut_month PIC 9(2).
+                 04 4fr_date_debut_day PIC 9(2). 
+              03 4fr_date_debut_time.
+	              04 4fr_date_debut_hours PIC 9(2).
+				     04 4fr_date_debut_minute PIC 9(2).
+           02 4fr_date_fin.
+              03 4fr_date_fin_date.
+                 04 4fr_date_fin_year PIC 9(4).
+                 04 4fr_date_fin_month PIC 9(2).
+                 04 4fr_date_fin_day PIC 9(2). 
+              03 4fr_date_fin_time.
+	              04 4fr_date_fin_hours PIC 9(2).
+				     04 4fr_date_fin_minute PIC 9(2).
+
+       01 5tamp_fresa. 
+           02 5fr_numResa PIC 9(6).
+           02 5fr_numCh PIC 9(4).
+           02 5fr_numCL PIC 9(6).
+           02 5fr_duree.
+              03 5fr_duree_hours PIC 9(2).
+			     03 1fr_duree_minute PIC 9(2).
+           02 5fr_date_debut.
+              03 5fr_date_debut_date.
+                 04 5fr_date_debut_year PIC 9(4).
+                 04 5fr_date_debut_month PIC 9(2).
+                 04 5fr_date_debut_day PIC 9(2). 
+              03 5fr_date_debut_time.
+	              04 5fr_date_debut_hours PIC 9(2).
+				     04 5fr_date_debut_minute PIC 9(2).
+           02 5fr_date_fin.
+              03 5fr_date_fin_date.
+                 04 5fr_date_fin_year PIC 9(4).
+                 04 5fr_date_fin_month PIC 9(2).
+                 04 1fr_date_fin_day PIC 9(2). 
+              03 5fr_date_fin_time.
+	              04 5fr_date_fin_hours PIC 9(2).
+				     04 5fr_date_fin_minute PIC 9(2).
+
+       01 6tamp_fresa. 
+           02 6fr_numResa PIC 9(6).
+           02 6fr_numCh PIC 9(4).
+           02 6fr_numCL PIC 9(6).
+           02 6fr_duree.
+              03 6fr_duree_hours PIC 9(2).
+			     03 1fr_duree_minute PIC 9(2).
+           02 6fr_date_debut.
+              03 6fr_date_debut_date.
+                 04 6fr_date_debut_year PIC 9(4).
+                 04 6fr_date_debut_month PIC 9(2).
+                 04 6fr_date_debut_day PIC 9(2). 
+              03 6fr_date_debut_time.
+	              04 6fr_date_debut_hours PIC 9(2).
+				     04 6fr_date_debut_minute PIC 9(2).
+           02 6fr_date_fin.
+              03 6fr_date_fin_date.
+                 04 6fr_date_fin_year PIC 9(4).
+                 04 6fr_date_fin_month PIC 9(2).
+                 04 6fr_date_fin_day PIC 9(2). 
+              03 6fr_date_fin_time.
+	              04 6fr_date_fin_hours PIC 9(2).
+				     04 6fr_date_fin_minute PIC 9(2).

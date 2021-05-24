@@ -522,6 +522,11 @@
 
       * DISPLAY 6 MISSIONS ON SCREEN
        01  DISP-MISSIONS-SCREEN.
+           05  BLANK SCREEN.
+           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05  LINE  2 COL  2 VALUE "WELCOME".
+           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05  LINE  3 PIC X(80) VALUE ALL "-".
            05  LINE  5 COL 5 VALUE "MISSION NUMBER:".
            05  LINE 5 COL 21 PIC 9(5) FROM 1fm_numM.
            05 LINE 7 COL 5 VALUE "PERSON:".
@@ -589,10 +594,16 @@
            05 LINE 16 COL 67 VALUE "h".
            05 LINE 16 COL 68 PIC 9(2) FROM 6fm_debut_minute.
            05  LINE 20 COL  2 VALUE ">ENTER FOR NEXT<".
+           05 LINE 20 COL 18  PIC A USING MENU-VALIDATE.
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
 
       * DISPLAY 6 PERSONNEL ON SCREEN 
        01  DISP-PERSONNEL-SCREEN.
+           05  BLANK SCREEN.
+           05  LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05  LINE  2 COL  2 VALUE "WELCOME".
+           05  LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05  LINE  3 PIC X(80) VALUE ALL "-".
            05  LINE  5 COL 5 VALUE "PERSONNEL NUMBER:".
            05  LINE 5 COL 21 PIC 9(5) FROM 1fp_numP.
            05 LINE 7 COL 5 VALUE "NAME:".
@@ -648,7 +659,104 @@
            05 LINE 16 COL 55 VALUE "TYPE:".
            05 LINE 16 COL 65 PIC 9(2) FROM 6fp_type.
            05  LINE 20 COL  2 VALUE ">ENTER FOR NEXT<".
+           05 LINE 20 COL 18  PIC A USING MENU-VALIDATE.
            05  LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+
+
+
+      * DISPLAY 6 MISSIONS ON SCREEN
+       01  DISP-PLANNING-SCREEN.
+           05 BLANK SCREEN.
+           05 LINE  2 COL  71 PIC 9(8) FROM WS-CURRENT-DATE.
+           05 LINE  2 COL  2 VALUE "WELCOME".
+           05 LINE  2 COL  10 PIC A(30) FROM WS-CURRENT-USER-FIRSTNAME.
+           05 LINE  3 PIC X(80) VALUE ALL "-".
+           05 LINE 5 COL 4 VALUE "ROOM NUMBER:".
+           05 LINE 5 COL 18 PIC 9(4) FROM fc_numCh.
+           05 LINE 7 COL 4 VALUE "RESERVATION NUM:".
+           05 LINE 7 COL 21 PIC 9(5) FROM 1fr_numResa.
+           05 LINE 9 COL 5 VALUE "CLIENT NUMBER:".
+           05 LINE 9 COL 20 PIC 9(4) FROM 1fr_numCL.
+           05 LINE 10 COL 5 VALUE "START AT:".
+           05 LINE 10 COL 15 PIC 9(2) FROM 1fr_date_debut_hours.
+           05 LINE 10 COL 17 VALUE "h".
+           05 LINE 10 COL 18 PIC 9(2) FROM 1fr_date_debut_minute.
+           05 LINE 11 COL 5 VALUE "ENDS AT:".
+           05 LINE 11 COL 15 PIC 9(2) FROM 1fr_date_fin_hours.
+           05 LINE 11 COL 17 VALUE "h".
+           05 LINE 11 COL 18 PIC 9(2) FROM 1fr_date_fin_minute.
+
+           05 LINE 7 COL 29 VALUE "RESERVATION NUM:".
+           05 LINE 7 COL 46 PIC 9(5) FROM 2fr_numResa.
+           05 LINE 9 COL 30 VALUE "CLIENT NUMBER:".
+           05 LINE 9 COL 45 PIC 9(4) FROM 2fr_numCL.
+           05 LINE 10 COL 30 VALUE "START AT:".
+           05 LINE 10 COL 40 PIC 9(2) FROM 2fr_date_debut_hours.
+           05 LINE 10 COL 42 VALUE "h".
+           05 LINE 10 COL 43 PIC 9(2) FROM 2fr_date_debut_minute.
+           05 LINE 11 COL 30 VALUE "ENDS AT:".
+           05 LINE 11 COL 40 PIC 9(2) FROM 2fr_date_fin_hours.
+           05 LINE 11 COL 42 VALUE "h".
+           05 LINE 11 COL 43 PIC 9(2) FROM 2fr_date_fin_minute.
+
+           05 LINE 7 COL 54 VALUE "RESERVATION NUM:".
+           05 LINE 7 COL 71 PIC 9(5) FROM 3fr_numResa.
+           05 LINE 9 COL 55 VALUE "CLIENT NUMBER:".
+           05 LINE 9 COL 70 PIC 9(4) FROM 3fr_numCL.
+           05 LINE 10 COL 55 VALUE "START AT:".
+           05 LINE 10 COL 65 PIC 9(2) FROM 3fr_date_debut_hours.
+           05 LINE 10 COL 67 VALUE "h".
+           05 LINE 10 COL 68 PIC 9(2) FROM 3fr_date_debut_minute.
+           05 LINE 11 COL 55 VALUE "ENDS AT:".
+           05 LINE 11 COL 65 PIC 9(2) FROM 3fr_date_fin_hours.
+           05 LINE 11 COL 67 VALUE "h".
+           05 LINE 11 COL 68 PIC 9(2) FROM 3fr_date_fin_minute.
+ 
+
+           05 LINE 14 COL 4 VALUE "RESERVATION NUM:".
+           05 LINE 14 COL 21 PIC 9(5) FROM 4fr_numResa.
+           05 LINE 16 COL 5 VALUE "CLIENT NUMBER:".
+           05 LINE 16 COL 20 PIC 9(4) FROM 4fr_numCL.
+           05 LINE 17 COL 5 VALUE "START AT:".
+           05 LINE 17 COL 15 PIC 9(2) FROM 4fr_date_debut_hours.
+           05 LINE 17 COL 17 VALUE "h".
+           05 LINE 17 COL 18 PIC 9(2) FROM 4fr_date_debut_minute.
+           05 LINE 18 COL 5 VALUE "ENDS AT:".
+           05 LINE 18 COL 15 PIC 9(2) FROM 4fr_date_fin_hours.
+           05 LINE 18 COL 17 VALUE "h".
+           05 LINE 18 COL 18 PIC 9(2) FROM 4fr_date_fin_minute.
+
+           05 LINE 14 COL 29 VALUE "RESERVATION NUM:".
+           05 LINE 14 COL 46 PIC 9(5) FROM 5fr_numResa.
+           05 LINE 16 COL 30 VALUE "CLIENT NUMBER:".
+           05 LINE 16 COL 45 PIC 9(4) FROM 5fr_numCL.
+           05 LINE 17 COL 30 VALUE "START AT:".
+           05 LINE 17 COL 40 PIC 9(2) FROM 5fr_date_debut_hours.
+           05 LINE 17 COL 42 VALUE "h".
+           05 LINE 17 COL 43 PIC 9(2) FROM 5fr_date_debut_minute.
+           05 LINE 18 COL 30 VALUE "ENDS AT:".
+           05 LINE 18 COL 40 PIC 9(2) FROM 5fr_date_fin_hours.
+           05 LINE 18 COL 42 VALUE "h".
+           05 LINE 18 COL 43 PIC 9(2) FROM 5fr_date_fin_minute.
+
+           05 LINE 14 COL 54 VALUE "RESERVATION NUM:".
+           05 LINE 14 COL 71 PIC 9(5) FROM 6fr_numResa.
+           05 LINE 16 COL 55 VALUE "CLIENT NUMBER:".
+           05 LINE 16 COL 70 PIC 9(4) FROM 6fr_numCL.
+           05 LINE 17 COL 55 VALUE "START AT:".
+           05 LINE 17 COL 65 PIC 9(2) FROM 6fr_date_debut_hours.
+           05 LINE 17 COL 67 VALUE "h".
+           05 LINE 17 COL 68 PIC 9(2) FROM 6fr_date_debut_minute.
+           05 LINE 18 COL 55 VALUE "ENDS AT:".
+           05 LINE 18 COL 65 PIC 9(2) FROM 6fr_date_fin_hours.
+           05 LINE 18 COL 67 VALUE "h".
+           05 LINE 18 COL 68 PIC 9(2) FROM 6fr_date_fin_minute.
+           05 LINE 20 COL  2 VALUE ">ENTER FOR NEXT<".
+           05 LINE 20 COL 18  PIC A USING MENU-VALIDATE.
+           05 LINE 24 COL  2 PIC X(79) FROM ERROR-MESSAGE.
+
+
+
 
        01  SRCH-CLI-SCREEN.
            05 BLANK SCREEN.

@@ -154,3 +154,74 @@
                    END-IF
                END-READ
            END-PERFORM.
+
+       PLANNING.
+           OPEN INPUT fch
+           ACCEPT ROOM_GET_ID
+           MOVE " " TO ERROR-MESSAGE
+           MOVE fc_numCh TO WS-NUM-CH
+           MOVE 0 TO Wfin
+           MOVE 0 TO Wtrouve
+           PERFORM WITH TEST AFTER UNTIL Wfin = 1 OR Wtrouve = 1
+               READ fch
+                   AT END
+                       MOVE 1 TO Wfin
+                       MOVE "INEXISTING ROOM" TO ERROR-MESSAGE
+                   NOT AT END
+                       IF fc_numCh EQUAL WS-NUM-CH THEN
+                       MOVE 1 TO Wtrouve 
+                       END-IF
+                   END-READ
+           END-PERFORM
+           CLOSE fch
+           IF Wtrouve = 1 THEN
+           OPEN INPUT fresa
+           MOVE WS-CURRENT-DATE TO fr_date_debut_date
+                 START fresa KEY IS EQUAL fr_date_debut_date 
+                    INVALID KEY
+                       MOVE "NO RESERVATION FOR THIS DATE" 
+                       TO ERROR-MESSAGE
+                       DISPLAY DISP-PLANNING-SCREEN
+                    NOT INVALID KEY
+                       MOVE 0 TO Wfin
+                       MOVE 0 TO Wstop
+                       PERFORM WITH TEST AFTER UNTIL Wfin = 1 
+                       OR Wstop = 1
+                          MOVE 1 TO Wdisp
+                          READ fresa NEXT
+                             AT END
+                                ACCEPT DISP-PLANNING-SCREEN
+                                MOVE 1 TO Wfin
+                             NOT AT END
+                               IF fr_date_debut_date = WS-CURRENT-DATE 
+                               THEN
+                                   IF fr_numCh = fc_numCh THEN
+                                      IF Wdisp = 1 THEN
+                                         MOVE tamp_fresa TO 1tamp_fresa
+                                      ELSE IF Wdisp = 2 THEN
+                                         MOVE tamp_fresa TO 2tamp_fresa
+                                      ELSE IF Wdisp = 3 THEN
+                                         MOVE tamp_fresa TO 3tamp_fresa
+                                      ELSE IF Wdisp = 4 THEN
+                                         MOVE tamp_fresa TO 4tamp_fresa
+                                      ELSE IF Wdisp = 5 THEN
+                                         MOVE tamp_fresa TO 5tamp_fresa
+                                      ELSE IF Wdisp = 6 THEN
+                                         MOVE tamp_fresa TO 6tamp_fresa
+                                         MOVE 0 TO Wdisp
+                                         DISPLAY DISP-PLANNING-SCREEN
+                                      END-IF
+                                      ADD 1 TO Wdisp   
+                                   ELSE
+                                      MOVE 0 TO Wfin
+                                   END-IF
+                                ELSE
+                                   MOVE 1 TO Wstop
+                                END-IF
+                          END-READ
+                       END-PERFORM 
+                 END-START
+           CLOSE fresa
+
+
+           END-IF.
