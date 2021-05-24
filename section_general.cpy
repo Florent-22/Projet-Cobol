@@ -68,11 +68,14 @@
        CALCULATE_HOUR_RESA.
       *    ADD 2 HOUR TO CLEAN THE ROOM    
            ADD 2 TO fr_duree_hours
+           MOVE fr_date_debut TO fr_date_fin
+           MOVE fr_date_debut_hours TO fr_date_fin_hours
            ADD fr_duree_hours TO fr_date_fin_hours
            IF fr_date_fin_hours >= 24 THEN
                SUBTRACT 24 FROM fr_date_fin_hours
                ADD 1 TO fr_date_fin_day
-           END-IF.
+           END-IF
+           SUBTRACT 2 FROM fr_duree_hours.
 
       * tamp_fresa MUST BE COMPLETED BEFORE CALL
        MISSION_EXIST.
