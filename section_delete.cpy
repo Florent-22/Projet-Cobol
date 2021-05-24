@@ -7,9 +7,16 @@
                MOVE " " TO ERROR-MESSAGE
                READ fmis
                    INVALID KEY
-                       DISPLAY "Cette mission n'existe pas !"
+                       MOVE "Cette mission n'existe pas !" 
+                           TO ERROR-MESSAGE
                    NOT INVALID KEY
-                       DELETE fmis RECORD
+                       ACCEPT MISS-REMOVE-SCREEN
+                       MOVE " " TO ERROR-MESSAGE
+                       IF MENU-VALIDATE = "Y" THEN
+                           DELETE fmis RECORD
+                       ELSE
+                           MOVE "SUPPRESSION ABORT" TO ERROR-MESSAGE
+                       END-IF
                END-READ
            CLOSE fmis.
 
