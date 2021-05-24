@@ -29,7 +29,7 @@
                            MOVE tamp_fpers TO 1tamp_fpers
                            ACCEPT PERS-REMOVE-SCREEN
                            MOVE " " TO ERROR-MESSAGE
-                           IF MENU-VALIDATE = "Y" THEN
+                      IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
                                MOVE 0 TO fp_actif
                                REWRITE tamp_fpers
                            ELSE
@@ -61,7 +61,7 @@
                      NOT INVALID KEY
                        ACCEPT RESA-REMOVE-SCREEN
                        MOVE " " TO ERROR-MESSAGE
-                       IF MENU-VALIDATE = "Y" THEN
+                      IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
                           DELETE fresa RECORD
                        ELSE
                           MOVE "SUPPRESSION ABORT" TO ERROR-MESSAGE
@@ -72,6 +72,7 @@
 
 
        DELETE_CLIENT.
+           MOVE 1 TO Wvalide
            OPEN I-O fcli
                ACCEPT SRCH-CLI-SCREEN
                MOVE " " TO ERROR-MESSAGE
@@ -81,8 +82,36 @@
                        TO ERROR-MESSAGE
                    NOT INVALID KEY
       * CHECK IF EXIST IN RESA
-                       DELETE fcli RECORD
-                       MOVE "CUSTOMER REMOVED" 
-                       TO ERROR-MESSAGE
+                       OPEN INPUT fresa
+                       MOVE fcl_numCl TO fr_numCl
+                       START fresa, KEY = fr_numCl
+                       INVALID KEY 
+                           MOVE 1 TO Wvalide
+                               
+                       NOT INVALID KEY
+                           PERFORM WITH TEST AFTER UNTIL Wfin = 0
+                               READ fresa NEXT
+                               AT END
+                                   MOVE 0 TO Wfin
+                               NOT AT END
+                                   IF fcl_numCl = fr_numCl THEN
+                                      IF fr_date_debut < WS-CURRENT-DATE
+                                      AND fr_date_fin > WS-CURRENT-DATE
+                                      THEN 
+                                         MOVE 0 TO Wvalide
+                                      END-IF
+                                   END-IF
+                              END-READ
+                           END-PERFORM
+                        END-START
+                        CLOSE fresa
+                       IF Wvalide = 1 THEN
+                          DELETE fcli RECORD
+                          MOVE "CUSTOMER REMOVED" 
+                          TO ERROR-MESSAGE
+                       ELSE 
+                         MOVE "CANNOT BE REMOVED COS RESERV IN PROGRESS" 
+                          TO ERROR-MESSAGE
+                       END-IF
                END-READ
            CLOSE fcli.

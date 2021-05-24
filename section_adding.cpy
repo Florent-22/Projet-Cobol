@@ -68,7 +68,7 @@
                  END-IF
                END-PERFORM
            CLOSE fpers
-           IF MENU-VALIDATE = "Y" THEN
+           IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
               OPEN EXTEND fpers
                  WRITE tamp_fpers
                  END-WRITE
@@ -106,7 +106,7 @@
                        MOVE 1 TO Wvalide
                    END-IF
                END-PERFORM
-               IF MENU-VALIDATE = "Y" THEN
+               IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
                    WRITE tamp_fresa
                        INVALID KEY 
                            MOVE "CREATION ERROR" TO ERROR-MESSAGE
@@ -139,7 +139,7 @@
                    END-IF
                END-PERFORM
            CLOSE fch
-           IF MENU-VALIDATE = "Y" THEN
+           IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
                OPEN EXTEND fch
                    WRITE tamp_fch
                    END-WRITE
@@ -153,7 +153,6 @@
            OPEN I-O fcli
                
                PERFORM GET_LASTID_CLIENT
-               MOVE 0 TO fcl_numCl
                MOVE " " TO fcl_nom
                MOVE " " TO fcl_prenom
                MOVE 0 TO fcl_tel
@@ -171,7 +170,7 @@
                           TO ERROR-MESSAGE
                    END-IF
                END-PERFORM
-               IF MENU-VALIDATE = "Y" THEN
+               IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
                     
                         WRITE tamp_fcli
                           INVALID KEY

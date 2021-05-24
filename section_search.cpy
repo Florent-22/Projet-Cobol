@@ -28,8 +28,6 @@
               READ fcli
                  INVALID KEY 
                     MOVE "THIS CLIENT DOESN'T EXIST" TO ERROR-MESSAGE
-                 NOT INVALID KEY
-                    DISPLAY SRCH-CLI-SCREEN
                END-READ
            CLOSE fcli.
        
@@ -58,8 +56,8 @@
            CLOSE fresa.
            
 
-
-      *SRCH_ROOM.
+      * A COMPLETER
+       SRCH_ROOM.
       *       OPEN INPUT fch
       *       MOVE 0 to Wchoix1
       *        PERFORM WITH TEST AFTER UNTIL 

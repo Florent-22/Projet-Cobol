@@ -161,7 +161,7 @@
                    MOVE " " TO ERROR-MESSAGE
                    MOVE 1 TO Wvalide
                END-PERFORM
-               IF MENU-VALIDATE = "Y" THEN
+               IF MENU-VALIDATE = "Y" OR MENU-VALIDATE = "y" THEN
                    MOVE fc_numCh TO fr_numCh
                    START fresa, KEY = fr_numCh
                    INVALID KEY 
@@ -186,8 +186,9 @@
                                        TO WS-M-RESA-ROOM
                                    ADD 1 TO WS-NB-RESA-ROOM
                                END-IF
-                       END-READ
-                   END-PERFORM
+                          END-READ
+                       END-PERFORM
+                    END-START
                 END-IF
            CLOSE fresa.
            

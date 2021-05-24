@@ -616,12 +616,12 @@
            05 LINE 12 COL 16 PIC 9(10) USING fcl_tel.
            05 LINE 13 COL 5 VALUE "ADDRESS:".
            05 LINE 13 COL 14 PIC X(100) USING fcl_adr.
-           05 LINE 14 COL 5 VALUE "BIRTHDAY:".
-           05 LINE 14 COL 15 PIC 9(2) USING fcl_day.
-           05 LINE 14 COL 17 VALUE "/".
-           05 LINE 14 COL 18 PIC 9(2) USING fcl_month.
-           05 LINE 14 COL 20 VALUE "/".
-           05 LINE 14 COL 21 PIC 9(4) USING fcl_year.
+           05 LINE 15 COL 5 VALUE "BIRTHDAY:".
+           05 LINE 15 COL 15 PIC 9(2) USING fcl_day.
+           05 LINE 15 COL 17 VALUE "/".
+           05 LINE 15 COL 18 PIC 9(2) USING fcl_month.
+           05 LINE 15 COL 20 VALUE "/".
+           05 LINE 15 COL 21 PIC 9(4) USING fcl_year.
 
            05  LINE 20 COL  2 VALUE "VALIDATE ? (Y/N) >".
            05  LINE 20 COL 21 PIC A USING MENU-VALIDATE.
