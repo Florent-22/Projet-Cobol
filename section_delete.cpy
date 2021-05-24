@@ -122,3 +122,27 @@
                        END-IF
                END-READ
            CLOSE fcli.
+
+
+
+       DELETE_ROOM.
+           OPEN I-O fch
+           ACCEPT ROOM_GET_ID
+           MOVE " " TO ERROR-MESSAGE
+           MOVE fc_numCh TO WS-NUM-CH
+           MOVE 0 TO Wfin
+           MOVE 0 TO Wtrouve
+           PERFORM WITH TEST AFTER UNTIL Wfin = 1 OR Wtrouve = 1
+               READ fch
+                   AT END
+                       MOVE 1 TO Wfin
+                       MOVE "INEXISTING ROOM" TO ERROR-MESSAGE
+                   NOT AT END
+                       IF fc_numCh EQUAL WS-NUM-CH THEN
+                           DELETE fch
+                           MOVE 1 TO Wtrouve
+                       END-IF
+               END-READ
+           END-PERFORM
+           CLOSE fch.
+        

@@ -185,8 +185,10 @@
                                OPEN OUTPUT fmis
                                PERFORM GET_LASTID_MISSION
                                PERFORM GET_NB_PERS
-                               MOVE FUNCTION RANDOM(0, Wcompteur) 
-                                   TO fm_numP
+                               MOVE FUNCTION RANDOM(1) TO fm_numP
+                               MULTIPLY fm_numP BY Wcompteur
+                                ADD 1 TO fm_numP
+                           
                                MOVE fr_numCh TO fm_numCh
                                MOVE fr_date_fin TO fm_debut
                                ADD 2 TO fr_date_fin_hours
