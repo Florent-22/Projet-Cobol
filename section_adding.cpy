@@ -81,11 +81,30 @@
        ADD_RESERV.
            OPEN I-O fresa
                MOVE 0 TO Wvalide
+               MOVE 0 TO Wtrouve
                PERFORM GET_LASTID_RESA
+               MOVE 0 TO fr_numCh
+               MOVE 0 TO fr_numCL
+               MOVE " " TO fr_duree
+               MOVE " " TO fr_date_debut
+               MOVE " " TO fr_date_fin
                PERFORM WITH TEST AFTER UNTIL Wvalide = 1
                    ACCEPT RESA-EDITING-SCREEN
                    MOVE " " TO ERROR-MESSAGE
                    PERFORM CLIENT_EXIST
+                   IF Wtrouve = 0 THEN
+                       MOVE "CLIENT DOESN'T EXIST" TO ERROR-MESSAGE
+                   ELSE
+                       PERFORM ROOM_EXIST
+                       IF Wtrouve = 0 THEN
+                           MOVE "ROOM DOESN'T EXIST" TO ERROR-MESSAGE
+                       ELSE
+                           MOVE 1 TO Wvalide
+                       END-IF
+                   END-IF
+                   IF MENU-VALIDATE = "N" THEN
+                       MOVE 1 TO Wvalide
+                   END-IF
                END-PERFORM
                IF MENU-VALIDATE = "Y" THEN
                    WRITE tamp_fresa
