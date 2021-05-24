@@ -43,6 +43,10 @@
                     DISPLAY SRCH-MIS-SCREEN
            CLOSE fcli.
 
+      * SEARCH RESA WITH THE RESA NUMBER
+       SEARCH_RESA.
+
+
       *SRCH_ROOM.
       *       OPEN INPUT fch
       *       MOVE 0 to Wchoix1

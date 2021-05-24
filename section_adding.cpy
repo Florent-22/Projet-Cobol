@@ -134,6 +134,14 @@
            OPEN I-O fcli
                
                PERFORM GET_LASTID_CLIENT
+               MOVE 0 TO fcl_numCl
+               MOVE " " TO fcl_nom
+               MOVE " " TO fcl_prenom
+               MOVE 0 TO fcl_tel
+               MOVE " " TO fcl_adr
+	           MOVE 0 TO fcl_year
+	           MOVE 0 TO fcl_month
+	           MOVE 0 TO fcl_day
                PERFORM WITH TEST AFTER UNTIL Wvalide = 1
                    ACCEPT ADD-CLI-SCREEN
                    MOVE " " TO ERROR-MESSAGE

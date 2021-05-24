@@ -189,8 +189,9 @@
                 MOVE " " TO ERROR-MESSAGE
                 EVALUATE MENU-PICK
                    WHEN 1
-      *                PERFORM SRCH_RESA
+                       PERFORM SEARCH_RESA
                    WHEN 2
+                       PERFORM SEARCH_RESA
                        PERFORM MODIF_RESERVATION
                    WHEN 3
                        PERFORM ADD_RESERV
@@ -263,6 +264,7 @@
 
        LOGOUT.
            DISPLAY LOGOUT-SCREEN
+           DISPLAY CUPIDON
            STOP RUN.
 
        CONNECTION.
