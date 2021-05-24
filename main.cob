@@ -251,14 +251,11 @@
                    WHEN 1
                        PERFORM CLEAN_TAMP
                        PERFORM SRCH_ROOM
+                       PERFORM MODIF_ROOM
                    WHEN 2
                        PERFORM CLEAN_TAMP
-                       PERFORM SRCH_ROOM
-                       PERFORM MODIF_ROOM
-                   WHEN 3
-                       PERFORM CLEAN_TAMP
                        PERFORM ADD_ROOM
-                   WHEN 4
+                   WHEN 3
                        PERFORM CLEAN_TAMP
                        PERFORM DELETE_ROOM
                  END-EVALUATE
