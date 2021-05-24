@@ -236,7 +236,7 @@
                 ACCEPT STATS-MENU-SCREEN
                 MOVE " " TO ERROR-MESSAGE
                 EVALUATE MENU-PICK
-                   WHEN 2
+                   WHEN 1
                        PERFORM CLEAN_TAMP
                        PERFORM DISPLAY_BEST_HOUR
                  END-EVALUATE
@@ -258,9 +258,9 @@
                    WHEN 3
                        PERFORM CLEAN_TAMP
                        PERFORM ADD_ROOM
-      *            WHEN 4
-      *                PERFORM CLEAN_TAMP
-      *                PERFORM DELETE_ROOM
+                   WHEN 4
+                       PERFORM CLEAN_TAMP
+                       PERFORM DELETE_ROOM
                  END-EVALUATE
            END-PERFORM
            MOVE 1 TO MENU-PICK.
@@ -270,16 +270,14 @@
                 ACCEPT STAFF-MENU-SCREEN
                 MOVE " " TO ERROR-MESSAGE
                 EVALUATE MENU-PICK
-      *             WHEN 1
-      *                PERFORM CLEAN_TAMP
-      *                PERFORM SEARCH_PERS
-      *             WHEN 2
-      *                PERFORM CLEAN_TAMP
-      *                PERFORM MODIF_PERS
-      *             WHEN 3
-      *                PERFORM CLEAN_TAMP
-      *                PERFORM ADD_PERS
-                    WHEN 4
+                    WHEN 1
+                       PERFORM CLEAN_TAMP
+                       PERFORM SEARCH_PERSONNEL
+                       PERFORM MODIF_PERSONNEL
+                    WHEN 2
+                       PERFORM CLEAN_TAMP
+                       PERFORM ADD_PERSONNEL
+                    WHEN 3
                        PERFORM CLEAN_TAMP
                        PERFORM DELETE_PERSONNEL
                  END-EVALUATE
